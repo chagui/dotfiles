@@ -6,8 +6,12 @@
 	editor = vim
 	autocrlf = input
 [alias]
+    ap = add --patch
     co = checkout
     ci = commit
+    cam = commit -a -m
+    d = diff
+    dt = difftool
     st = status
     br = branch
     hist = log --date=human --graph --pretty=format:\"%C(white)%C(bold)%h%Creset - %C(white)%an%Creset [%ad]%n%s%n\" # requires git 2.21+
