@@ -1,0 +1,15 @@
+[user]
+	name = Guilhem Charles
+	email = ???
+[core]
+    excludesfile = ~/.gitignore
+	editor = vim
+	autocrlf = input
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --date=human --graph --pretty=format:\"%C(white)%C(bold)%h%Creset - %C(white)%an%Creset [%ad]%n%s%n\" # requires git 2.21+
+    type = cat-file -t
+    dump = cat-file -p
