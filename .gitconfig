@@ -1,10 +1,10 @@
 [user]
-	name = Guilhem Charles
-	email = ???
+    name = Guilhem Charles
+    email = ???
 [core]
     excludesfile = ~/.gitignore
-	editor = vim
-	autocrlf = input
+    editor = vim
+    autocrlf = input
 [alias]
     ap = add --patch
     co = checkout
