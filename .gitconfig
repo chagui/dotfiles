@@ -5,6 +5,8 @@
     excludesfile = ~/.gitignore
     editor = vim
     autocrlf = input
+[diff]
+    tool = diffuse
 [alias]
     ap = add --patch
     co = checkout
