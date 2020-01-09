@@ -1,4 +1,5 @@
 syntax on
+
 set expandtab
 set shiftwidth=4
 set smartindent
@@ -15,4 +16,4 @@ call plug#end()
 colorscheme darcula
 
 autocmd BufNewFile,BufRead .bash_personal set syntax=sh
-
+autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2
