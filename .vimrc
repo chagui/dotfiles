@@ -5,8 +5,11 @@ set shiftwidth=4
 set smartindent
 set autoindent
 set number relativenumber
-set nu rnu
+
+set ignorecase
+set smartcase
 set hlsearch
+set incsearch
 
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
