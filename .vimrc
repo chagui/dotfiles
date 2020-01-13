@@ -1,15 +1,11 @@
 syntax on
 
 set expandtab
-set shiftwidth=4
-set smartindent
-set autoindent
+set shiftwidth=4 softtabstop=4
+set smartindent autoindent
 set number relativenumber
-
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
+set ignorecase smartcase
+set hlsearch incsearch
 
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
