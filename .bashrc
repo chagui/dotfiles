@@ -23,6 +23,12 @@ if [[ -e /usr/lib/git-core/git-sh-prompt ]]; then
         # cwd
         PS1="\[$bold\]\[$blue\]\w\[$reset\]"
 
+        # python
+        if [[ -n ${VIRTUAL_ENV} ]]; then
+            local -r prefix="(`basename "${VIRTUAL_ENV}"`)"
+            PS1="${prefix}${PS1:-}"
+        fi
+
         # git
         PS1+="\[$yellow\]$(__git_ps1)\[$white\]"
         GIT_PS1_SHOWDIRTYSTATE=true
