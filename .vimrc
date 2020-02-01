@@ -1,9 +1,14 @@
 syntax on
 
+" Tab sanity
 set expandtab
 set shiftwidth=4 softtabstop=4
 set smartindent autoindent
+
+" Navigation
 set number relativenumber
+
+" Search
 set ignorecase smartcase
 set hlsearch incsearch
 
