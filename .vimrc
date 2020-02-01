@@ -15,4 +15,7 @@ call plug#end()
 colorscheme darcula
 
 autocmd BufNewFile,BufRead .bash_personal set syntax=sh
-autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd Filetype json setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType make setlocal noexpandtab
+
