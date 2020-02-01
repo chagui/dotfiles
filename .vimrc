@@ -1,11 +1,15 @@
 syntax on
 
+set ttyfast
+set showmode showcmd
+
 " Tab sanity
 set expandtab
 set shiftwidth=4 softtabstop=4
 set smartindent autoindent
 
 " Navigation
+set title
 set number relativenumber
 
 " Search
