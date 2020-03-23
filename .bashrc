@@ -62,10 +62,17 @@ alias ga='git add'
 alias gbr='git branch'
 complete -F _complete_alias gbr
 alias gcm='git commit'
+complete -F _complete_alias gcm
+alias gpatch='git commit --amend'
+alias gfixup='git commit --amend --no-edit'
 alias gp='git push'
+complete -F _complete_alias gp
 alias gr='git rebase'
+complete -F _complete_alias gr
 alias gd='git diff'
+complete -F _complete_alias gd
 alias gdt='git difftool'
+complete -F _complete_alias gdt
 alias gco='git checkout'
 complete -F _complete_alias gco
 alias ghist='git hist'
