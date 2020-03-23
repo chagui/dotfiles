@@ -57,7 +57,7 @@ alias goplay='cd ~/Work/playground'
 alias gotmp='cd /tmp'
 
 # git
-alias gs='git status'
+alias gs='git status -s'
 alias ga='git add'
 alias gbr='git branch'
 complete -F _complete_alias gbr
