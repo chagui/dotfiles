@@ -104,6 +104,7 @@ alias snapi='sudo snap install'
 complete -F _complete_alias snapi
 if [ -e ~/.local/bin/exa ]; then
     alias ls='exa'
+    alias l='ls -F'
 fi
 
 # ascii art
