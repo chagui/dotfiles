@@ -100,6 +100,8 @@ complete -F _complete_alias dsys
 # misc
 alias apti='sudo apt install'
 complete -F _complete_alias apti
+alias snapi='sudo snap install'
+complete -F _complete_alias snapi
 if [ -e ~/.local/bin/exa ]; then
     alias ls='exa'
 fi
