@@ -1,6 +1,0 @@
-alias grephcpp='grep --include=\*.{h,hpp,hxx,c,cpp,cc,cxx}'
-alias grepcmake='grep --include={CMakeLists.txt,*.cmake}'
-alias greptext='grep --include=\*.txt'
-alias grepconf='grep --include=\*.{conf,yaml,yml,ini,json,xml}'
-alias grepsh='grep --include=*.sh'
-alias greppy='grep --include=*.py'

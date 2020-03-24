@@ -63,6 +63,14 @@ alias cdr="cd ~/Work/github.com"
 alias goplay='cd ~/Work/playground'
 alias gotmp='cd /tmp'
 
+# search
+alias rgcpp='rg -tcpp'
+alias rgcmake='rg -tcmake'
+alias rgtext='rg -ttxt'
+alias rgconf='rg -tconfig -tyaml -tjson -txml'
+alias rgsh='rg -tsh'
+alias rgpy='rg -tpy'
+
 # git
 alias gs='git status -s'
 alias ga='git add'
