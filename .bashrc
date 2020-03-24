@@ -115,12 +115,14 @@ complete -F _complete_alias dsys
 # misc
 alias apti='sudo apt install'
 complete -F _complete_alias apti
+alias aptu='sudo apt update && sudo apt upgrade -y'
 alias snapi='sudo snap install'
 complete -F _complete_alias snapi
 if [ -e ~/.local/bin/exa ]; then
     alias ls='exa'
     alias l='ls -F'
 fi
+alias root='sudo su - root'
 
 # ascii art
 alias no-idea='echo "¯\_(ツ)_/¯"'
@@ -150,3 +152,8 @@ function github {
 function tgz_compress {
     tar cvf - $1 | gzip > $2
 }
+
+function mkd {
+    mkdir -p $1 && cd $_
+}
+
