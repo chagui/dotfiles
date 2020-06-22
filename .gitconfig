@@ -6,7 +6,9 @@
     editor = vim
     autocrlf = input
 [diff]
-    tool = diffuse
+    tool = meld
+[difftool]
+    prompt = false
 [color]
     ui = auto
 [alias]
