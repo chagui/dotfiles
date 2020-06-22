@@ -76,8 +76,12 @@ alias gs='git status -s'
 alias ga='git add'
 alias gbr='git branch'
 complete -F _complete_alias gbr
-alias gcm='git commit'
+alias gc='git c'
+complete -F _complete_alias gc
+alias gcm='git cm'
 complete -F _complete_alias gcm
+alias gacm='git cam'
+complete -F _complete_alias gcam
 alias gpatch='git commit --amend'
 alias gfixup='git commit --amend --no-edit'
 alias gp='git push'

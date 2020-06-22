@@ -15,10 +15,13 @@
     amend = commit --amend
     ap = add --patch
     co = checkout
-    ci = commit
+    c = commit
+    cm = commit -m
     cam = commit -a -m
+    cp = cherry-pick
     d = diff
     dt = difftool
+    stat = diff --stat
     st = status
     br = branch
     hist = log --date=human --graph --pretty=format:\"%C(white)%C(bold)%h%Creset - %C(white)%an%Creset [%ad]%n%s%n\" # requires git 2.21+
