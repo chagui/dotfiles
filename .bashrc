@@ -94,7 +94,7 @@ alias gdt='git difftool'
 complete -F _complete_alias gdt
 alias gco='git checkout'
 complete -F _complete_alias gco
-alias ghist='git hist'
+alias gtree='git tree'
 alias clone='git_clone'
 
 # docker
