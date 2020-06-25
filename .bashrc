@@ -94,6 +94,8 @@ alias gdt='git difftool'
 complete -F _complete_alias gdt
 alias gco='git checkout'
 complete -F _complete_alias gco
+alias gcp='git cherry-pick'
+complete -F _complete_alias gcp
 alias gtree='git tree'
 alias clone='git_clone'
 
