@@ -166,3 +166,10 @@ function mkd {
     mkdir -p $1 && cd $_
 }
 
+# get IP address for the given container and network
+function get_container_network_ip {
+    local -r container_name="${1}"
+    local -r network_name="${2}"
+    docker inspect "${container_name}" | jq -r ".[0].NetworkSettings.Networks.${network_name}.IPAddress"
+}
+
