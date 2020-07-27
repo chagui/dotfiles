@@ -47,11 +47,14 @@ fi
 export PYTHON_ENVS="${HOME}/Work/python_envs"
 
 #### tune history ####
-# remember everything from every terminal on the machine while having that history accessible from every terminal
-# shout-out to https://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
 export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+
+function share_history {
+    # remember everything from every terminal on the machine while having that history accessible from every terminal
+    # shout-out to https://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
+    export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+}
 
 #### alias ####
 # beautifiers
