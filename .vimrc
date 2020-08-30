@@ -11,6 +11,7 @@ set smartindent autoindent
 " Navigation
 set title
 set number relativenumber
+set mouse=a
 
 " Search
 set ignorecase smartcase
