@@ -125,6 +125,7 @@ complete -F _complete_alias dsys
 alias apti='sudo apt install'
 complete -F _complete_alias apti
 alias aptu='sudo apt update && sudo apt upgrade -y'
+alias snapu='sudo snap refresh'
 alias snapi='sudo snap install'
 complete -F _complete_alias snapi
 if [ -e ~/.local/bin/exa ]; then
