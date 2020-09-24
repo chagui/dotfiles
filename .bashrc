@@ -111,7 +111,7 @@ alias dports='docker ps --format "table {{.Names}}\t{{.Ports}}"'
 alias garbage-collect-docker='docker rm $(docker ps -aq)'
 alias dl='docker logs -ft'
 complete -F _complete_alias dl
-alias dps='docker ps'
+alias dps='docker ps --format "table {{.Image}}\t{{.ID}}\t{{.Ports}}\t{{.Names}}"'
 alias dimgs='docker images'
 complete -F _complete_alias dimgs
 alias dvol='docker volume'
