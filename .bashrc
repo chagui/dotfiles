@@ -46,6 +46,11 @@ if [[ -e /usr/lib/git-core/git-sh-prompt ]]; then
     PROMPT_COMMAND='set_prompt'
 fi
 
+if hash go &>/dev/null; then
+    export GOPATH="${HOME}/go"
+    export PATH="${PATH}:${GOPATH}/bin"
+fi
+
 export PYTHON_ENVS="${HOME}/Work/python_envs"
 
 #### tune history ####
