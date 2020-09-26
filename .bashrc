@@ -1,3 +1,5 @@
+export BAT_THEME=1337
+
 if [ -e ~/.local/bin ]; then
     export PATH="${PATH}:~/.local/bin"
 fi
@@ -57,9 +59,6 @@ function share_history {
 }
 
 #### alias ####
-# beautifiers
-alias ccat='pygmentize'
-
 # move around
 alias cdw='cd ~/Work'
 alias cdr="cd ~/Work/github.com"
