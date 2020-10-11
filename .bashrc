@@ -1,4 +1,3 @@
-export BAT_THEME=1337
 
 if [ -e ~/.local/bin ]; then
     export PATH="${PATH}:~/.local/bin"
@@ -51,6 +50,9 @@ if hash go &>/dev/null; then
     export PATH="${PATH}:${GOPATH}/bin"
 fi
 
+if hash bat &>/dev/null; then
+    export BAT_THEME=1337
+fi
 export PYTHON_ENVS="${HOME}/Work/python_envs"
 
 #### tune history ####
