@@ -10,15 +10,16 @@
 [difftool]
     prompt = false
 [color]
-    ui = auto
-
+    ui = autocrlf
+[include]
+      path = ~/.gitconfig.local
 [color.decorate]
     branch = bold 28
     remoteBranch = bold blue
-
 [alias]
     amend = commit --amend
     ap = add --patch
+    af = !git add `git status --short | fzf`
     co = checkout
     c = commit
     cm = commit -m
