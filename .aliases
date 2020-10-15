@@ -13,16 +13,17 @@ alias rgsh='rg -tsh'
 alias rgpy='rg -tpy'
 
 # git
-alias gs='git status -s'
 alias ga='git add'
 alias gbr='git branch'
 complete -F _complete_alias gbr
+alias gbrD='git branch -D'
+complete -F _complete_alias gbrD
 alias gc='git c'
 complete -F _complete_alias gc
+alias gcam='git cam'
+complete -F _complete_alias gcam
 alias gcm='git cm'
 complete -F _complete_alias gcm
-alias gacm='git cam'
-complete -F _complete_alias gcam
 alias gpatch='git commit --amend'
 alias gfixup='git commit --amend --no-edit'
 alias gp='git push'
@@ -37,7 +38,12 @@ alias gco='git checkout'
 complete -F _complete_alias gco
 alias gcp='git cherry-pick'
 complete -F _complete_alias gcp
+alias gs='git status -s'
 alias gtree='git tree'
+alias gadog='git adog'
+alias gf='git fetch'
+alias gfa='git fetch --all --prune'
+alias gfo='git fetch origin'
 alias clone='git_clone'
 
 # docker
