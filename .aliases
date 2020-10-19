@@ -72,11 +72,13 @@ alias aptu='sudo apt update && sudo apt upgrade -y'
 alias snapu='sudo snap refresh'
 alias snapi='sudo snap install'
 complete -F _complete_alias snapi
-if [ -e ~/.local/bin/exa ]; then
-    alias ls='exa'
-    alias l='ls -F'
-fi
 alias root='sudo su - root'
+
+if hash exa &>/dev/null; then
+    alias ls='exa'
+    alias l='exa -F'
+    alias ll='exa -alias'
+fi
 
 # ascii art
 alias no-idea='echo "¯\_(ツ)_/¯"'
