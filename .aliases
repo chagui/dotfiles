@@ -73,6 +73,7 @@ alias snapu='sudo snap refresh'
 alias snapi='sudo snap install'
 complete -F _complete_alias snapi
 alias root='sudo su - root'
+alias vimu='vim +PlugInstall +PlugClean +PlugUpdate +UpdateRemotePlugin'
 
 if hash exa &>/dev/null; then
     alias ls='exa'
