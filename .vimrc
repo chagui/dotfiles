@@ -27,6 +27,8 @@ call plug#begin('~/.vim/plugged')
 
 " GUI enhancements
 Plug 'ayu-theme/ayu-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'machakann/vim-highlightedyank'
 
 " Projects
 Plug 'airblade/vim-rooter'
@@ -37,6 +39,14 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 call plug#end()
+
+" lightline
+set laststatus=2
+set noshowmode
+if !has('gui_running')
+    set t_Co=256
+endif
+let g:lightline = { 'colorscheme': 'ayu_dark' }
 
 " Theme
 let ayucolor="dark"
