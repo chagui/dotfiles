@@ -26,7 +26,7 @@ set undofile
 call plug#begin('~/.vim/plugged')
 
 " GUI enhancements
-Plug 'doums/darcula'
+Plug 'ayu-theme/ayu-vim'
 
 " Navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -34,7 +34,9 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
-colorscheme darcula
+" Theme
+let ayucolor="dark"
+colorscheme ayu
 
 autocmd BufNewFile,BufRead .bash_personal set syntax=sh
 autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
