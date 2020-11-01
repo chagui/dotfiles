@@ -24,8 +24,14 @@ set undofile
 
 " Plugins
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" GUI enhancements
 Plug 'doums/darcula'
+
+" Navigation
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 colorscheme darcula
