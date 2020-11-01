@@ -43,3 +43,8 @@ set wildignore+=*.swp,~*
 " Archives
 set wildignore+=*.zip,*.tar
 
+if executable('rg')
+    set grepprg=rg\ --no-heading\ --vimgrep
+    set grepformat=%f:%l:%c:%m
+endif
+
