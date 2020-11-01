@@ -28,6 +28,10 @@ call plug#begin('~/.vim/plugged')
 " GUI enhancements
 Plug 'ayu-theme/ayu-vim'
 
+" Projects
+Plug 'airblade/vim-rooter'
+Plug 'vim-scripts/localvimrc'
+
 " Navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
