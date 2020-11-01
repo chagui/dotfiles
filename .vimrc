@@ -17,6 +17,12 @@ set mouse=a
 set ignorecase smartcase
 set hlsearch incsearch
 
+" History
+set undodir=~/.cache/vimdid
+set undofile
+
+
+" Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'doums/darcula'
