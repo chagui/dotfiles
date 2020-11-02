@@ -78,7 +78,7 @@ alias vimu='vim +PlugInstall +PlugClean +PlugUpdate +UpdateRemotePlugin'
 if hash exa &>/dev/null; then
     alias ls='exa'
     alias l='exa -F'
-    alias ll='exa -alias'
+    alias ll='exa -al'
 fi
 
 # ascii art
