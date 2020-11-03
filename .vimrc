@@ -35,6 +35,7 @@ Plug 'airblade/vim-rooter'
 Plug 'vim-scripts/localvimrc'
 
 " Navigation
+Plug 'justinmk/vim-sneak'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
