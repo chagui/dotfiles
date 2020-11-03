@@ -37,18 +37,18 @@ function mkd {
 function get_container_network_ip {
     local -r container_name="${1}"
     local -r network_name="${2}"
-    docker inspect "${container_name}" | jq -r ".[0].NetworkSettings.Networks.${network_name}.IPAddress"
+    docker inspect "${container_name}" | jq -r ".[0].NetworkSettings.Networks.\"${network_name}\".IPAddress"
 }
 
 # Colored man pages
 man() {
-      env LESS_TERMCAP_mb=$'\E[01;31m' \
+    env LESS_TERMCAP_mb=$'\E[01;31m' \
         LESS_TERMCAP_md=$'\E[01;38;5;74m' \
-          LESS_TERMCAP_me=$'\E[0m' \
-            LESS_TERMCAP_se=$'\E[0m' \
-              LESS_TERMCAP_so=$'\E[38;5;246m' \
-                LESS_TERMCAP_ue=$'\E[0m' \
-                  LESS_TERMCAP_us=$'\E[04;38;5;146m' \
-                    man "$@"
+        LESS_TERMCAP_me=$'\E[0m' \
+        LESS_TERMCAP_se=$'\E[0m' \
+        LESS_TERMCAP_so=$'\E[38;5;246m' \
+        LESS_TERMCAP_ue=$'\E[0m' \
+        LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+    man "$@"
 }
 
