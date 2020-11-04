@@ -1,6 +1,7 @@
 font:
   normal:
     family: "Noto Sans Mono"
+  size: 10
 
 window:
   decorations: none
