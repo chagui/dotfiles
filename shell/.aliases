@@ -74,6 +74,7 @@ alias snapi='sudo snap install'
 complete -F _complete_alias snapi
 alias root='sudo su - root'
 alias vimu='vim +PlugInstall +PlugClean +PlugUpdate +UpdateRemotePlugin'
+alias count_endpoint_verbs="yq 'reduce .paths[] as \$item (0; . + (\$item | length))'"
 
 if hash exa &>/dev/null; then
     alias ls='exa'
