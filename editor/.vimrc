@@ -46,10 +46,12 @@ Plug 'preservim/nerdtree'
 
 " Languages
 Plug 'rust-lang/rust.vim'
-"Plug 'Valloric/YouCompleteMe'
 Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'plasticboy/vim-markdown'
+
+"Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
