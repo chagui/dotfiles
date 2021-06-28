@@ -31,6 +31,7 @@ call plug#begin('~/.vim/plugged')
 " GUI enhancements
 Plug 'ayu-theme/ayu-vim'
 Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'machakann/vim-highlightedyank'
 
 " Projects
