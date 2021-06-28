@@ -55,6 +55,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
+map <C-s> :w<CR>
+" Navigation hotkeys
+map <C-p> :Files<CR>
+nmap <leader>; :Buffers<CR>
+
+" Git hotkeys
+map <C-g>f :GFiles<CR>
+
 " Theme
 let ayucolor="dark"
 colorscheme ayu
