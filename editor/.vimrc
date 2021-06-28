@@ -12,6 +12,9 @@ set smartindent autoindent
 set title
 set number relativenumber
 set mouse=a
+" Always use the clipboard for all operations instead of interacting with
+" registers
+set clipboard+=unnamedplus
 
 " Search
 set ignorecase smartcase
