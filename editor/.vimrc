@@ -42,6 +42,7 @@ Plug 'vim-scripts/localvimrc'
 Plug 'justinmk/vim-sneak'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'preservim/nerdtree'
 
 call plug#end()
 
@@ -66,6 +67,17 @@ if executable('rg')
     set grepprg=rg\ --no-heading\ --vimgrep
     set grepformat=%f:%l:%c:%m
 endif
+
+" NERDTree
+" ignore files
+let NERDTreeIgnore=['\.pyc$', '\~$']
+" todo
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let g:plug_window = 'noautocmd vertical topleft new'
+" If more than one window and previous buffer was NERDTree, go back to it.
+autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+autocmd BufEnter * lcd %:p:h
 
 " Files to ignore
 " Python
