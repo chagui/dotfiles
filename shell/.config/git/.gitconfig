@@ -1,9 +1,8 @@
 [user]
     name = Guilhem Charles
-    email = ???
 [core]
     excludesfile = ~/.gitignore
-    editor = vim
+    editor = nvim
     autocrlf = input
 [diff]
     tool = vimdiff
@@ -12,7 +11,7 @@
 [color]
     ui = autocrlf
 [include]
-      path = ~/.gitconfig.local
+    path = ~/.gitconfig.local
 [color.decorate]
     branch = bold 28
     remoteBranch = bold blue
