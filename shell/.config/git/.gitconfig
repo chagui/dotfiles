@@ -4,8 +4,9 @@
     excludesfile = ~/.gitignore
     editor = nvim
     autocrlf = input
-[diff]
-    tool = vimdiff
+    pager = less -F -X
+[pager]
+    diff = delta --line-numbers --dark --side-by-side
 [difftool]
     prompt = false
 [color]
