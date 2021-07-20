@@ -20,6 +20,9 @@ selection:
 
 live_config_reload: true
 
+mouse:
+  hide_when_typing: true
+
 # Colors (Ayu Dark)
 colors:
   # Default colors
