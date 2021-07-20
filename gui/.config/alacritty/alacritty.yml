@@ -1,7 +1,15 @@
 font:
   normal:
-    family: "Noto Sans Mono"
-  size: 10
+    family: "JetBrains Mono"
+    style: "Regular"
+  bold:
+    family: "JetBrains Mono"
+    style: "Bold"
+  italic:
+    family: "JetBrains Mono"
+    style: "Italic"
+  size: 11
+  use_thin_strokes: true
 
 window:
   decorations: none
