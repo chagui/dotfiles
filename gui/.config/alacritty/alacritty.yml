@@ -15,6 +15,7 @@ window:
   startup_mode: Fullscreen
   decorations: none
 
+live_config_reload: true
 
 # Colors (Ayu Dark)
 colors:
