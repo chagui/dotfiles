@@ -12,7 +12,9 @@ font:
   use_thin_strokes: true
 
 window:
+  startup_mode: Fullscreen
   decorations: none
+
 
 # Colors (Ayu Dark)
 colors:
