@@ -6,7 +6,11 @@
     autocrlf = input
     pager = less -F -X
 [pager]
-    diff = delta --line-numbers --dark --side-by-side
+    diff = delta
+[delta]
+    line-numbers = true
+    side-by-side = true
+    dark = true
 [difftool]
     prompt = false
 [color]
