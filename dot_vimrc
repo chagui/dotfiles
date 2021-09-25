@@ -104,3 +104,6 @@ set wildignore+=*.swp,~*
 " Archives
 set wildignore+=*.zip,*.tar
 
+" Configure VIM to run `chezmoi apply` whenever a dotfile is saved
+autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
+
