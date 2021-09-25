@@ -13,8 +13,6 @@
     dark = true
 [difftool]
     prompt = false
-[color]
-    ui = autocrlf
 [include]
     path = ~/.gitconfig.local
 [color.decorate]
@@ -56,4 +54,7 @@
     ff = only
 [url "ssh://git@github.com/"]
     insteadOf = https://github.com/
-
+{{- if eq .chezmoi.os "darwin" }}
+[credential]
+    helper = osxkeychain
+{{- end }}
