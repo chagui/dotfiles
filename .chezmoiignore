@@ -4,3 +4,8 @@ Library/Application Support/pip/pip.conf
 {{- if ne .chezmoi.os "linux" }}
 .config/pip
 {{- end }}
+{{- if ( env "SHELL" | ne "/bin/bash" ) }}
+dot_aliasses
+dot_bashrc
+dot_functions
+{{- end }}
