@@ -8,7 +8,7 @@ font:
   italic:
     family: "JetBrains Mono"
     style: "Italic"
-  size: 11
+  size: 12
   use_thin_strokes: true
 
 window:
