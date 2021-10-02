@@ -1,0 +1,53 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.  if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+export PAGER=most
+export PYENVDIR="$HOME/venv"
+# some brew packages are installed in sbin (e.g. mtr)
+export PATH="/usr/local/sbin:$PATH:$HOME/.local/bin"
+
+[ -f "$ZDOTDIR/.aliases" ] && source "$ZDOTDIR/.aliases"
+[ -f "$ZDOTDIR/.functions" ] && source "$ZDOTDIR/.functions"
+
+[[ -f $(brew --prefix)/etc/profile.d/autojump.sh ]] && source "$(brew --prefix)/etc/profile.d/autojump.sh"
+[[ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# Prompt theme
+source "$(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme"
+[[ -f $ZDOTDIR/.p10k.zsh ]] && . "$ZDOTDIR/.p10k.zsh"
+
+[[ -f ~/.fzf.zsh ]] && . ~/.fzf.zsh
+
+# fix some bindings
+bindkey "3C" forward-word
+bindkey "5C" forward-word
+bindkey "3D" backward-word
+bindkey "5D" backward-word
+bindkey "^J" backward-kill-line
+
+# bat
+if which bat &>/dev/null; then
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
+
+# pyenv
+if which pyenv &>/dev/null; then
+    eval "$(pyenv init -)"
+    # fix Brew Doctor: "Warning: "config" scripts exist outside your system or Homebrew directories"
+    alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
+    eval "$(pyenv virtualenv-init -)"
+fi
+
+# load functions
+fpath+="$ZDOTDIR/functions"
+fpath+="$(brew --prefix)/share/zsh/site-functions"
+fpath+="$HOME/.rustup/toolchains/stable-x86_64-apple-darwin/share/zsh/site-functions"
+
+autoload -Uz compinit && compinit
+
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+

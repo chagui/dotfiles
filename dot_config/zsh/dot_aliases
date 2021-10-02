@@ -1,0 +1,71 @@
+# move around
+alias cdr='cd ~/Repos'
+alias gotmp='cd /tmp'
+alias goplay='cd ~/Playground'
+
+# search
+alias rgcpp='rg -tcpp'
+alias rgcmake='rg -tcmake'
+alias rgtext='rg -ttxt'
+alias rgconf='rg -tconfig -tyaml -tjson -txml'
+alias rgsh='rg -tsh'
+alias rgpy='rg -tpy'
+
+# git
+alias ga='git add'
+alias gbr='git branch'
+alias gbrD='git branch -D'
+alias gc='git c'
+alias gcam='git cam'
+alias gcm='git cm'
+alias gpatch='git commit --amend'
+alias gfixup='git commit --amend --no-edit'
+alias gp='git push'
+alias gr='git rebase'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gdt='git difftool'
+alias gco='git checkout'
+alias gcp='git cherry-pick'
+alias gs='git status -s'
+alias gtree='git tree'
+alias gadog='git adog'
+alias gf='git fetch'
+alias gfa='git fetch --all --prune'
+alias gfo='git fetch origin'
+alias clone='git_clone'
+
+# docker
+alias dc='docker-compose'
+alias dcu='docker-compose up -d'
+alias dcb='docker-compose up -d --build'
+alias dstats='docker stats --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.NetIO}}\t{{.BlockIO}}"'
+alias dports='docker ps --format "table {{.Names}}\t{{.Ports}}"'
+alias garbage-collect-docker='docker rm $(docker ps -aq)'
+alias dl='docker logs -ft'
+alias dps='docker ps --format "table {{.Image}}\t{{.ID}}\t{{.Ports}}\t{{.Names}}"'
+alias dimgs='docker images'
+alias dvol='docker volume'
+alias dnet='docker network'
+alias dsys='docker system'
+
+# misc
+alias brewi='brew install'
+alias brewu='brew update && brew upgrade && brew cleanup && brew doctor'
+alias vimu='nvim +PlugInstall +PlugClean +PlugUpdate +UpdateRemotePlugin'
+alias count_endpoint_verbs="yq 'reduce .paths[] as \$item (0; . + (\$item | length))'"
+
+if hash exa &>/dev/null; then
+    alias ls='exa'
+    alias l='exa -F'
+    alias ll='exa -al'
+fi
+
+if hash procs &>/dev/null; then
+    alias ps='procs'
+    alias pwatch='procs --watch --tree'
+fi
+
+# ascii art
+alias no-idea='echo "¯\_(ツ)_/¯"'
+
