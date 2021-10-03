@@ -53,9 +53,11 @@ colors:
     white: '#FFFFFF'
 
 shell:
-  program: /bin/zsh
+  program: /usr/local/bin/tmux
   args:
-    - -l
-    - -c
-    - "tmux attach || tmux"
+    - new-session
+    - -A
+    - -D
+    - -s
+    - main
 
