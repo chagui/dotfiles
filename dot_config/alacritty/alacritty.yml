@@ -61,3 +61,24 @@ shell:
     - -s
     - main
 
+key_bindings:
+  # Map command + key to tmux session management
+  - { key: S,     mods: Command,       chars: "\x17\x73" }
+
+  # Map command + key to tmux tab management
+  - { key: T,     mods: Command,       chars: "\x17\x74" }
+  - { key: W,     mods: Command,       chars: "\x17\x75" }
+  - { key: D,     mods: Command,       chars: "\x17\x76" }
+  - { key: D,     mods: Command|Shift, chars: "\x17\x68" }
+
+  # Map command + Key1-Key9 to tmux tab 1 to 9
+  - { key: Key1,  mods: Command,       chars: "\x17\x31" }
+  - { key: Key2,  mods: Command,       chars: "\x17\x32" }
+  - { key: Key3,  mods: Command,       chars: "\x17\x33" }
+  - { key: Key4,  mods: Command,       chars: "\x17\x34" }
+  - { key: Key5,  mods: Command,       chars: "\x17\x35" }
+  - { key: Key6,  mods: Command,       chars: "\x17\x36" }
+  - { key: Key7,  mods: Command,       chars: "\x17\x37" }
+  - { key: Key8,  mods: Command,       chars: "\x17\x38" }
+  - { key: Key9,  mods: Command,       chars: "\x17\x39" }
+
