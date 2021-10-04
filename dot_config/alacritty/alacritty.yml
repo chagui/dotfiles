@@ -63,11 +63,11 @@ shell:
 
 key_bindings:
   # Map command + key to tmux session management
-  - { key: S,     mods: Command,       chars: "\x17\x73" }
+  - { key: S,     mods: Command,       chars: "\x17\x77" }
 
   # Map command + key to tmux tab management
   - { key: T,     mods: Command,       chars: "\x17\x74" }
-  - { key: W,     mods: Command,       chars: "\x17\x75" }
+  - { key: W,     mods: Command,       chars: "\x17\x78" }
   - { key: D,     mods: Command,       chars: "\x17\x76" }
   - { key: D,     mods: Command|Shift, chars: "\x17\x68" }
   - { key: Comma, mods: Command,       chars: "\x17\x2c" }
