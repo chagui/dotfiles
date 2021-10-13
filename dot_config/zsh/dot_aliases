@@ -59,6 +59,7 @@ if hash exa &>/dev/null; then
     alias ls='exa'
     alias l='exa -F'
     alias ll='exa -al'
+    alias llmod='exa -al --sort=modified --reverse'
 fi
 
 if hash procs &>/dev/null; then
