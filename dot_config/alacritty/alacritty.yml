@@ -27,8 +27,8 @@ mouse:
 colors:
   # Default colors
   primary:
-    background: "#191919"
-    foreground: "#EAEAEA"
+    background: "#0F1419"
+    foreground: "#E6E1CF"
 
   # Normal colors
   normal:
