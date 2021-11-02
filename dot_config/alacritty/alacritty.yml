@@ -64,6 +64,7 @@ shell:
 key_bindings:
   # Map command + key to tmux session management
   - { key: S,     mods: Command,       chars: "\x17\x77" }
+  - { key: R,     mods: Command,       chars: "\x17\x72" }
 
   # Map command + key to tmux tab management
   - { key: T,     mods: Command,       chars: "\x17\x74" }
