@@ -24,6 +24,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'machakann/vim-highlightedyank'
 
+" Projects
+Plug 'airblade/vim-rooter'
+Plug 'vim-scripts/localvimrc'
+
 call plug#end()
 
 " Theme
