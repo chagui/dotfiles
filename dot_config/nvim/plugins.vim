@@ -28,6 +28,11 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'airblade/vim-rooter'
 Plug 'vim-scripts/localvimrc'
 
+" Navigation
+Plug 'justinmk/vim-sneak'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | Plug 'junegunn/fzf.vim'
+Plug 'preservim/nerdtree'
+
 call plug#end()
 
 " Theme
@@ -43,4 +48,15 @@ if !has('gui_running')
     set t_Co=256
 endif
 let g:lightline = { 'colorscheme': 'ayu_dark' }
+
+" NERDTree
+" ignore files
+let NERDTreeIgnore=['\.pyc$', '\~$']
+" todo
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let g:plug_window = 'noautocmd vertical topleft new'
+" If more than one window and previous buffer was NERDTree, go back to it.
+autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+autocmd BufEnter * lcd %:p:h
 
