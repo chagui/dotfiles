@@ -18,7 +18,25 @@ endfunction
 " Plugins
 call plug#begin('~/.vim/plugged')
 
+" GUI enhancements
+Plug 'ayu-theme/ayu-vim', Cond(!exists('g:vscode'))
+Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'machakann/vim-highlightedyank'
 
 call plug#end()
+
+" Theme
+if !exists('g:vscode')
+    let ayucolor="dark"
+    colorscheme ayu
+endif
+
+" lightline
+set laststatus=2
+set noshowmode
+if !has('gui_running')
+    set t_Co=256
+endif
+let g:lightline = { 'colorscheme': 'ayu_dark' }
 
