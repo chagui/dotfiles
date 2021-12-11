@@ -33,6 +33,12 @@ Plug 'justinmk/vim-sneak'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } | Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 
+" Languages
+Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
+Plug 'stephpy/vim-yaml'
+Plug 'plasticboy/vim-markdown'
+
 call plug#end()
 
 " Theme
