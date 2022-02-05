@@ -4,7 +4,7 @@ let &packpath = &runtimepath
 set termguicolors
 
 " Load extra configurations
-let g:config_file_list = ['bindings.vim', 'plugins.vim', 'ui.vim']
+let g:config_file_list = ['bindings.vim', 'plugins.vim']
 let g:nvim_config_root = expand('<sfile>:p:h')
 for s:fname in g:config_file_list
   execute printf('source %s/%s', g:nvim_config_root, s:fname)
@@ -22,3 +22,7 @@ set wildignore+=*.pyc,*.pyo,*/__pycache__/*
 set wildignore+=*.swp,~*
 " Archives
 set wildignore+=*.zip,*.tar
+
+" new lua conf entrypoint
+lua require "options"
+
