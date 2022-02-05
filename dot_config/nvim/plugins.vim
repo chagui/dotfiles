@@ -23,6 +23,7 @@ Plug 'ayu-theme/ayu-vim', Cond(!exists('g:vscode'))
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'machakann/vim-highlightedyank'
+Plug 'psliwka/vim-smoothie'
 
 " Projects
 Plug 'airblade/vim-rooter'
