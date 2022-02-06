@@ -3,7 +3,7 @@ let &packpath = &runtimepath
 
 
 " Load extra configurations
-let g:config_file_list = ['bindings.vim', 'plugins.vim']
+let g:config_file_list = ['plugins.vim']
 let g:nvim_config_root = expand('<sfile>:p:h')
 for s:fname in g:config_file_list
   execute printf('source %s/%s', g:nvim_config_root, s:fname)
@@ -25,6 +25,7 @@ set wildignore+=*.zip,*.tar
 " lua adapter until migration is complete
 lua <<EOF
 require "user.options"
+require "user.keymaps"
 -- todo: vscode switch
 require "user.tui"
 EOF
