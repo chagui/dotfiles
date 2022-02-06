@@ -1,7 +1,6 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 
-set termguicolors
 
 " Load extra configurations
 let g:config_file_list = ['bindings.vim', 'plugins.vim']
@@ -26,5 +25,7 @@ set wildignore+=*.zip,*.tar
 " lua adapter until migration is complete
 lua <<EOF
 require "user.options"
+-- todo: vscode switch
+require "user.tui"
 EOF
 
