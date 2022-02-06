@@ -5,6 +5,12 @@ function utils.reveal(object, options)
     print(vim.inspect(item, options))
 end
 
+-- Tells you if we're running in VSCode.
+function utils.is_vscode()
+    -- adapted from https://github.com/vscode-neovim/vscode-neovim#conditional-initvim
+    return (vim.g.vscode)
+end
+
 function keymap(mode, lhs, rhs)
     vim.api.nvim_set_keymap(mode, lhs, rhs, {silent =  true})
 end
