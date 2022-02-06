@@ -23,6 +23,8 @@ set wildignore+=*.swp,~*
 " Archives
 set wildignore+=*.zip,*.tar
 
-" new lua conf entrypoint
-lua require "options"
+" lua adapter until migration is complete
+lua <<EOF
+require "user.options"
+EOF
 
