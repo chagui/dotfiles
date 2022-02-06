@@ -1,6 +1,4 @@
 local utils = require "user.utils"
-
--- aliases
 local globals = vim.g
 
 -- remap leader
@@ -9,16 +7,18 @@ globals.mapleader = " "
 globals.maplocalleader = " "
 
 -- Split navigation
-utils.nmap("<C-h>", "<C-w>h")
-utils.nmap("<C-j>", "<C-w>j")
-utils.nmap("<C-k>", "<C-w>k")
-utils.nmap("<C-l>", "<C-w>l")
+utils.nnoremap("<C-h>", "<C-w>h")
+utils.nnoremap("<C-j>", "<C-w>j")
+utils.nnoremap("<C-k>", "<C-w>k")
+utils.nnoremap("<C-l>", "<C-w>l")
 
--- map <C-s> :w<CR>
+-- Save with Ctrl + s
+utils.nmap("<C-s>", "<Cmd>w<CR>")
+
 -- Navigation hotkeys
--- map <C-p> :Files<CR>
--- nmap <leader>; :Buffers<CR>
+utils.map("<C-p>", "<Cmd>Files<CR>")
+utils.nmap("<leader>e", "<Cmd>Buffers<CR>")
 
 -- Git hotkeys
--- map <C-g>f :GFiles<CR>
+utils.map("<C-g>f", "<Cmd>GFiles<CR>")
 
