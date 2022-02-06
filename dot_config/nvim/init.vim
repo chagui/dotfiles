@@ -1,14 +1,3 @@
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-
-
-" Load extra configurations
-let g:config_file_list = ['plugins.vim']
-let g:nvim_config_root = expand('<sfile>:p:h')
-for s:fname in g:config_file_list
-  execute printf('source %s/%s', g:nvim_config_root, s:fname)
-endfor
-
 if executable('rg')
     set grepprg=rg\ --no-heading\ --vimgrep
     set grepformat=%f:%l:%c:%m
@@ -26,6 +15,8 @@ set wildignore+=*.zip,*.tar
 lua <<EOF
 require "user.options"
 require "user.keymaps"
+require "user.plugins"
+
 -- todo: vscode switch
 require "user.tui"
 EOF
