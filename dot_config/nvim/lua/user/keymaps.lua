@@ -28,7 +28,15 @@ utils.nmap("<C-s>", "<Cmd>w<CR>")
 
 -- Navigation hotkeys
 utils.map("<C-p>", "<Cmd>Files<CR>")
-utils.nmap("<leader>e", "<Cmd>Buffers<CR>")
+utils.nmap("<C-c>", "<Cmd>q<CR>")
+utils.nmap("<C-q>", "<Cmd>q!<CR>")
+utils.inoremap("<Caps_Lock>", "<Esc>")
+utils.inoremap("jk", "<Esc>")
+utils.inoremap("kj", "<Esc>")
+
+-- Move line up / down
+utils.nmap("J", "<Cmd>move .+1<CR>==")
+utils.nmap("K", "<Cmd>move .-2<CR>==")
 
 -- Git hotkeys
 utils.map("<C-g>f", "<Cmd>GFiles<CR>")
