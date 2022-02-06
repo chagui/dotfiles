@@ -19,6 +19,7 @@ opts.title = true
 opts.number = true
 opts.relativenumber = true
 opts.mouse = "a"
+opts.cursorline = true
 -- Always use the clipboard for all operations instead of interacting with
 -- registers
 opts.clipboard = "unnamedplus"
