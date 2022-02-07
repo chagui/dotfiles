@@ -32,5 +32,8 @@ if not utils.is_vscode() then
 
     require "user.tui"
 end
+
+-- Run `chezmoi apply` whenever its configuration is modified.
+vim.cmd('autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"')
 EOF
 
