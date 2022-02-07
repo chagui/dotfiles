@@ -60,14 +60,14 @@ local plugins = {
 
     -- Completion
     {"hrsh7th/nvim-cmp", alias = "cmp"},
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
+    {"hrsh7th/cmp-buffer", after = "cmp"},
+    {"hrsh7th/cmp-path", after = "cmp"},
+    {"hrsh7th/cmp-cmdline", after = "cmp"},
 
     -- Snippets
-    {"L3MON4D3/LuaSnip", alias = "luasnip"},
-    "rafamadriz/friendly-snippets",
-    {"saadparwaiz1/cmp_luasnip", after = {"cmp", "luasnip"}},
+    {"L3MON4D3/LuaSnip", alias = "luasnip", after = "cmp"},
+    {"rafamadriz/friendly-snippets", after = "luasnip"},
+    {"saadparwaiz1/cmp_luasnip", after = "luasnip"},
 
     -- Languages
     "rust-lang/rust.vim",
