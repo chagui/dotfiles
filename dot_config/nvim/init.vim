@@ -16,6 +16,7 @@ lua <<EOF
 require "user.options"
 require "user.keymaps"
 require "user.plugins"
+require "user.completion"
 
 local utils = require("user.utils")
 
