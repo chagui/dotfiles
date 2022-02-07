@@ -8,6 +8,9 @@ font:
   italic:
     family: "JetBrains Mono"
     style:  "Italic"
+  bold_italic:
+    family: "JetBrains Mono"
+    style:  "Bold Italic"
   size: 12
   use_thin_strokes: true
 
