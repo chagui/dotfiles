@@ -110,7 +110,7 @@ local name_to_menu = {
 }
 
 local formatting = {
-    fields = { "kind", "abbr", "menu" },
+    fields = {"kind", "abbr", "menu"},
     format = function(entry, vim_item)
         vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
         vim_item.menu = name_to_menu[entry.source.name]

@@ -1,5 +1,7 @@
 local fn = vim.fn
 
+local packer_bootstrap = {}
+
 -- Install packer if not found
 local install_path = fn.stdpath("data").."/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -45,7 +47,7 @@ local plugins = {
     -- Projects
     "airblade/vim-rooter",
     "vim-scripts/localvimrc",
-    
+
     -- Navigation
     "justinmk/vim-sneak",
     {
