@@ -3,14 +3,6 @@ if executable('rg')
     set grepformat=%f:%l:%c:%m
 endif
 
-" Files to ignore
-" Python
-set wildignore+=*.pyc,*.pyo,*/__pycache__/*
-" Temp files
-set wildignore+=*.swp,~*
-" Archives
-set wildignore+=*.zip,*.tar
-
 " lua adapter until migration is complete
 lua <<EOF
 require "user.options"
@@ -27,5 +19,13 @@ end
 
 -- Run `chezmoi apply` whenever its configuration is modified.
 vim.cmd('autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"')
+
+-- Files to ignore
+-- Python
+vim.opt.wildignore:append("*.pyc,*.pyo,*/__pycache__/*")
+-- Temp files
+vim.opt.wildignore:append("*.swp,~*")
+-- Archives
+vim.opt.wildignore:append("*.zip,*.tar")
 EOF
 
