@@ -20,16 +20,8 @@ require "user.completion"
 
 local utils = require("user.utils")
 
--- VSCode managed its own theme
+-- When running in VSCode an extension takes care of the theme.
 if not utils.is_vscode() then
-    local success, _ = pcall(vim.cmd, [[
-        let ayucolor="dark"
-        colorscheme ayu
-    ]])
-    if not success then
-        vim.notify("could not set ayu colorscheme!")
-    end
-
     require "user.tui"
 end
 

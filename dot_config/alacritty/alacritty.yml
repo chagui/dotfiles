@@ -64,6 +64,11 @@ shell:
     - -s
     - main
 
+# True Color (24-bit) configuration for alacritty + tmux
+# kudos to https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
+env:
+  TERM: xterm-256color
+
 key_bindings:
   # Map command + key to tmux session management
   - { key: S,     mods: Command,       chars: "\x17\x77" }
