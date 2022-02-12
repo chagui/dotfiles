@@ -60,6 +60,7 @@ if hash exa &>/dev/null; then
     alias l='exa -F'
     alias ll='exa -al'
     alias llmod='exa -al --sort=modified --reverse'
+    alias ltree='exa -al --tree'
 fi
 
 if hash procs &>/dev/null; then
