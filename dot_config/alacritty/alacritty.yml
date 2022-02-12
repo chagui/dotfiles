@@ -55,6 +55,11 @@ colors:
     cyan:    "#95E6CB"
     white:   "#FFFFFF"
 
+# True Color (24-bit) configuration for alacritty + tmux
+# kudos to https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
+env:
+  TERM: xterm-256color
+
 shell:
   program: /usr/local/bin/tmux
   args:
@@ -63,11 +68,6 @@ shell:
     - -D
     - -s
     - main
-
-# True Color (24-bit) configuration for alacritty + tmux
-# kudos to https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
-env:
-  TERM: xterm-256color
 
 key_bindings:
   # Map command + key to tmux session management
