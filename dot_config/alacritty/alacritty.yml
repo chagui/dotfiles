@@ -26,35 +26,6 @@ live_config_reload: true
 mouse:
   hide_when_typing: true
 
-# Colors (Ayu Dark)
-colors:
-  # Default colors
-  primary:
-    background: "#0F1419"
-    foreground: "#E6E1CF"
-
-  # Normal colors
-  normal:
-    black:   "#01060E"
-    red:     "#EA6C73"
-    green:   "#91B362"
-    yellow:  "#F9AF4F"
-    blue:    "#53BDFA"
-    magenta: "#FAE994"
-    cyan:    "#90E1C6"
-    white:   "#C7C7C7"
-
-  # Bright colors
-  bright:
-    black:   "#686868"
-    red:     "#F07178"
-    green:   "#C2D94C"
-    yellow:  "#FFB454"
-    blue:    "#59C2FF"
-    magenta: "#FFEE99"
-    cyan:    "#95E6CB"
-    white:   "#FFFFFF"
-
 # True Color (24-bit) configuration for alacritty + tmux
 # kudos to https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
 env:
@@ -68,6 +39,9 @@ shell:
     - -D
     - -s
     - main
+
+import:
+  - ~/.config/alacritty/colorscheme.yml
 
 key_bindings:
   # Map command + key to tmux session management
