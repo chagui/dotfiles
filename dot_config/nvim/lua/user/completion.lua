@@ -27,7 +27,7 @@ local check_backspace = function()
 end
 
 
---   פּ ﯟ   some other good icons
+-- from https://www.nerdfonts.com/cheat-sheet
 local kind_icons = {
   Text = "",
   Method = "m",
