@@ -1,5 +1,3 @@
-[user]
-    name = Guilhem Charles
 [core]
     editor = nvim
     autocrlf = input
@@ -58,5 +56,10 @@
 [credential]
     helper = osxkeychain
 {{- end }}
+
+[includeIf "gitdir:~/Work/**"]
+    path = ~/Work/.gitconfig
+[includeIf "gitdir:~/Repos/**"]
+    path = ~/Repos/.gitconfig
 
 ; vi: ft=gitconfig
