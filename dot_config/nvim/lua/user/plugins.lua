@@ -61,15 +61,16 @@ local plugins = {
     "preservim/nerdtree",
 
     -- Completion
-    {"hrsh7th/nvim-cmp", alias = "cmp"},
-    {"hrsh7th/cmp-buffer", after = "cmp"},
-    {"hrsh7th/cmp-path", after = "cmp"},
-    {"hrsh7th/cmp-cmdline", after = "cmp"},
+    {"hrsh7th/nvim-cmp", alias = "completion"},
+    {"hrsh7th/cmp-buffer", requires = "nvim-cmp"},
+    {"hrsh7th/cmp-path", requires = "nvim-cmp"},
+    {"hrsh7th/cmp-cmdline", requires = "nvim-cmp"},
+    {"hrsh7th/cmp-nvim-lua", requires = "nvim-cmp"},
 
     -- Snippets
-    {"L3MON4D3/LuaSnip", alias = "luasnip", after = "cmp"},
-    {"rafamadriz/friendly-snippets", after = "luasnip"},
-    {"saadparwaiz1/cmp_luasnip", after = "luasnip"},
+    {"L3MON4D3/LuaSnip", alias = "luasnip", requires = "nvim-cmp"},
+    {"rafamadriz/friendly-snippets", requires = "LuaSnip"},
+    {"saadparwaiz1/cmp_luasnip", requires = "LuaSnip"},
 
     -- Languages
     "rust-lang/rust.vim",
