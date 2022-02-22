@@ -1,10 +1,3 @@
-if executable('rg')
-    set grepprg=rg\ --no-heading\ --vimgrep
-    set grepformat=%f:%l:%c:%m
-endif
-
-" lua adapter until migration is complete
-lua <<EOF
 require "user.options"
 require "user.keymaps"
 require "user.plugins"
@@ -28,5 +21,12 @@ vim.opt.wildignore:append("*.pyc,*.pyo,*/__pycache__/*")
 vim.opt.wildignore:append("*.swp,~*")
 -- Archives
 vim.opt.wildignore:append("*.zip,*.tar")
-EOF
+
+-- Use ripgrep when available
+vim.cmd([[
+    if executable('rg')
+        set grepprg=rg\ --no-heading\ --vimgrep
+        set grepformat=%f:%l:%c:%m
+    endif
+]])
 
