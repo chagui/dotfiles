@@ -104,6 +104,8 @@ local mapping = {
 }
 
 local name_to_menu = {
+    nvim_lsp = "[LSP]",
+    nvim_lua = "[LUA]",
     luasnip = "[Snippet]",
     buffer = "[Buffer]",
     path = "[Path]",
@@ -119,9 +121,11 @@ local formatting = {
 }
 
 local sources = {
-    { name = "luasnip" },
-    { name = "buffer" },
-    { name = "path" },
+    {name = "nvim_lsp"},
+    {name = "nvim_lua"},
+    {name = "luasnip"},
+    {name = "buffer"},
+    {name = "path"},
 }
 
 local confirm_opts = {
