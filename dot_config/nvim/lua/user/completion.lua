@@ -2,12 +2,12 @@ local utils = require("user.utils")
 local cmp = require("cmp")
 
 local snippet = {
-    expand = {} 
+    expand = {}
 }
 
 local success, luasnip = pcall(require, "luasnip")
 if success then
-    snippet.expand = function(args) 
+    snippet.expand = function(args)
         luasnip.lsp_expand(args.body)
     end
 
@@ -15,7 +15,7 @@ if success then
         require("luasnip/loaders/from_vscode").lazy_load()
     end
 else
-    snippet.expand = function(args) 
+    snippet.expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
     end
 end

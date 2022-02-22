@@ -1,0 +1,20 @@
+default_stages: [commit]
+repos:
+  # out of the box hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+
+  - repo: meta
+    hooks:
+      - id: check-hooks-apply
+        name: check hooks apply to the repository
+      - id: check-useless-excludes
+        name: check for useless excludes
