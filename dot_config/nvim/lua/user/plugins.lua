@@ -72,11 +72,10 @@ local plugins = {
     {"rafamadriz/friendly-snippets", requires = "LuaSnip"},
     {"saadparwaiz1/cmp_luasnip", requires = "LuaSnip"},
 
-    -- Languages
-    "rust-lang/rust.vim",
-    "cespare/vim-toml",
-    "stephpy/vim-yaml",
-    "plasticboy/vim-markdown",
+    -- LSP
+    "neovim/nvim-lspconfig",
+    "williamboman/nvim-lsp-installer",
+    {"hrsh7th/cmp-nvim-lsp", requires = "nvim-cmp"},
 }
 
 local packer_config = {
