@@ -1,3 +1,4 @@
+README.md
 {{- if ne .chezmoi.os "darwin" }}
 Library/Application Support/pip/pip.conf
 {{- end }}
@@ -9,3 +10,5 @@ Library/Application Support/pip/pip.conf
 .bashrc
 .functions
 {{- end }}
+.pre-commit-config.yaml
+
