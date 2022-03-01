@@ -31,7 +31,7 @@ opts.hlsearch = true
 opts.incsearch = true
 
 -- History
-opts.undodir = "~/.cache/vimdid"
+opts.undodir = vim.fn.stdpath "cache" .. "/undo"
 opts.undofile = true
 
 -- File type based rules
