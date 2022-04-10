@@ -21,6 +21,11 @@ export PYENVDIR="$HOME/venv"
 # some brew packages are installed in sbin (e.g. mtr)
 export PATH="/usr/local/sbin:$PATH:$HOME/.local/bin"
 
+if [[ -n $(brew --prefix llvm) ]]; then
+    # clang-tidy is not installed in brew --prefix
+    export PATH="$(brew --prefix llvm)/bin:$PATH"
+fi
+
 [ -f "$ZDOTDIR/.aliases" ] && source "$ZDOTDIR/.aliases"
 [ -f "$ZDOTDIR/.functions" ] && source "$ZDOTDIR/.functions"
 
