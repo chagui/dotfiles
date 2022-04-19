@@ -144,7 +144,9 @@ cmp.setup {
     formatting = formatting,
     sources = sources,
     confirm_opts = confirm_opts,
-    documentation = true,
     experimental = experimental,
+    window = {
+        documentation = "native"
+    },
 }
 
