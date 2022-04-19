@@ -2,6 +2,7 @@
 alias cdr='cd ~/Repos'
 alias gotmp='cd /tmp'
 alias goplay='cd ~/Playground'
+alias gopacker='cd ~/.local/share/nvim/site/pack/packer/start/packer.nvim'
 
 # search
 alias rgcpp='rg -tcpp'
