@@ -76,6 +76,9 @@ local plugins = {
     "neovim/nvim-lspconfig",
     "williamboman/nvim-lsp-installer",
     {"hrsh7th/cmp-nvim-lsp", requires = "nvim-cmp"},
+
+    -- Treesitter
+    {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
 }
 
 local packer_config = {
