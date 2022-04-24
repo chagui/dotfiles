@@ -14,6 +14,9 @@ end
 -- Run `chezmoi apply` whenever its configuration is modified.
 vim.cmd('autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"')
 
+-- Python
+vim.g.python3_host_prog = os.getenv("HOME") .. ".pyenv/versions/nvim/bin/python3"
+
 -- Files to ignore
 -- Python
 vim.opt.wildignore:append("*.pyc,*.pyo,*/__pycache__/*")
