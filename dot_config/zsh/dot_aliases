@@ -69,6 +69,10 @@ if hash procs &>/dev/null; then
     alias pwatch='procs --watch --tree'
 fi
 
+if hash bat &>/dev/null; then
+    alias cat='bat -p'
+fi
+
 # never needed globing when using pip so disable it in order to do
 # pip install package[plugin] instead of pip install package\[plugin\]
 alias pip='noglob pip'
