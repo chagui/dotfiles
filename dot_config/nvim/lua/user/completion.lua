@@ -146,7 +146,7 @@ cmp.setup {
     confirm_opts = confirm_opts,
     experimental = experimental,
     window = {
-        documentation = "native"
+        documentation = cmp.config.window.bordered()
     },
 }
 
