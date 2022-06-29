@@ -51,8 +51,6 @@ alias dnet='docker network'
 alias dsys='docker system'
 
 # misc
-alias brewi='brew install'
-alias brewu='brew update && brew upgrade && brew cleanup && brew doctor'
 alias nvimu='nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"'
 alias count_endpoint_verbs="yq 'reduce .paths[] as \$item (0; . + (\$item | length))'"
 
@@ -79,4 +77,9 @@ alias pip='noglob pip'
 
 # ascii art
 alias no-idea='echo "¯\_(ツ)_/¯"'
+
+# os specifics
+if [[ -f $ZDOTDIR/.os_aliases ]]; then
+    source $ZDOTDIR/.os_aliases
+fi
 
