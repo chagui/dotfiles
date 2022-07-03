@@ -27,13 +27,13 @@ fi
 
 export PYENVDIR="$HOME/venv"
 
-[ -f "$ZDOTDIR/.aliases" ] && source "$ZDOTDIR/.aliases"
-[ -f "$ZDOTDIR/.functions" ] && source "$ZDOTDIR/.functions"
-[ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
+[ -s "$ZDOTDIR/.aliases" ] && source "$ZDOTDIR/.aliases"
+[ -s "$ZDOTDIR/.functions" ] && source "$ZDOTDIR/.functions"
+[ -s ~/.fzf.zsh ] && . ~/.fzf.zsh
 
 # Prompt theme
 source "{{- if eq .chezmoi.os "darwin" }}$(brew --prefix){{ end -}}/opt/powerlevel10k/powerlevel10k.zsh-theme"
-[[ -f $ZDOTDIR/.p10k.zsh ]] && . "$ZDOTDIR/.p10k.zsh"
+[ -s "$ZDOTDIR/.p10k.zsh" ] && . "$ZDOTDIR/.p10k.zsh"
 
 {{ if eq .chezmoi.os "darwin" }}
 export PAGER=most
@@ -46,13 +46,13 @@ if [[ -n $(brew --prefix llvm) ]]; then
     export PATH="$(brew --prefix llvm)/bin:$PATH"
 fi
 
-[[ -f $(brew --prefix)/etc/profile.d/autojump.sh ]] && source "$(brew --prefix)/etc/profile.d/autojump.sh"
-[[ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[ -s "$(brew --prefix)/etc/profile.d/autojump.sh" ] && source "$(brew --prefix)/etc/profile.d/autojump.sh"
+[ -s "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 {{ else if eq .chezmoi.os "linux" }}
 {{   if eq .chezmoi.osRelease.id "ubuntu" }}
-[[ -s /home/guilhem/.autojump/etc/profile.d/autojump.sh ]] && source /home/guilhem/.autojump/etc/profile.d/autojump.sh
-[[ -f /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ -f /opt/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /opt/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -s /home/guilhem/.autojump/etc/profile.d/autojump.sh ] && source /home/guilhem/.autojump/etc/profile.d/autojump.sh
+[ -s /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -s /opt/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /opt/zsh-autosuggestions/zsh-autosuggestions.zsh
 {{   end -}}
 {{ end -}}
 

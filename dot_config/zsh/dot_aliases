@@ -79,7 +79,7 @@ alias pip='noglob pip'
 alias no-idea='echo "¯\_(ツ)_/¯"'
 
 # os specifics
-if [[ -f $ZDOTDIR/.os_aliases ]]; then
+if [ -s "$ZDOTDIR/.os_aliases" ]; then
     source $ZDOTDIR/.os_aliases
 fi
 

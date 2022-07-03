@@ -14,7 +14,7 @@ function git_clone {
 
 function venv {
     local -r env="${PYENVDIR}/${1}/bin/activate"
-    if [[ -f ${env} ]]; then
+    if [ -s "${env}" ]; then
         source "${env}"
     else
         >&2 echo "error: '$1' is not a valid virtual environment"
