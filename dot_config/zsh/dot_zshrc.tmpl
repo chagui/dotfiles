@@ -4,10 +4,12 @@ setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
+setopt appendhistory
 
 # elephant memory
 HISTSIZE=10050000  # due to HIST_EXPIRE_DUPS_FIRST
 SAVEHIST=10000000
+HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -16,8 +18,19 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PAGER=most
 export PYENVDIR="$HOME/venv"
+
+[ -f "$ZDOTDIR/.aliases" ] && source "$ZDOTDIR/.aliases"
+[ -f "$ZDOTDIR/.functions" ] && source "$ZDOTDIR/.functions"
+[ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
+
+# Prompt theme
+source "{{- if eq .chezmoi.os "darwin" }}$(brew --prefix){{ end -}}/opt/powerlevel10k/powerlevel10k.zsh-theme"
+[[ -f $ZDOTDIR/.p10k.zsh ]] && . "$ZDOTDIR/.p10k.zsh"
+
+{{ if eq .chezmoi.os "darwin" }}
+export PAGER=most
+
 # some brew packages are installed in sbin (e.g. mtr)
 export PATH="/usr/local/sbin:$PATH:$HOME/.local/bin"
 
@@ -26,17 +39,15 @@ if [[ -n $(brew --prefix llvm) ]]; then
     export PATH="$(brew --prefix llvm)/bin:$PATH"
 fi
 
-[ -f "$ZDOTDIR/.aliases" ] && source "$ZDOTDIR/.aliases"
-[ -f "$ZDOTDIR/.functions" ] && source "$ZDOTDIR/.functions"
-
 [[ -f $(brew --prefix)/etc/profile.d/autojump.sh ]] && source "$(brew --prefix)/etc/profile.d/autojump.sh"
 [[ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-# Prompt theme
-source "$(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme"
-[[ -f $ZDOTDIR/.p10k.zsh ]] && . "$ZDOTDIR/.p10k.zsh"
-
-[[ -f ~/.fzf.zsh ]] && . ~/.fzf.zsh
+{{ else if eq .chezmoi.os "linux" }}
+{{   if eq .chezmoi.osRelease.id "ubuntu" }}
+[[ -s /home/guilhem/.autojump/etc/profile.d/autojump.sh ]] && source /home/guilhem/.autojump/etc/profile.d/autojump.sh
+[[ -f /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -f /opt/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /opt/zsh-autosuggestions/zsh-autosuggestions.zsh
+{{   end -}}
+{{ end -}}
 
 # fix some bindings
 bindkey "3C" forward-word
@@ -53,17 +64,23 @@ fi
 # pyenv
 if which pyenv &>/dev/null; then
     eval "$(pyenv init -)"
+{{- if eq .chezmoi.os "darwin" }}
     # fix Brew Doctor: "Warning: "config" scripts exist outside your system or Homebrew directories"
     alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
+{{ end }}
     eval "$(pyenv virtualenv-init -)"
 fi
 
 # load functions
 fpath+="$ZDOTDIR/functions"
+{{- if eq .chezmoi.os "darwin" }}
 fpath+="$(brew --prefix)/share/zsh/site-functions"
+{{ end }}
 fpath+="$HOME/.rustup/toolchains/stable-x86_64-apple-darwin/share/zsh/site-functions"
 
 autoload -Uz compinit && compinit
 
+{{- if eq .chezmoi.os "darwin" }}
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{ end -}}
 
