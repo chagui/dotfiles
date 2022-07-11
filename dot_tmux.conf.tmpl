@@ -42,7 +42,13 @@ set -g renumber-windows on
 # tmux messages are displayed for 4 seconds
 set -g display-time 4000
 
+{{ if eq .chezmoi.os "darwin" }}
 set -g status-right "#(pmset -g batt | egrep '1?[0-9][0-9]%' | awk 'NR==1{print$3}' | cut -d';' -f 1) %H:%M"
+{{ else if eq .chezmoi.os "linux" }}
+{{-   if eq .chezmoi.osRelease.id "ubuntu" -}}
+set -g status-right "#(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | egrep 'percentage:\s+1?[0-9][0-9]%' | awk 'NR==1{print$2}') %H:%M"
+{{-   end -}}
+{{ end }}
 
 # pre-configured sessions
 if-shell '[ "$(tmux has-session -t dev 2>/dev/null && "exists")" != "exists" ]' {
