@@ -34,6 +34,15 @@
     type = cat-file -t
     dump = cat-file -p
     root = rev-parse --show-toplevel
+
+    # https://git-scm.com/docs/git-worktree
+    wt  = worktree
+    wta = worktree add
+    wtl = worktree list
+    wtm = worktree move
+    wtp = worktree prune
+    wtr = worktree remove
+
     # https://stackoverflow.com/a/62778533/2285882
     permission-reset = !git diff -p -R --no-ext-diff --no-color | grep -E '^old mode (100644|100755)' -B1 -A1 --color=never | git apply
 
