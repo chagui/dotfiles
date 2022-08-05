@@ -16,7 +16,7 @@ end
 vim.cmd('autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"')
 
 -- Python
-vim.g.python3_host_prog = os.getenv("HOME") .. ".pyenv/versions/nvim/bin/python3"
+vim.g.python3_host_prog = os.getenv("HOME") .. "/.pyenv/versions/nvim/bin/python3"
 
 -- Files to ignore
 -- Python
