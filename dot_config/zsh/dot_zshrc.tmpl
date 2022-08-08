@@ -30,6 +30,7 @@ fi
 
 [ -s "$ZDOTDIR/.aliases" ] && source "$ZDOTDIR/.aliases"
 [ -s "$ZDOTDIR/.functions" ] && source "$ZDOTDIR/.functions"
+[ -s "$ZDOTDIR/.local" ] && . "$ZDOTDIR/.local"
 [ -s ~/.fzf.zsh ] && . ~/.fzf.zsh
 
 # Prompt theme
