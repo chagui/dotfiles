@@ -1,8 +1,7 @@
 README.md
 {{- if ne .chezmoi.os "darwin" }}
 Library/Application Support/pip/pip.conf
-{{- end }}
-{{- if ne .chezmoi.os "linux" }}
+{{- else if ne .chezmoi.os "linux" }}
 .config/pip
 {{- end }}
 {{- if ( env "SHELL" | ne "/bin/bash" ) }}
