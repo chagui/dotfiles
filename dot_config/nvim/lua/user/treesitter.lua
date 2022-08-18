@@ -5,7 +5,7 @@ if not success then
 end
 
 configs.setup {
-    ensure_installed = { "c", "lua", "go", "make", "python", "rust" },
+    ensure_installed = { "c", "lua", "go", "hcl", "make", "python", "rust" },
     sync_install = false,
     highlight = {
       enable = true,
