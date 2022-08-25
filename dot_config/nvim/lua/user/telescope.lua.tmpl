@@ -3,7 +3,9 @@ if not status_ok then
   return
 end
 
+{{- if eq .chezmoi.os "linux" }}
 telescope.load_extension('media_files')
+{{ end }}
 
 local actions = require "telescope.actions"
 
@@ -79,10 +81,12 @@ telescope.setup {
       },
     },
   },
+{{- if eq .chezmoi.os "linux" }}
   extensions = {
     media_files = {
         filetypes = {"png", "webp", "jpg", "jpeg"},
         find_cmd = "rg"
       }
   },
+{{ end }}
 }

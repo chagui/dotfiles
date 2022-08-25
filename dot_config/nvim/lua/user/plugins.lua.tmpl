@@ -79,6 +79,7 @@ local plugins = {
 
     -- Telescope
     {"nvim-telescope/telescope.nvim"},
+    {{- if eq .chezmoi.os "linux" }}
     {
         "nvim-telescope/telescope-media-files.nvim",
         requires = {
@@ -87,6 +88,7 @@ local plugins = {
             "nvim-lua/plenary.nvim",
         },
     },
+    {{ end }}
 
     -- Treesitter
     {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
