@@ -27,7 +27,6 @@ utils.nmap("<leader>e", "<Cmd>Buffers<CR>")  -- list buffers
 utils.nmap("<C-s>", "<Cmd>w<CR>")
 
 -- Navigation hotkeys
-utils.map("<C-p>", "<Cmd>Files<CR>")
 utils.nmap("<C-c>", "<Cmd>q<CR>")
 utils.nmap("<C-q>", "<Cmd>q!<CR>")
 utils.inoremap("<Caps_Lock>", "<Esc>")
@@ -40,4 +39,8 @@ utils.nmap("K", "<Cmd>move .-2<CR>==")
 
 -- Git hotkeys
 utils.map("<C-g>f", "<Cmd>GFiles<CR>")
+
+-- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
+keymap("n", "<c-p>", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 

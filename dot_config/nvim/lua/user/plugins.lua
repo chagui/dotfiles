@@ -77,6 +77,17 @@ local plugins = {
     "williamboman/nvim-lsp-installer",
     {"hrsh7th/cmp-nvim-lsp", requires = "nvim-cmp"},
 
+    -- Telescope
+    {"nvim-telescope/telescope.nvim"},
+    {
+        "nvim-telescope/telescope-media-files.nvim",
+        requires = {
+            "nvim-telescope/telescope.nvim",
+            "nvim-lua/popup.nvim",
+            "nvim-lua/plenary.nvim",
+        },
+    },
+
     -- Treesitter
     {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
 }

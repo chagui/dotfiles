@@ -3,6 +3,7 @@ require "user.keymaps"
 require "user.plugins"
 require "user.completion"
 require "user.lsp"
+require "user.telescope"
 require "user.treesitter"
 
 local utils = require("user.utils")
