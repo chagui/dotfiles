@@ -38,8 +38,6 @@ source "{{- if eq .chezmoi.os "darwin" }}$(brew --prefix){{ end -}}/opt/powerlev
 [ -s "$ZDOTDIR/.p10k.zsh" ] && . "$ZDOTDIR/.p10k.zsh"
 
 {{ if eq .chezmoi.os "darwin" }}
-export PAGER=most
-
 # some brew packages are installed in sbin (e.g. mtr)
 export PATH="/usr/local/sbin:$PATH:$HOME/.local/bin"
 
