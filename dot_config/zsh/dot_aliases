@@ -57,6 +57,7 @@ alias dsys='docker system'
 # misc
 alias nvimu='nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"'
 alias count_endpoint_verbs="yq 'reduce .paths[] as \$item (0; . + (\$item | length))'"
+alias tmux-rename='tmux rename-window "$(basename "$(git root)")"'
 
 if hash exa &>/dev/null; then
     alias ls='exa'
