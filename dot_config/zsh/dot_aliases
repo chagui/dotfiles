@@ -38,6 +38,7 @@ alias gf='git fetch'
 alias gfa='git fetch --all --prune'
 alias gfo='git fetch origin'
 alias clone='git_clone'
+alias groot='git root'
 
 # docker
 alias dc='docker-compose'
