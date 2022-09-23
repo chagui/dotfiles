@@ -102,3 +102,9 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 if which pipx &>/dev/null; then
     eval "$(register-python-argcomplete pipx)"
 fi
+
+if which op &>/dev/null; then
+    eval "$(op completion zsh)"
+    compdef _op op
+fi
+
