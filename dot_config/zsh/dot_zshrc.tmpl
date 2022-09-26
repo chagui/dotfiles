@@ -3,6 +3,7 @@
 # and https://wiki.archlinux.org/title/XDG_Base_Directory#Support
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 {{- if eq .chezmoi.os "darwin" }}
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
@@ -85,6 +86,10 @@ if which pyenv &>/dev/null; then
 {{ end }}
     eval "$(pyenv virtualenv-init -)"
 fi
+
+# asdf
+export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/config"
+export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
 
 # load functions
 fpath+="$ZDOTDIR/functions"
