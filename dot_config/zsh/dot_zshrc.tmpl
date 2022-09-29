@@ -40,11 +40,11 @@ source "{{- if eq .chezmoi.os "darwin" }}$(brew --prefix){{ end -}}/opt/powerlev
 
 {{ if eq .chezmoi.os "darwin" }}
 # some brew packages are installed in sbin (e.g. mtr)
-export PATH="/usr/local/sbin:$PATH:$HOME/.local/bin"
+export PATH="/usr/local/sbin${PATH+:$PATH}:$HOME/.local/bin"
 
 if [[ -n $(brew --prefix llvm) ]]; then
     # clang-tidy is not installed in brew --prefix
-    export PATH="$(brew --prefix llvm)/bin:$PATH"
+    export PATH="$(brew --prefix llvm)/bin${PATH+:$PATH}"
 fi
 
 [ -s "$(brew --prefix)/etc/profile.d/autojump.sh" ] && source "$(brew --prefix)/etc/profile.d/autojump.sh"
