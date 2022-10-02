@@ -82,8 +82,11 @@ local plugins = {
     "williamboman/nvim-lsp-installer",
     {"hrsh7th/cmp-nvim-lsp", requires = "nvim-cmp"},
 
+    -- Misc
+    "windwp/nvim-autopairs",
+
     -- Telescope
-    {"nvim-telescope/telescope.nvim"},
+    "nvim-telescope/telescope.nvim",
     {{- if eq .chezmoi.os "linux" }}
     {
         "nvim-telescope/telescope-media-files.nvim",
@@ -97,9 +100,6 @@ local plugins = {
 
     -- Treesitter
     {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
-
-    -- Misc
-    {"windwp/nvim-autopairs"},
 }
 
 local packer_config = {
