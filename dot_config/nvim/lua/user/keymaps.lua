@@ -2,7 +2,7 @@ local utils = require "user.utils"
 local globals = vim.g
 
 -- remap leader
-utils.map("<Space>", "<Nop>", opts)
+utils.noremap("<Space>", "<Nop>")
 globals.mapleader = " "
 globals.maplocalleader = " "
 
@@ -41,6 +41,5 @@ utils.nmap("K", "<Cmd>move .-2<CR>==")
 utils.map("<C-g>f", "<Cmd>GFiles<CR>")
 
 -- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<c-p>", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
-keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
-
+utils.nmap("<c-p>", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>")
+utils.nmap("<c-t>", "<cmd>Telescope live_grep<cr>")

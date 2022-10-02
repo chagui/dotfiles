@@ -1,7 +1,7 @@
 local utils = {}
 
 -- Reveal what lurks beneath an object.
-function utils.reveal(object, options)
+function utils.reveal(item, options)
     print(vim.inspect(item, options))
 end
 
