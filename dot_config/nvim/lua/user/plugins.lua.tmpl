@@ -43,6 +43,12 @@ local plugins = {
         requires = {"nvim-lua/plenary.nvim"},
         config = function() require("gitsigns").setup() end
     },
+    {
+        "kyazdani42/nvim-tree.lua",
+        requires = {
+            "kyazdani42/nvim-web-devicons",
+        }
+    },
 
     -- Projects
     "airblade/vim-rooter",
@@ -58,7 +64,6 @@ local plugins = {
         alias = "fzf",
     },
     {"junegunn/fzf.vim", after = "fzf"},
-    "preservim/nerdtree",
 
     -- Completion
     {"hrsh7th/nvim-cmp", alias = "completion"},
