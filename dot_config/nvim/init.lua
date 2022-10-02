@@ -39,4 +39,5 @@ vim.cmd([[
 -- Handle chezmoi name convention
 vim.cmd([[
     au BufNewFile,BufRead dot_zshrc,dot_zshrc.tmpl,dot_aliases,dot_functions set filetype=zsh
+    au BufNewFile,BufRead *.lua.tmpl set filetype=lua
 ]])
