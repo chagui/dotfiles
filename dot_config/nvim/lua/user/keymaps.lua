@@ -41,8 +41,8 @@ utils.nmap("K", "<Cmd>move .-2<CR>==")
 utils.map("<C-g>f", "<Cmd>GFiles<CR>")
 
 -- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-utils.nmap("<c-p>", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>")
-utils.nmap("<c-t>", "<cmd>Telescope live_grep<cr>")
+utils.nmap("<leader>p", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>")
+utils.nmap("<leader>f", "<cmd>Telescope live_grep<cr>")
 utils.nnoremap("<leader>b", "<cmd>Telescope buffers<cr>")
 
 -- nvim-tree
