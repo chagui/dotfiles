@@ -6,6 +6,7 @@ require "user.nvim-tree"
 require "user.options"
 require "user.plugins"
 require "user.telescope"
+require "user.toggleterm"
 require "user.treesitter"
 
 local utils = require("user.utils")
