@@ -2,7 +2,7 @@
 -- see https://github.com/akinsho/toggleterm.nvim
 local status_ok, toggleterm = pcall(require, "toggleterm")
 if not status_ok then
-  vim.notify("could not find nvim-tree plugin")
+  vim.notify("could not find toggleterm plugin")
   return
 end
 

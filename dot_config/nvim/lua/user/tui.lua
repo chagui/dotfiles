@@ -9,4 +9,3 @@ local success, _ = pcall(vim.cmd, [[
 if not success then
     vim.notify("could not set ayu colorscheme!")
 end
-

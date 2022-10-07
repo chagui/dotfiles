@@ -5,13 +5,13 @@
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
   vim.notify("could not find nvim-tree plugin")
-  return{}
+  return
 end
 
 local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
 if not config_status_ok then
-  return
   vim.notify("could not find nvim-tree.config plugin")
+  return
 end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
