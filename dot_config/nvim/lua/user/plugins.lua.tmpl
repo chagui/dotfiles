@@ -34,7 +34,12 @@ local plugins = {
 
     -- GUI enhancements
     "ayu-theme/ayu-vim",
-    "itchyny/lightline.vim",
+    {
+        "nvim-lualine/lualine.nvim",
+        requires = {
+            "kyazdani42/nvim-web-devicons",
+        },
+    },
     "tpope/vim-fugitive",
     "machakann/vim-highlightedyank",
     "psliwka/vim-smoothie",
