@@ -49,13 +49,13 @@ local plugins = {
     {
         "lewis6991/gitsigns.nvim",
         requires = {"nvim-lua/plenary.nvim"},
-        config = function() require("gitsigns").setup() end
+        config = function() require("gitsigns").setup() end,
     },
     {
         "kyazdani42/nvim-tree.lua",
         requires = {
             "kyazdani42/nvim-web-devicons",
-        }
+        },
     },
     "akinsho/toggleterm.nvim",
 
@@ -118,7 +118,7 @@ local packer_config = {
                 style = "minimal",
                 border = "rounded"
             })
-        end
+        end,
     }
 }
 packer.startup({plugins, config = packer_config})
