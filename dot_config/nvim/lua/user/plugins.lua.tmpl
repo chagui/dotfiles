@@ -33,7 +33,10 @@ local plugins = {
     "wbthomason/packer.nvim",
 
     -- GUI enhancements
-    "ayu-theme/ayu-vim",
+    {
+        "Shatur/neovim-ayu",
+        config = function() vim.cmd.colorscheme("ayu") end,
+    },
     {
         "nvim-lualine/lualine.nvim",
         requires = {
