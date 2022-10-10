@@ -13,10 +13,9 @@ vim.filetype.add({
         ['dot_functions'] = 'zsh',
     },
     pattern = {
+        ['.+%.tfvars'] = 'terraform',
         -- Handle chezmoi templates
-        ['${XDG_DATA_HOME}/chezmoi/.*%.(%a+)%.tmpl'] = function(_, _, ext)
-            return ext
-        end,
+        ['${XDG_DATA_HOME}/chezmoi/.*%.(%a+)%.tmpl'] = function(_, _, captured_extension) return captured_extension end,
     },
 })
 
