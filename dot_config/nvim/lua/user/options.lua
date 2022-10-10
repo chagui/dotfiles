@@ -35,9 +35,7 @@ opts.undodir = vim.fn.stdpath "cache" .. "/undo"
 opts.undofile = true
 
 -- File type based rules
-local cmd = vim.cmd
-cmd([[
-  autocmd BufNewFile,BufRead .bash_personal set syntax=sh
+vim.cmd([[
   autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
   autocmd Filetype json setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
   autocmd FileType make setlocal noexpandtab
