@@ -34,9 +34,3 @@ opts.incsearch = true
 opts.undodir = vim.fn.stdpath "cache" .. "/undo"
 opts.undofile = true
 
--- File type based rules
-vim.cmd([[
-  autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-  autocmd Filetype json setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-  autocmd FileType make setlocal noexpandtab
-]])
