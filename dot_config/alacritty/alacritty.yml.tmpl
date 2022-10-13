@@ -12,7 +12,13 @@ font:
     family: "JetBrainsMono Nerd Font"
     style:  "Bold Italic"
   size: 12
+{{- if eq .chezmoi.os "darwin" }}
+  AppleFontSmooting: true
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   if eq .chezmoi.osRelease.id "ubuntu" }}
   use_thin_strokes: true
+{{-   end }}
+{{- end }}
 
 window:
   startup_mode: Fullscreen
@@ -32,9 +38,16 @@ env:
   TERM: xterm-256color
 
 shell:
+{{- if eq .chezmoi.os "darwin" }}
+  program: /opt/homebrew/bin/tmux
+  args:
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   if eq .chezmoi.osRelease.id "ubuntu" }}
   program: /usr/bin/env
   args:
     - tmux
+{{-   end }}
+{{- end }}
     - new-session
     - -A
     - -D
