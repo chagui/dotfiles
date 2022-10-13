@@ -15,7 +15,13 @@ vim.filetype.add({
     pattern = {
         ['.+%.tfvars'] = 'terraform',
         -- Handle chezmoi templates
-        ['${XDG_DATA_HOME}/chezmoi/.*%.(%a+)%.tmpl'] = function(_, _, captured_extension) return captured_extension end,
+        ['${XDG_DATA_HOME}/chezmoi/.*%.(%a+)%.tmpl'] = function(_, _, captured_extension)
+          if captured_extension == "yml"
+          then
+            return "yaml"
+          end
+          return captured_extension
+        end,
     },
 })
 
