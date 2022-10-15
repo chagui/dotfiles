@@ -41,7 +41,6 @@ lualine.setup({
       'diagnostics',
       {
         'filetype',
-        icon_only = true,
         icon = { align = 'right' },
       },
     },
