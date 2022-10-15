@@ -73,7 +73,10 @@
     path = ~/Repos/.gitconfig
 [push]
     autoSetupRemote = true
+
 [url "git@github.com:chagui/"]
   insteadOf = me:
+[includeIf "hasconfig:remote.*.url:me:**"]
+  path = ~/.config/git/chagui
 
 ; vi: ft=gitconfig
