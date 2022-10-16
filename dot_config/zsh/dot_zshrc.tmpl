@@ -63,11 +63,7 @@ fi
 [ -s /opt/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /opt/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export PYENV_ROOT="/opt/pyenv"
-export PYENV_VIRTUALENV_CACHE_PATH="$XDG_CACHE_HOME/pyenv-virtualenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 {{   end -}}
 {{ end -}}
 
@@ -85,6 +81,7 @@ fi
 
 # pyenv
 if which pyenv &>/dev/null; then
+    export PYENV_VIRTUALENV_CACHE_PATH="$XDG_CACHE_HOME/pyenv-virtualenv"
     eval "$(pyenv init -)"
 {{- if eq .chezmoi.os "darwin" }}
     # fix Brew Doctor: "Warning: "config" scripts exist outside your system or Homebrew directories"
