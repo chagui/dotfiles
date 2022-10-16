@@ -1,4 +1,5 @@
 typeset -U path PATH
+path+=("$HOME/.local/bin" "$HOME/.cargo/bin")
 
 # XDG - set defaults as they may not be set
 # See https://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
@@ -49,7 +50,7 @@ source "{{- if eq .chezmoi.os "darwin" }}$(brew --prefix){{ end -}}/opt/powerlev
 
 {{ if eq .chezmoi.os "darwin" }}
 # some brew packages are installed in sbin (e.g. mtr)
-path=("/usr/local/sbin" "$path[@]" "$HOME/.local/bin")
+path=("/usr/local/sbin" "$path[@]")
 
 if [[ -n $(brew --prefix llvm) ]]; then
     # clang-tidy is not installed in brew --prefix
