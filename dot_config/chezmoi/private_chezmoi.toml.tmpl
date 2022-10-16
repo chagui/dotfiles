@@ -1,0 +1,13 @@
+[diff]
+    command = "delta"
+    args = ["--true-color", "always", "--dark", "--line-numbers", "--side-by-side", "{{`{{ .Destination }}`}}", "{{`{{ .Target }}`}}"]
+
+[merge]
+    command = "meld"
+
+[data.xdg]
+    cache = {{ env "XDG_CACHE_HOME" | quote }}
+    config = {{ env "XDG_CONFIG_HOME" | quote }}
+    data = {{ env "XDG_DATA_HOME" | quote }}
+    state = {{ env "XDG_STATE_HOME" | quote }}
+

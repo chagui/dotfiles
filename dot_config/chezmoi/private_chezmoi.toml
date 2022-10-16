@@ -1,6 +1,0 @@
-[diff]
-    command = "delta"
-    args = ["--true-color", "always", "--dark", "--line-numbers", "--side-by-side", "{{ .Destination }}", "{{ .Target }}"]
-[merge]
-    command = "meld"
-
