@@ -81,6 +81,7 @@ fi
 # never needed globing when using pip so disable it in order to do
 # pip install package[plugin] instead of pip install package\[plugin\]
 alias pip='noglob pip'
+alias poetry='noglob poetry'
 
 # ascii art
 alias no-idea='echo "¯\_(ツ)_/¯"'
