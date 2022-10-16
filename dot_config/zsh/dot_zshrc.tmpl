@@ -25,9 +25,19 @@ HISTSIZE=10050000  # due to HIST_EXPIRE_DUPS_FIRST
 SAVEHIST=10000000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 
+# mypy
+export MYPY_CACHE_DIR="$XDG_CACHE_HOME/mypy"
+
 # less
-export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
-export LESSKEY="$XDG_CACHE_HOME/less/keys"
+export LESSHISTFILE="$XDG_STATE_HOME/less/history"
+export LESSKEY="$XDG_STATE_HOME/less/keys"
+
+# redis-cli
+export REDISCLI_RCFILE="$XDG_CONFIG_HOME/rediscli/config"
+export REDISCLI_HISTFILE="$XDG_STATE_HOME/rediscli/history"
+
+# ripgrep
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 
 # wget
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
@@ -49,6 +59,8 @@ source "{{- if eq .chezmoi.os "darwin" }}$(brew --prefix){{ end -}}/opt/powerlev
 [ -s "$ZDOTDIR/.p10k.zsh" ] && . "$ZDOTDIR/.p10k.zsh"
 
 {{ if eq .chezmoi.os "darwin" }}
+export PYENV_ROOT=$XDG_DATA_HOME/pyenv
+
 # some brew packages are installed in sbin (e.g. mtr)
 path=("/usr/local/sbin" "$path[@]")
 path+=("$HOME/Library/Application Support/JetBrains/Toolbox/scripts")
