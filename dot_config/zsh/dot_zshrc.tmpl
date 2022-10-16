@@ -116,3 +116,9 @@ if which op &>/dev/null; then
     compdef _op op
 fi
 
+if which kubectl &>/dev/null; then
+    alias k='kubectl'
+    export KUBECACHEDIR="$XDG_CACHE_HOME/kube"
+    export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
+fi
+
