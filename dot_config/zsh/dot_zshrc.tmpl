@@ -126,3 +126,7 @@ if which kubectl &>/dev/null; then
     export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
 fi
 
+if which delta &>/dev/null; then
+    compdef _gnu_generic delta
+fi
+
