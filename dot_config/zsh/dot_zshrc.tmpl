@@ -51,6 +51,7 @@ source "{{- if eq .chezmoi.os "darwin" }}$(brew --prefix){{ end -}}/opt/powerlev
 {{ if eq .chezmoi.os "darwin" }}
 # some brew packages are installed in sbin (e.g. mtr)
 path=("/usr/local/sbin" "$path[@]")
+path+=("$HOME/Library/Application Support/JetBrains/Toolbox/scripts")
 
 if [[ -n $(brew --prefix llvm) ]]; then
     # clang-tidy is not installed in brew --prefix
