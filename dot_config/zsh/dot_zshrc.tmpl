@@ -25,29 +25,6 @@ HISTSIZE=10050000  # due to HIST_EXPIRE_DUPS_FIRST
 SAVEHIST=10000000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 
-# mypy
-export MYPY_CACHE_DIR="$XDG_CACHE_HOME/mypy"
-
-# less
-export LESSHISTFILE="$XDG_STATE_HOME/less/history"
-export LESSKEY="$XDG_STATE_HOME/less/keys"
-
-# psql
-export PSQLRC="$XDG_CONFIG_HOME/psql/psqlrc"
-export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
-export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
-export PSQL_HISTORY="$XDG_STATE_HOME/psql/history"
-
-# redis-cli
-export REDISCLI_RCFILE="$XDG_CONFIG_HOME/rediscli/config"
-export REDISCLI_HISTFILE="$XDG_STATE_HOME/rediscli/history"
-
-# ripgrep
-export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
-
-# wget
-export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.  if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -97,23 +74,7 @@ bindkey "3D" backward-word
 bindkey "5D" backward-word
 bindkey "^J" backward-kill-line
 
-# pyenv
-if which pyenv &>/dev/null; then
-    export PYENV_VIRTUALENV_CACHE_PATH="$XDG_CACHE_HOME/pyenv-virtualenv"
-    eval "$(pyenv init -)"
-{{- if eq .chezmoi.os "darwin" }}
-    # fix Brew Doctor: "Warning: "config" scripts exist outside your system or Homebrew directories"
-    alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
-{{ end }}
-    eval "$(pyenv virtualenv-init -)"
-fi
-
-# asdf
-export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/config"
-export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
-
-# man
-export MANPAGER='nvim +Man!'
+[ -s "$ZDOTDIR/tools.zsh" ] && source "$ZDOTDIR/tools.zsh"
 
 # load functions
 fpath+="$ZDOTDIR/functions"
@@ -127,23 +88,4 @@ autoload -Uz compinit && compinit
 {{- if eq .chezmoi.os "darwin" }}
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 {{ end -}}
-
-if which pipx &>/dev/null; then
-    eval "$(register-python-argcomplete pipx)"
-fi
-
-if which op &>/dev/null; then
-    eval "$(op completion zsh)"
-    compdef _op op
-fi
-
-if which kubectl &>/dev/null; then
-    alias k='kubectl'
-    export KUBECACHEDIR="$XDG_CACHE_HOME/kube"
-    export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
-fi
-
-if which delta &>/dev/null; then
-    compdef _gnu_generic delta
-fi
 
