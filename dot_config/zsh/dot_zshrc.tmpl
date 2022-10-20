@@ -97,11 +97,6 @@ bindkey "3D" backward-word
 bindkey "5D" backward-word
 bindkey "^J" backward-kill-line
 
-# bat
-if which bat &>/dev/null; then
-    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-fi
-
 # pyenv
 if which pyenv &>/dev/null; then
     export PYENV_VIRTUALENV_CACHE_PATH="$XDG_CACHE_HOME/pyenv-virtualenv"
@@ -116,6 +111,9 @@ fi
 # asdf
 export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/config"
 export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
+
+# man
+export MANPAGER='nvim +Man!'
 
 # load functions
 fpath+="$ZDOTDIR/functions"
