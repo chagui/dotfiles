@@ -56,11 +56,7 @@ lualine.setup({
     lualine_z = {}
   },
   tabline = {},
-  winbar = {
-    lualine_c = {'filename'},
-  },
-  inactive_winbar = {
-    lualine_c = {'filename'},
-    },
+  winbar = {},
+  inactive_winbar = {},
   extensions = {'fzf', 'fugitive', 'nvim-tree', 'quickfix', 'toggleterm'}
 })

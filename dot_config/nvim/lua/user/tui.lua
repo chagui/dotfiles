@@ -1,3 +1,4 @@
+require "user.bufferline"
 require "user.lualine"
 require "user.nvim-tree"
 
