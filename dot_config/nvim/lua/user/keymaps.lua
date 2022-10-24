@@ -19,8 +19,8 @@ utils.nnoremap("<C-S-up>", "<Cmd>resize +2<CR>")
 utils.nnoremap("<C-S-right>", "<Cmd>vertical resize +2<CR>")
 
 -- Buffer navigation
-utils.nmap("<A-left>", "<Cmd>bprev<CR>")
-utils.nmap("<A-right>", "<Cmd>bnext<CR>")
+utils.nmap("<S-h>", "<Cmd>bprevious<CR>")
+utils.nmap("<S-l>", "<Cmd>bnext<CR>")
 utils.nmap("<leader>e", "<Cmd>Buffers<CR>")  -- list buffers
 
 -- Save with Ctrl + s
