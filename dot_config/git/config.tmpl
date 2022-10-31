@@ -60,6 +60,11 @@
     ff = yes
 [pull]
     ff = only
+[push]
+    autoSetupRemote = true
+[rebase]
+    updateRefs = true
+
 [url "ssh://git@github.com/"]
     insteadOf = https://github.com/
 {{- if eq .chezmoi.os "darwin" }}
@@ -71,8 +76,6 @@
     path = ~/Work/.gitconfig
 [includeIf "gitdir:~/Repos/**"]
     path = ~/Repos/.gitconfig
-[push]
-    autoSetupRemote = true
 
 [url "git@github.com:chagui/"]
   insteadOf = me:
