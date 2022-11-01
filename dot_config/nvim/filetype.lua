@@ -28,7 +28,7 @@ vim.filetype.add({
 local set = vim.opt
 -- https://neovim.io/doc/user/api.html#nvim_create_autocmd()
 vim.api.nvim_create_autocmd({"FileType"}, {
-    pattern = {"go", "json", "yaml"},
+    pattern = {"json", "yaml"},
     callback = function()
         set.tabstop = 2
         set.shiftwidth = 2
@@ -40,6 +40,9 @@ vim.api.nvim_create_autocmd({"FileType"}, {
     pattern = {"go", "make"},
     callback = function()
         set.expandtab = false
+        set.tabstop = 4
+        set.shiftwidth = 4
+        set.softtabstop = 4
     end
 })
 
