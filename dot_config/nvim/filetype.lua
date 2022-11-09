@@ -6,6 +6,7 @@ vim.filetype.add({
         ['.functions'] = 'zsh',
         ['.local'] = 'zsh',
         ['.os_aliases'] = 'zsh',
+        ['Brewfile'] = 'ruby',
         -- Handle chezmoi templates
         ['dot_zshrc'] = 'zsh',
         ['dot_zshrc.tmpl'] = 'zsh',
