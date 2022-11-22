@@ -29,7 +29,7 @@ vim.filetype.add({
 local set = vim.opt
 -- https://neovim.io/doc/user/api.html#nvim_create_autocmd()
 vim.api.nvim_create_autocmd({"FileType"}, {
-    pattern = {"hcl", "json", "yaml"},
+    pattern = {"terraform", "hcl", "json", "yaml"},
     callback = function()
         set.tabstop = 2
         set.shiftwidth = 2
