@@ -1,5 +1,9 @@
 local utils = require("user.utils")
-local cmp = require("cmp")
+local cmp_status_ok, cmp = pcall(require, "cmp")
+if not cmp_status_ok then
+  vim.notify("could not find cmp plugin")
+  return
+end
 
 local snippet = {
     expand = {}
