@@ -10,7 +10,7 @@ vim.filetype.add({
         -- Handle chezmoi templates
         ['dot_zshrc'] = 'zsh',
         ['dot_zshrc.tmpl'] = 'zsh',
-        ['dot_aliases'] = 'zsh',
+        ['dot_aliasses'] = 'zsh',
         ['dot_functions'] = 'zsh',
     },
     pattern = {
