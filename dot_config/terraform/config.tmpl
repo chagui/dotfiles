@@ -1,5 +1,5 @@
 {{ if eq .chezmoi.os "darwin" -}}
-plugin_cache_dir = "~/Library/Application Support/io.terraform/plugins"
+plugin_cache_dir = "$HOME/Library/Application Support/io.terraform/plugins"
 {{- else if eq .chezmoi.os "linux" -}}
 {{-   if eq .chezmoi.osRelease.id "ubuntu" }}
 plugin_cache_dir = "$XDG_CACHE_HOME/terraform/plugins"
