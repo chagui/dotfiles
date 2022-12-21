@@ -1,6 +1,10 @@
 # asdf
-export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/config"
-export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
+if which asdf &>/dev/null; then
+    export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/config"
+    export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
+    source "$(brew --prefix asdf)/libexec/asdf.sh"
+    fpath=(${ASDF_DIR}/completions $fpath)
+fi
 
 # delta
 if which delta &>/dev/null; then
