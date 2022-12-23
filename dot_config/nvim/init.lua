@@ -1,4 +1,3 @@
-require "user.autopairs"
 require "user.completion"
 require "user.keymaps"
 require "user.options"
