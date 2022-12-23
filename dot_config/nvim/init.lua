@@ -2,7 +2,6 @@ require "user.completion"
 require "user.keymaps"
 require "user.options"
 require "user.plugins"
-require "user.telescope"
 
 local utils = require("user.utils")
 
