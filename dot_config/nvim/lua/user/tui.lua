@@ -1,4 +1,3 @@
-require "user.bufferline"
 require "user.lualine"
 
 -- True Color (24-bit) configuration for alacritty + tmux
