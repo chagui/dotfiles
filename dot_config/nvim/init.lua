@@ -1,7 +1,6 @@
 require "user.autopairs"
 require "user.completion"
 require "user.keymaps"
-require "user.lsp"
 require "user.options"
 require "user.plugins"
 require "user.telescope"
