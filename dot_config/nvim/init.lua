@@ -4,7 +4,6 @@ require "user.keymaps"
 require "user.options"
 require "user.plugins"
 require "user.telescope"
-require "user.toggleterm"
 
 local utils = require("user.utils")
 
