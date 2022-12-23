@@ -1,8 +1,4 @@
-local success, lsp = pcall(require, "lsp-zero")
-if not success then
-    vim.notify("could not find lsp-zero module, abort lsp configuration")
-    return
-end
+local lsp = require("lsp-zero")
 
 vim.opt.signcolumn = 'yes'
 vim.diagnostic.config({
@@ -38,15 +34,5 @@ lsp.ensure_installed({
 })
 
 lsp.nvim_workspace()
-
-local server_configs = {
-    "jsonls",
-    "pyright",
-    "sumneko_lua",
-}
-for _, server in ipairs(server_configs) do
-    local config = require(string.format("user.lspconfig.%s", server))
-    lsp.configure(server, config)
-end
 
 lsp.setup()

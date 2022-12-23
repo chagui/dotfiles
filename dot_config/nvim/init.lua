@@ -1,12 +1,7 @@
-require "user.autopairs"
 require "user.completion"
 require "user.keymaps"
-require "user.lsp"
 require "user.options"
 require "user.plugins"
-require "user.telescope"
-require "user.toggleterm"
-require "user.treesitter"
 
 local utils = require("user.utils")
 
