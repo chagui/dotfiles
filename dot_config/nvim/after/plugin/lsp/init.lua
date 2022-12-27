@@ -23,6 +23,7 @@ lsp.set_preferences({
 
 lsp.ensure_installed({
     "bashls",
+    "dockerls",
     "gopls",
     "jsonls",
     "pyright",

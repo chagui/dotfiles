@@ -1,7 +1,17 @@
 local configs = require("nvim-treesitter.configs")
 
 configs.setup {
-    ensure_installed = { "c", "lua", "go", "hcl", "make", "python", "rust" },
+    ensure_installed = {
+        "c",
+        "dockerfile",
+        "dot",
+        "go",
+        "hcl",
+        "lua",
+        "make",
+        "python",
+        "rust",
+    },
     sync_install = false,
     autopairs = {
         enable = true
