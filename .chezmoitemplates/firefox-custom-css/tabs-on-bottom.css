@@ -1,0 +1,67 @@
+/* from https://github.com/keymasterr/Firefox-UI-Theme-Tweaks-and-Bottom-Tabs/blob/master/userChrome.css" */
+:root { --tbh: 36px; }
+
+/* moving tabs bar down  */
+#titlebar { margin-bottom: calc(-1 * var(--tbh) + 1px); }
+#TabsToolbar {
+  transform: translateY(calc(100vh - var(--tbh)));
+  background: var(--lwt-accent-color-inactive, var(--lwt-accent-color));
+}
+#titlebar .titlebar-spacer { display: none; }
+#TabsToolbar-customization-target { padding: 0; }
+:root:not([inDOMFullscreen]) #browser,
+:root:not([inDOMFullscreen]) #customization-container {
+  margin-bottom: var(--tbh);
+}
+
+/* moving window control buttons back up */
+:root:not([inFullscreen]) #nav-bar-customization-target {
+  margin-left: 80px;
+}
+.titlebar-buttonbox-container {
+  transform: translateY(calc(-100vh + var(--tbh) + 3px));
+  width: 80px;
+  margin-right: -80px;
+}
+
+/* KEYMASTERR personal taste */
+  /* I really don't like that double arrow for hidden extensions */
+  #nav-bar-overflow-button {
+    list-style-image: url("chrome://global/skin/icons/more.svg") !important;
+  }
+
+  /* dim top window border highlight */
+  html {
+    border-top: 1px solid black;
+  }
+
+  /* hide tabs list-view button */
+  #alltabs-button { display: none; }
+
+/* KEYMASTERR END */
+
+/* compact tabs */
+.tabbrowser-tab {
+  padding: 0 !important;
+}
+.tabbrowser-tab .tab-background {
+  margin: 0 1px 0 0 !important;
+  border-radius: 0 !important;
+}
+.tabbrowser-tab:not(:hover) .tab-close-button {
+  display: none;
+}
+#tabs-newtab-button,
+#new-tab-button {
+  padding: 0 !important;
+}
+#tabs-newtab-button .toolbarbutton-icon,
+#new-tab-button .toolbarbutton-icon {
+  border-radius: 0 !important;
+}
+#scrollbutton-up, #scrollbutton-down {
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding-left: calc(var(--toolbarbutton-inner-padding) - 2px) !important;
+  padding-right: calc(var(--toolbarbutton-inner-padding) - 2px) !important;
+}

@@ -1,8 +1,9 @@
 README.md
 {{- if ne .chezmoi.os "darwin" }}
-Library/Application Support/pip/pip.conf
+Library/Application Support
 {{- else if ne .chezmoi.os "linux" }}
 .config/pip
+.mozilla
 {{- end }}
 {{- if ( env "SHELL" | ne "/bin/bash" ) }}
 .aliasses
