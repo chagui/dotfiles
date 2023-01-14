@@ -1,4 +1,6 @@
 /* see https://support.mozilla.org/en-US/questions/1274416#answer-1279083 */
 @import url("tabs-on-bottom.css");
+@import url("navbar.css");
+
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* only needed once */
 
