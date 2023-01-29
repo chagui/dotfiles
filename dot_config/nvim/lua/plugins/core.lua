@@ -4,7 +4,9 @@ return {
 
     {
         "junegunn/fzf",
-        build = function() vim.fn["fzf#install"]() end,
+        build = function()
+            vim.fn["fzf#install"]()
+        end,
         name = "fzf",
         dependencies = { "junegunn/fzf.vim" },
     },

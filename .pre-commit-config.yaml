@@ -1,5 +1,10 @@
 default_stages: [commit]
 repos:
+  - repo: https://github.com/JohnnyMorganz/StyLua
+    rev: v0.16.0
+    hooks:
+      - id: stylua
+
   # out of the box hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0

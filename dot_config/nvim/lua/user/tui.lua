@@ -6,8 +6,8 @@ vim.o.termguicolors = true
 -- see https://github.com/Shatur/neovim-ayu
 local status_ok, _ = pcall(require, "ayu")
 if not status_ok then
-  vim.notify("could not find ayu plugin")
+    vim.notify("could not find ayu plugin")
 else
-  -- Note: when calling ayu.colorscheme() NvimTree and Lualine do not pick-up the theme..
-  vim.cmd.colorscheme("ayu")
+    -- Note: when calling ayu.colorscheme() NvimTree and Lualine do not pick-up the theme..
+    vim.cmd.colorscheme("ayu")
 end

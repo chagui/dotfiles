@@ -1,4 +1,4 @@
-local utils = require "user.utils"
+local utils = require("user.utils")
 local globals = vim.g
 
 -- remap leader
@@ -21,7 +21,7 @@ utils.nnoremap("<C-S-right>", "<Cmd>vertical resize +2<CR>")
 -- Buffer navigation
 utils.nmap("<S-h>", "<Cmd>bprevious<CR>")
 utils.nmap("<S-l>", "<Cmd>bnext<CR>")
-utils.nmap("<leader>e", "<Cmd>Buffers<CR>")  -- list buffers
+utils.nmap("<leader>e", "<Cmd>Buffers<CR>") -- list buffers
 
 -- Save with Ctrl + s
 utils.nmap("<C-s>", "<Cmd>w<CR>")
@@ -41,7 +41,10 @@ utils.nmap("K", "<Cmd>move .-2<CR>==")
 utils.map("<C-g>f", "<Cmd>GFiles<CR>")
 
 -- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-utils.nmap("<leader>p", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>")
+utils.nmap(
+    "<leader>p",
+    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>"
+)
 utils.nmap("<leader>f", "<cmd>Telescope live_grep<cr>")
 utils.nnoremap("<leader>b", "<cmd>Telescope buffers<cr>")
 

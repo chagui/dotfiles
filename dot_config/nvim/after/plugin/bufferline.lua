@@ -3,7 +3,7 @@
 local bufferline = require("bufferline")
 
 -- Note: termguicolors option is set in user.tui module
-bufferline.setup {
+bufferline.setup({
     options = {
         close_command = "Bdelete! %d",
         right_mouse_command = "Bdelete! %d",
@@ -14,7 +14,7 @@ bufferline.setup {
                 text = " פּ   Nvim Tree",
                 text_align = "left",
                 padding = 1,
-            }
+            },
         },
     },
-}
+})
