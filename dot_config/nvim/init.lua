@@ -5,6 +5,7 @@ require "user.plugin_manager"
 
 local utils = require("user.utils")
 
+
 -- When running in VSCode an extension takes care of the theme.
 if not utils.is_vscode() then
     require "user.tui"
@@ -14,7 +15,13 @@ end
 vim.o.ch = 0
 
 -- Run `chezmoi apply` whenever its configuration is modified.
-vim.cmd('autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"')
+vim.api.nvim_create_autocmd(
+    "BufWritePost",
+    {
+        pattern = vim.fn.expand("~") .. "/.local/share/chezmoi/*",
+        command = "silent! !chezmoi apply --no-tty --force --source-path '%'",
+    }
+)
 
 -- Python
 vim.g.python3_host_prog = os.getenv("HOME") .. "/.pyenv/versions/nvim/bin/python3"
@@ -28,10 +35,8 @@ vim.opt.wildignore:append("*.swp,~*")
 vim.opt.wildignore:append("*.zip,*.tar")
 
 -- Use ripgrep when available
-vim.cmd([[
-    if executable('rg')
-        set grepprg=rg\ --no-heading\ --vimgrep
-        set grepformat=%f:%l:%c:%m
-    endif
-]])
+if vim.fn.executable("rg") == 1 then
+    vim.o.grepprg = "rg --no-heading --vimgrep"
+    vim.o.grepformat = "f:%l:%c:%m"
+end
 
