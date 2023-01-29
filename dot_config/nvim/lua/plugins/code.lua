@@ -1,5 +1,6 @@
 return {
     "windwp/nvim-autopairs",
+    "folke/neodev.nvim",
 
     -- Treesitter
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
