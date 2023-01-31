@@ -14,7 +14,9 @@ end
 vim.o.ch = 0
 
 -- Run `chezmoi apply` whenever its configuration is modified.
+local custom_group = vim.api.nvim_create_augroup("UserCommandsChezmoi", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
+    group = custom_group,
     pattern = vim.fn.expand("~") .. "/.local/share/chezmoi/*",
     command = "silent! !chezmoi apply --no-tty --force --source-path '%'",
 })
