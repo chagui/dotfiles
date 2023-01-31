@@ -1,14 +1,15 @@
 [core]
     editor = nvim
     autocrlf = input
-    pager = less -F -X
-[pager]
-    diff = delta
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
 [delta]
-    line-numbers = true
-    side-by-side = true
     dark = true
+    line-numbers = true
+    navigate = true
     pager = less
+    side-by-side = true
 [difftool]
     prompt = false
 [include]
@@ -57,7 +58,10 @@
     remotein = !git changes --cherry  `git cb`...origin/`git cb`
     remoteout = !git changes --cherry  origin/`git cb`...`git cb`
 [merge]
+    conflictstyle = diff3
     ff = yes
+[diff]
+    colorMoved = default
 [pull]
     ff = only
 [push]
