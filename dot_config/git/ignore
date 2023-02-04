@@ -1,3 +1,4 @@
+# vi: ft=gitignore
 .python-version
 pyrightconfig.json
 ignore/**
