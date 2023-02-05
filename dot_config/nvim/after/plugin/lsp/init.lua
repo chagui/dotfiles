@@ -35,16 +35,17 @@ lsp.set_preferences({
 
 lsp.ensure_installed({
     "bashls",
+    "clangd",
     "cmake",
     "dockerls",
     "gopls",
     "jsonls",
     "pyright",
+    "rust_analyzer",
+    "sumneko_lua",
     "taplo",
     "terraformls",
     "yamlls",
-    "rust_analyzer",
-    "sumneko_lua",
 })
 
 lsp.nvim_workspace()
