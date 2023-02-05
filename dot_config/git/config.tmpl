@@ -4,12 +4,12 @@
     autocrlf = input
     pager = delta
 [interactive]
-    diffFilter = delta --color-only
+    diffFilter = delta --color-only --features='interactive decorations nord-aurora-line-numbers'
 [difftool]
     prompt = false
 [include]
     path = ~/.config/git/local
-    path = ~/.config/git/delta.conf
+    path = ~/.config/git/delta.gitconfig
 [color.decorate]
     branch = bold 28
     remoteBranch = bold blue

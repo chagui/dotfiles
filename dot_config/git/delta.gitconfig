@@ -1,0 +1,32 @@
+# Delta gets its configuration from gitconfig
+# see https://dandavison.github.io/delta/configuration.html
+#
+[delta]
+    dark = true
+    features = no-interactive decorations nord-aurora-line-numbers
+    hyperlinks = true
+    line-numbers = true
+    syntax-theme = "Visual Studio Dark+"
+
+[delta "interactive"]
+    keep-plus-minus-markers = false
+
+[delta "no-interactive"]
+    navigate = true
+    side-by-side = true
+
+[delta "decorations"]
+    # commits
+    commit-decoration-style = blue ol
+    commit-style = raw
+    # filename
+    file-style = omit
+    hunk-header-decoration-style = box "#225095"
+    hunk-header-file-style = "#fac901"
+    hunk-header-line-number-style = "#225095"
+    hunk-header-line-number-style = blue
+    hunk-header-style = file line-number syntax
+
+[delta "nord-aurora-line-numbers"]
+    line-numbers-minus-style = "#BF616A"
+    line-numbers-plus-style = "#A3BE8C"
