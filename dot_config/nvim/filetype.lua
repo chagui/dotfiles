@@ -29,7 +29,7 @@ local custom_group = vim.api.nvim_create_augroup("UserCommandsFileType", { clear
 local set = vim.opt
 -- https://neovim.io/doc/user/api.html#nvim_create_autocmd()
 vim.api.nvim_create_autocmd({ "FileType" }, {
-    group = user_filetype,
+    group = custom_group,
     pattern = { "terraform", "hcl", "json", "yaml" },
     callback = function()
         set.tabstop = 2
@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-    group = user_filetype,
+    group = custom_group,
     pattern = { "go", "make" },
     callback = function()
         set.expandtab = false
