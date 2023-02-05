@@ -47,6 +47,3 @@ utils.nmap(
 )
 utils.nmap("<leader>f", "<cmd>Telescope live_grep<cr>")
 utils.nnoremap("<leader>b", "<cmd>Telescope buffers<cr>")
-
--- nvim-tree
-utils.nnoremap("<leader>e", "<cmd>NvimTreeToggle<cr>")

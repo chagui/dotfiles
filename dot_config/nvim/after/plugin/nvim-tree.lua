@@ -105,3 +105,6 @@ nvim_tree.setup({
         custom = { "^.git$" },
     },
 })
+
+local utils = require("user.utils")
+utils.nnoremap("<leader>e", "<cmd>NvimTreeToggle<cr>")
