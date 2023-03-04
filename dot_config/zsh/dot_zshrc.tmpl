@@ -12,6 +12,10 @@ export XDG_CACHE_HOME="$HOME/.cache"
 eval $(/opt/homebrew/bin/brew shellenv)
 {{- end }}
 
+# XDG_CONFIG_HOME is more reliable than ZDOTDIR, because this file could be
+# by a shell spawn with a different context where ZDOTDIR would not point here.
+ZCONFDIR="$XDG_CONFIG_HOME/zsh"
+
 # minify history
 setopt EXTENDED_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
@@ -27,19 +31,19 @@ HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.  if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-[ -s "$ZDOTDIR/.aliases" ] && source "$ZDOTDIR/.aliases"
-[ -s "$ZDOTDIR/.functions" ] && source "$ZDOTDIR/.functions"
-[ -s "$ZDOTDIR/.local" ] && . "$ZDOTDIR/.local"
+[ -s "$ZCONFDIR/.aliases" ] && source "$ZCONFDIR/.aliases"
+[ -s "$ZCONFDIR/.functions" ] && source "$ZCONFDIR/.functions"
+[ -s "$ZCONFDIR/.local" ] && . "$ZCONFDIR/.local"
 [ -s ~/.fzf.zsh ] && . ~/.fzf.zsh
 
 # Prompt theme
 source "{{- if eq .chezmoi.os "darwin" }}$(brew --prefix){{ end -}}/opt/powerlevel10k/powerlevel10k.zsh-theme"
-[ -s "$ZDOTDIR/.p10k.zsh" ] && . "$ZDOTDIR/.p10k.zsh"
+[ -s "$ZCONFDIR/.p10k.zsh" ] && . "$ZCONFDIR/.p10k.zsh"
 
 {{ if eq .chezmoi.os "darwin" }}
 export PYENV_ROOT=$XDG_DATA_HOME/pyenv
@@ -74,10 +78,10 @@ bindkey "3D" backward-word
 bindkey "5D" backward-word
 bindkey "^J" backward-kill-line
 
-[ -s "$ZDOTDIR/tools.zsh" ] && source "$ZDOTDIR/tools.zsh"
+[ -s "$ZCONFDIR/tools.zsh" ] && source "$ZCONFDIR/tools.zsh"
 
 # load functions
-fpath+="$ZDOTDIR/functions"
+fpath+="$ZCONFDIR/functions"
 {{- if eq .chezmoi.os "darwin" }}
 fpath+="$(brew --prefix)/share/zsh/site-functions"
 {{ end }}
