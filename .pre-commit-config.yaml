@@ -1,7 +1,7 @@
 default_stages: [commit]
 repos:
   - repo: https://github.com/JohnnyMorganz/StyLua
-    rev: v0.16.0
+    rev: v0.16.1
     hooks:
       - id: stylua
 
