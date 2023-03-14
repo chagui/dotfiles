@@ -19,6 +19,7 @@ local options = {
     relativenumber = true,
     mouse = "a",
     cursorline = true,
+    scrolloff = 5,
     -- Always use the clipboard for all operations instead of interacting with
     -- registers
     clipboard = "unnamedplus",
