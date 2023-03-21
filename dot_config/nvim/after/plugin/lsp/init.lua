@@ -40,7 +40,7 @@ lsp.ensure_installed({
     "dockerls",
     "gopls",
     "jsonls",
-    "pyright",
+    "ruff_lsp",
     "rust_analyzer",
     "sumneko_lua",
     "taplo",
