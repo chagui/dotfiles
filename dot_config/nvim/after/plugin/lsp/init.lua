@@ -3,7 +3,7 @@
 local status_ok, neodev = pcall(require, "neodev")
 if status_ok then
     neodev.setup({
-        override = function(root_dir, library)
+        override = function(_, library)
             library.enabled = true
             library.plugins = true
         end,
