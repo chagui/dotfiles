@@ -42,7 +42,7 @@ lsp.ensure_installed({
     "jsonls",
     "ruff_lsp",
     "rust_analyzer",
-    "sumneko_lua",
+    "lua_ls",
     "taplo",
     "terraformls",
     "yamlls",
