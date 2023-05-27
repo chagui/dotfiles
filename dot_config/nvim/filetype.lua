@@ -15,6 +15,7 @@ vim.filetype.add({
     },
     pattern = {
         [".+%.tfvars"] = "terraform",
+        [".+%.gitconfig"] = "gitconfig",
         -- Handle chezmoi templates
         ["${XDG_DATA_HOME}/chezmoi/.*%.(%a+)%.tmpl"] = function(_, _, captured_extension)
             if captured_extension == "yml" then
