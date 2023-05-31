@@ -7,7 +7,16 @@ telescope.load_extension('media_files')
 local actions = require "telescope.actions"
 telescope.setup {
   defaults = {
-
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden",
+    },
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
@@ -91,7 +100,7 @@ local success, telescope_builtin = pcall(require, "telescope.builtin")
 if success then
     vim.keymap.set("n", "<leader>sb", telescope_builtin.buffers, { desc = "[S]earch [B]uffers" })
     vim.keymap.set("n", "<leader>sd", telescope_builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-    vim.keymap.set("n", "<leader>sf", function() telescope_builtin.find_files(require('telescope.themes').get_dropdown({ previewer = false })) end, { desc = "[S]earch [F]iles" })
+    vim.keymap.set("n", "<leader>sf", function() telescope_builtin.find_files(require('telescope.themes').get_dropdown({ previewer = false, hidden = true })) end, { desc = "[S]earch [F]iles" })
     vim.keymap.set("n", "<leader>sg", telescope_builtin.live_grep, { desc = "[S]earch by [G]rep" })
     vim.keymap.set("n", "<leader>sh", telescope_builtin.help_tags, { desc = "[S]earch [H]elp" })
     vim.keymap.set("n", "<leader>sr", telescope_builtin.resume, { desc = "[S]earch [R]esume" })
