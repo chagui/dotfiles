@@ -5,7 +5,7 @@ local lualine = require("lualine")
 lualine.setup({
     options = {
         icons_enabled = true,
-        theme = "ayu", -- automatically load the theme matching g:ayucolor
+        theme = "catppuccin", -- will pick the variant set in catppuccin config
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = {

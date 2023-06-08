@@ -1,5 +1,5 @@
 return {
-    "Shatur/neovim-ayu",
+    { "catppuccin/nvim", name = "catppuccin" },
     {
         "akinsho/bufferline.nvim",
         version = "v3.*",
