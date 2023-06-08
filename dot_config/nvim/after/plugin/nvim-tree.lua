@@ -7,11 +7,6 @@ local tree_cb = require("nvim-tree.config").nvim_tree_callback
 nvim_tree.setup({
     disable_netrw = true,
     hijack_netrw = true,
-    ignore_ft_on_setup = {
-        "startify",
-        "dashboard",
-        "alpha",
-    },
     hijack_cursor = false,
     update_cwd = true,
     hijack_directories = {
