@@ -39,6 +39,10 @@ fi
 [ -s "$ZCONFDIR/.aliases" ] && source "$ZCONFDIR/.aliases"
 [ -s "$ZCONFDIR/.functions" ] && source "$ZCONFDIR/.functions"
 [ -s "$ZCONFDIR/.local" ] && . "$ZCONFDIR/.local"
+
+export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude '.git'"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
 [ -s ~/.fzf.zsh ] && . ~/.fzf.zsh
 
 # Prompt theme
