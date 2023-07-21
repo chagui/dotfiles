@@ -1,10 +1,17 @@
 # asdf
-if which asdf &>/dev/null; then
-    export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/config"
-    export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
-    source "$(brew --prefix asdf)/libexec/asdf.sh"
-    fpath=(${ASDF_DIR}/completions $fpath)
+export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/config"
+export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
+{{- if eq .chezmoi.os "darwin" }}
+asdf_source="$(brew --prefix asdf)/libexec/asdf.sh"
+{{  else if eq .chezmoi.os "linux" }}
+{{- if eq .chezmoi.osRelease.id "ubuntu" }}
+asdf_source="$HOME/.asdf/asdf.sh"
+{{ end -}}
+{{ end }}
+if [ -s "$asdf_source" ]; then
+    source "$asdf_source"
 fi
+fpath=(${ASDF_DIR}/completions $fpath)
 
 # delta
 if which delta &>/dev/null; then
