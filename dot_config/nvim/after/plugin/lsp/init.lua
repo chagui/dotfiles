@@ -13,9 +13,6 @@ end
 local lsp = require("lsp-zero")
 
 vim.opt.signcolumn = "yes"
-vim.diagnostic.config({
-    virtual_text = true,
-})
 
 lsp.set_preferences({
     suggest_lsp_servers = false,
@@ -51,3 +48,8 @@ lsp.ensure_installed({
 lsp.nvim_workspace()
 
 lsp.setup()
+
+-- needs to be after lsp.setup()
+vim.diagnostic.config({
+    virtual_text = true,
+})
