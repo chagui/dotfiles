@@ -82,6 +82,7 @@ fi
 
 # never needed globing when using pip so disable it in order to do
 # pip install package[plugin] instead of pip install package\[plugin\]
+alias bazel='noglob bazel'
 alias pip='noglob pip'
 alias poetry='noglob poetry'
 
