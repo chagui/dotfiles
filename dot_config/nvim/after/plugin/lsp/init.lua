@@ -28,6 +28,11 @@ lsp.set_preferences({
     },
 })
 
+-- Create the keybindings bound to built-in LSP functions.
+lsp.on_attach(function(_, bufnr)
+    lsp.default_keymaps({ buffer = bufnr })
+end)
+
 -- Language servers configuration
 local servers = {
     bashls = {},
