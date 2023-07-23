@@ -10,7 +10,7 @@ if status_ok then
     })
 end
 
-local lsp = require("lsp-zero")
+local lsp = require("lsp-zero").preset({})
 
 vim.opt.signcolumn = "yes"
 
@@ -30,20 +30,24 @@ lsp.set_preferences({
     },
 })
 
-lsp.ensure_installed({
-    "bashls",
-    "clangd",
-    "cmake",
-    "dockerls",
-    "gopls",
-    "jsonls",
-    "ruff_lsp",
-    "rust_analyzer",
-    "lua_ls",
-    "taplo",
-    "terraformls",
-    "yamlls",
-})
+-- Language servers configuration
+local servers = {
+    bashls = {},
+    clangd = {},
+    cmake = {},
+    dockerls = {},
+    gopls = {},
+    jsonls = {},
+    lua_ls = {},
+    ruff_lsp = {},
+    rust_analyzer = {},
+    taplo = {},
+    terraformls = {},
+    yamlls = {},
+}
+
+-- Ensure the servers above are installed
+lsp.ensure_installed(vim.tbl_keys(servers))
 
 lsp.nvim_workspace()
 
