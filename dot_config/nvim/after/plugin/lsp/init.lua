@@ -12,8 +12,6 @@ end
 
 local lsp = require("lsp-zero").preset({})
 
-vim.opt.signcolumn = "yes"
-
 lsp.set_preferences({
     suggest_lsp_servers = false,
     setup_servers_on_start = true,
@@ -37,22 +35,66 @@ local servers = {
     cmake = {},
     dockerls = {},
     gopls = {},
-    jsonls = {},
+    jsonls = {
+        settings = {
+            json = {
+                -- todo: migrate to https://github.com/b0o/schemastore.nvim
+                -- schemas = schemas,
+            },
+        },
+        setup = {
+            commands = {
+                Format = {
+                    function()
+                        vim.lsp.buf.range_formatting({}, { 0, 0 }, { vim.fn.line("$"), 0 })
+                    end,
+                },
+            },
+        },
+    },
     lua_ls = {},
     ruff_lsp = {},
     rust_analyzer = {},
     taplo = {},
+    -- https://github.com/hashicorp/terraform-ls
     terraformls = {},
-    yamlls = {},
+    -- https://github.com/redhat-developer/yaml-language-server
+    yamlls = {
+        settings = {
+            yaml = {
+                schemaStore = {
+                    url = "https://www.schemastore.org/api/json/catalog.json",
+                    enable = true,
+                },
+                style = {
+                    flowSequence = "allow",
+                },
+                keyOrdering = false,
+            },
+        },
+    },
 }
 
 -- Ensure the servers above are installed
 lsp.ensure_installed(vim.tbl_keys(servers))
 
+local lspconfig = require("lspconfig")
+for server, config in pairs(servers) do
+    lspconfig[server].setup(config)
+end
+
+local custom_group = vim.api.nvim_create_augroup("UserFormatBufWritePre", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = custom_group,
+    pattern = { "*.tf", "*.tfvars" },
+    callback = vim.lsp.buf.format,
+})
+
 lsp.nvim_workspace()
 
 lsp.setup()
 
+vim.opt.signcolumn = "yes"
 -- needs to be after lsp.setup()
 vim.diagnostic.config({
     virtual_text = true,
