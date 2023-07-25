@@ -109,7 +109,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     callback = vim.lsp.buf.format,
 })
 
-lsp.nvim_workspace()
+-- Configure lua language server for neovim
+lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
 
