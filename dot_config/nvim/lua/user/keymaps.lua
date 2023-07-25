@@ -39,6 +39,3 @@ utils.nmap("K", "<Cmd>move .-2<CR>==")
 
 -- Git hotkeys
 utils.map("<C-g>f", "<Cmd>GFiles<CR>")
-
--- LSP hotkeys
-vim.keymap.set("n", "<leader>fb", vim.lsp.buf.format, { desc = "[F]ormat [B]uffer" })

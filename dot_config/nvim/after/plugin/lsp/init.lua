@@ -22,7 +22,23 @@ lsp.set_sign_icons({
 
 -- Create the keybindings bound to built-in LSP functions.
 lsp.on_attach(function(_, bufnr)
-    lsp.default_keymaps({ buffer = bufnr })
+    lsp.default_keymaps({
+        buffer = bufnr,
+        preserve_mappings = false,
+        omit = {
+            -- Omit unwanted default keymaps
+            "<F3>", -- Format buffer
+            "K", -- Hover
+        },
+    })
+
+    vim.keymap.set("n", "<leader>fb", vim.lsp.buf.format, { desc = "[F]ormat [B]uffer" })
+    vim.keymap.set(
+        "n",
+        "<F1>",
+        vim.lsp.buf.hover,
+        { desc = "Displays hover information about the symbol under the cursor" }
+    )
 end)
 
 -- Language servers configuration
