@@ -9,11 +9,17 @@ return {
     -- LSP
     {
         "VonHeikemen/lsp-zero.nvim",
+        branch = "v2.x",
         dependencies = {
             -- Core
             { "neovim/nvim-lspconfig" },
+            {
+                "williamboman/mason.nvim",
+                build = function()
+                    pcall(vim.api.nvim_command, "MasonUpdate")
+                end,
+            },
             { "williamboman/mason-lspconfig.nvim" },
-            { "williamboman/mason.nvim" },
 
             -- Completion
             { "hrsh7th/cmp-buffer" },

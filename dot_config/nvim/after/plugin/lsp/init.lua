@@ -10,22 +10,14 @@ if status_ok then
     })
 end
 
-local lsp = require("lsp-zero").preset({})
+-- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/api-reference.md#minimal
+local lsp = require("lsp-zero").preset({ name = "minimal" })
 
-lsp.set_preferences({
-    suggest_lsp_servers = false,
-    setup_servers_on_start = true,
-    set_lsp_keymaps = true,
-    configure_diagnostics = true,
-    cmp_capabilities = true,
-    manage_nvim_cmp = true,
-    call_servers = "local",
-    sign_icons = {
-        error = "",
-        warn = "",
-        hint = "",
-        info = "",
-    },
+lsp.set_sign_icons({
+    error = "✘",
+    warn = "▲",
+    hint = "⚑",
+    info = "»",
 })
 
 -- Create the keybindings bound to built-in LSP functions.
