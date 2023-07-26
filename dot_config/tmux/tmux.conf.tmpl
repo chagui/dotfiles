@@ -3,8 +3,15 @@ unbind C-b
 set -g prefix C-w
 bind C-a send-prefix
 
-# make delay shorter
-set -sg escape-time 0
+# Address vim mode switching delay (http://superuser.com/a/252717/65504)
+set -s escape-time 0
+
+# Increase scrollback buffer size from 2000 to 50000 lines
+set -g history-limit 50000
+
+# Focus events enabled for terminals that support them
+# See https://github.com/tmux-plugins/vim-tmux-focus-events
+set-option -g focus-events on
 
 # reload config
 bind r source-file ~/.config/tmux/tmux.conf
