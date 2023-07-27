@@ -102,13 +102,19 @@ local servers = {
     },
 }
 
+local mason_lspconfig = require("mason-lspconfig")
 -- Ensure the servers above are installed
-lsp.ensure_installed(vim.tbl_keys(servers))
+mason_lspconfig.setup({
+    ensure_installed = vim.tbl_keys(servers),
+})
 
+-- Ensure the servers above are installed
 local lspconfig = require("lspconfig")
-for server, config in pairs(servers) do
-    lspconfig[server].setup(config)
-end
+mason_lspconfig.setup_handlers({
+    function(server)
+        lspconfig[server].setup(servers[server])
+    end,
+})
 
 local custom_group = vim.api.nvim_create_augroup("UserFormatBufWritePre", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePre", {
