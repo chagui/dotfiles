@@ -128,6 +128,7 @@ lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
 
+-- Diagnostics
 vim.opt.signcolumn = "yes"
 -- needs to be after lsp.setup()
 vim.diagnostic.config({
