@@ -132,5 +132,10 @@ lsp.setup()
 vim.opt.signcolumn = "yes"
 -- needs to be after lsp.setup()
 vim.diagnostic.config({
-    virtual_text = true,
+    virtual_text = false,
+    severity_sort = true,
+    float = {
+        border = "rounded",
+        source = "always",
+    },
 })
