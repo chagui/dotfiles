@@ -32,12 +32,12 @@ lsp.on_attach(function(_, bufnr)
         },
     })
 
-    vim.keymap.set("n", "<leader>fb", vim.lsp.buf.format, { desc = "[F]ormat [B]uffer" })
+    vim.keymap.set("n", "<leader>fb", vim.lsp.buf.format, { buffer = true, desc = "[F]ormat [B]uffer" })
     vim.keymap.set(
         "n",
         "<F1>",
         vim.lsp.buf.hover,
-        { desc = "Displays hover information about the symbol under the cursor" }
+        { buffer = true, desc = "Displays hover information about the symbol under the cursor" }
     )
 end)
 
