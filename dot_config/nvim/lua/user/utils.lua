@@ -11,7 +11,8 @@ function utils.is_vscode()
     return vim.g.vscode
 end
 
-function keymap(mode, lhs, rhs)
+-- todo: add opts arg and use table merge
+local function keymap(mode, lhs, rhs)
     vim.api.nvim_set_keymap(mode, lhs, rhs, { silent = true })
 end
 
@@ -31,7 +32,7 @@ function utils.vmap(lhs, rhs)
     keymap("v", lhs, rhs)
 end
 
-function keynoremap(mode, lhs, rhs)
+local function keynoremap(mode, lhs, rhs)
     vim.api.nvim_set_keymap(mode, lhs, rhs, { noremap = true, silent = true })
 end
 
