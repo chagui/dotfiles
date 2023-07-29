@@ -1,5 +1,4 @@
 return {
-    "machakann/vim-highlightedyank",
     "psliwka/vim-smoothie",
     {
         "lewis6991/gitsigns.nvim",
