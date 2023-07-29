@@ -116,9 +116,10 @@ mason_lspconfig.setup_handlers({
     end,
 })
 
-local custom_group = vim.api.nvim_create_augroup("UserFormatBufWritePre", { clear = true })
+local augroups = require("user.augroups")
 vim.api.nvim_create_autocmd("BufWritePre", {
-    group = custom_group,
+    group = augroups.lsp,
+    -- todo: use file types? pattern = { "terraform", "go" },
     pattern = { "*.tf", "*.tfvars" },
     callback = vim.lsp.buf.format,
 })

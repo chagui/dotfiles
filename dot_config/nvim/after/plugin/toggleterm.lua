@@ -35,9 +35,9 @@ function _G.set_terminal_keymaps()
     vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
 end
 
-local custom_group = vim.api.nvim_create_augroup("UserCommandsToggleTerm", { clear = true })
+local augroups = require("user.augroups")
 vim.api.nvim_create_autocmd("TermOpen", {
-    group = custom_group,
+    group = augroups.toggle_term,
     pattern = "term://*",
     callback = function()
         set_terminal_keymaps()

@@ -1,8 +1,8 @@
 local lazy = require("lazy")
+local augroups = require("user.augroups")
 
-local user_command_group = vim.api.nvim_create_augroup("UserCommandsLazyPlugin", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
-    group = user_command_group,
+    group = augroups.lazy,
     pattern = {
         vim.fn.expand("~") .. "/.local/share/chezmoi/dot_config/nvim/lua/plugins/*",
         vim.fn.expand("~") .. "/.local/share/chezmoi/dot_config/nvim/lua/user/plugin_manager.lua",
