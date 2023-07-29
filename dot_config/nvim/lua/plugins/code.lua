@@ -1,5 +1,5 @@
 return {
-    "windwp/nvim-autopairs",
+    { "windwp/nvim-autopairs", event = "InsertEnter" },
     "folke/neodev.nvim",
 
     -- Treesitter

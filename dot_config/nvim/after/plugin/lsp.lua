@@ -160,6 +160,10 @@ cmp.setup({
     },
 })
 
+-- Insert `(` after select function or method item.
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
 -- Diagnostics
 vim.opt.signcolumn = "yes"
 -- needs to be after lsp.setup()
