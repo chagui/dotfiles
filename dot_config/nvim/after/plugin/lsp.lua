@@ -128,6 +128,38 @@ lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
 
+-- Completion
+local cmp = require("cmp")
+local cmp_action = require("lsp-zero").cmp_action()
+
+local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
+local window_config = cmp.config.window.bordered()
+window_config.max_width = 120
+window_config.max_height = 100
+
+cmp.setup({
+    sources = {
+        { name = "path" },
+        { name = "nvim_lsp" },
+        { name = "buffer" },
+        { name = "nvim_lua" },
+        { name = "luasnip" },
+    },
+    mapping = {
+        ["<C-j>"] = cmp.mapping.select_next_item(cmp_select_opts),
+        ["<C-k>"] = cmp.mapping.select_prev_item(cmp_select_opts),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        -- Super Tab
+        ["<Tab>"] = cmp_action.luasnip_supertab(),
+        ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
+    },
+    window = {
+        completion = window_config,
+        documentation = window_config,
+    },
+})
+
 -- Diagnostics
 vim.opt.signcolumn = "yes"
 -- needs to be after lsp.setup()
