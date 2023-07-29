@@ -158,6 +158,14 @@ cmp.setup({
         completion = window_config,
         documentation = window_config,
     },
+    formatting = {
+        fields = { "abbr", "kind", "menu" },
+        format = require("lspkind").cmp_format({
+            mode = "symbol",
+            maxwidth = 50,
+            ellipsis_char = "...",
+        }),
+    },
 })
 
 -- Insert `(` after select function or method item.

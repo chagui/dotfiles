@@ -20,6 +20,7 @@ return {
                 end,
             },
             { "williamboman/mason-lspconfig.nvim" },
+            { "onsails/lspkind.nvim" },
 
             -- Completion
             { "hrsh7th/cmp-buffer" },
