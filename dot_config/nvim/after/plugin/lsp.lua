@@ -176,8 +176,9 @@ cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 vim.opt.signcolumn = "yes"
 -- needs to be after lsp.setup()
 vim.diagnostic.config({
-    virtual_text = false,
+    virtual_text = true,
     severity_sort = true,
+    underline = false,
     float = {
         border = "rounded",
         source = "always",
