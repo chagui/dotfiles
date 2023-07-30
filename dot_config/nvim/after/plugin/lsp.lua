@@ -10,9 +10,9 @@ local lsp = require("lsp-zero").preset({ name = "minimal" })
 
 lsp.set_sign_icons({
     error = "✘",
-    warn = "▲",
-    hint = "⚑",
-    info = "»",
+    warn = "",
+    hint = "",
+    info = "",
 })
 
 -- Create the keybindings bound to built-in LSP functions.
