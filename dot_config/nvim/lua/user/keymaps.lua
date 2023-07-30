@@ -34,8 +34,9 @@ utils.inoremap("jk", "<Esc>")
 utils.inoremap("kj", "<Esc>")
 
 -- Move line up / down
-utils.nmap("J", "<Cmd>move .+1<CR>==")
-utils.nmap("K", "<Cmd>move .-2<CR>==")
+-- https://stackoverflow.com/questions/5379837/is-it-possible-to-mapping-alt-hjkl-in-insert-mode ¯\_(ツ)_/¯
+utils.nmap("∆", "<Cmd>move .+1<CR>==")
+utils.nmap("˚", "<Cmd>move .-2<CR>==")
 
 -- Git hotkeys
 utils.map("<C-g>f", "<Cmd>GFiles<CR>")
