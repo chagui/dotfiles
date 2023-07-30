@@ -2,12 +2,7 @@
 -- see: https://github.com/folke/neodev.nvim/blob/8fd21037453f4306f500e437c5cbdf6e8b6c2f99/README.md#-setup
 local status_ok, neodev = pcall(require, "neodev")
 if status_ok then
-    neodev.setup({
-        override = function(_, library)
-            library.enabled = true
-            library.plugins = true
-        end,
-    })
+    neodev.setup()
 end
 
 -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/api-reference.md#minimal
