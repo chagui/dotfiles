@@ -96,6 +96,11 @@ telescope.setup {
 {{ end }}
 }
 
+local has_native_fzf, _ = pcall(require, "fzf_lib")
+if has_native_fzf then
+    telescope.load_extension("fzf")
+end
+
 local success, telescope_builtin = pcall(require, "telescope.builtin")
 if success then
     vim.keymap.set("n", "<leader>sb", telescope_builtin.buffers, { desc = "[S]earch [B]uffers" })

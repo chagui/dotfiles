@@ -13,7 +13,12 @@ return {
         "kyazdani42/nvim-tree.lua",
         dependencies = { "kyazdani42/nvim-web-devicons" },
     },
-    "nvim-telescope/telescope.nvim",
+    {
+        "nvim-telescope/telescope.nvim",
+        dependencies = {
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+        },
+    },
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "kyazdani42/nvim-web-devicons" },
