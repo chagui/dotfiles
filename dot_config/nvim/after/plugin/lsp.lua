@@ -164,6 +164,29 @@ cmp.setup({
     },
 })
 
+cmp.setup.cmdline("/", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = "buffer" },
+    }),
+    window = {
+        completion = window_config,
+        documentation = window_config,
+    },
+})
+
+cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = "path" },
+        { name = "cmdline" },
+    }),
+    window = {
+        completion = window_config,
+        documentation = window_config,
+    },
+})
+
 -- Insert `(` after select function or method item.
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
