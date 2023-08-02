@@ -30,9 +30,6 @@ lualine.setup({
                 shorting_target = 40,
             },
         },
-        lualine_w = {
-            "diagnostics",
-        },
         lualine_x = {
             "diagnostics",
             {
@@ -54,5 +51,5 @@ lualine.setup({
     tabline = {},
     winbar = {},
     inactive_winbar = {},
-    extensions = { "fzf", "fugitive", "nvim-tree", "quickfix", "toggleterm" },
+    extensions = { "fzf", "fugitive", "lazy", "nvim-tree", "quickfix", "toggleterm" },
 })
