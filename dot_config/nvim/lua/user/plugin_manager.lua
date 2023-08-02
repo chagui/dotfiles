@@ -15,7 +15,9 @@ vim.opt.rtp:prepend(lazypath)
 -- Use a protected call so we don't error out on first use
 local status_ok, lazy = pcall(require, "lazy")
 if status_ok then
-    lazy.setup("plugins")
+    lazy.setup("plugins", {
+        lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",
+    })
 end
 
 return lazy
