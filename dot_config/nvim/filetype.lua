@@ -27,9 +27,10 @@ vim.filetype.add({
 })
 
 local augroups = require("user.augroups")
+local autocmd = vim.api.nvim_create_autocmd
 local set = vim.opt
 -- https://neovim.io/doc/user/api.html#nvim_create_autocmd()
-vim.api.nvim_create_autocmd({ "FileType" }, {
+autocmd({ "FileType" }, {
     group = augroups.filetype,
     pattern = { "terraform", "hcl", "json", "yaml" },
     callback = function()
@@ -40,7 +41,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end,
 })
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
+autocmd({ "FileType" }, {
     group = augroups.filetype,
     pattern = { "go", "make" },
     callback = function()
@@ -49,4 +50,11 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         set.shiftwidth = 4
         set.softtabstop = 4
     end,
+})
+
+autocmd({ "BufWritePre" }, {
+    group = augroups.filetype,
+    pattern = { "*" },
+    desc = "Remove trailing spaces on save",
+    command = [[%s/\s\+$//e]],
 })
