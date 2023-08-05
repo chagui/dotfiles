@@ -4,11 +4,21 @@ vim.o.termguicolors = true
 
 vim.api.nvim_create_user_command("ReloadConfig", "source $MYVIMRC", {})
 
+local autocmd = vim.api.nvim_create_autocmd
 local augroups = require("user.augroups")
-vim.api.nvim_create_autocmd("TextYankPost", {
+autocmd("TextYankPost", {
     desc = "Highlight on yank",
     group = augroups.visual,
     callback = function()
         vim.highlight.on_yank({ higroup = "Visual", timeout = 400 })
+    end,
+})
+
+autocmd({ "VimResized" }, {
+    desc = "Resize splits when window is resized",
+    group = augroups.visual,
+    callback = function()
+        vim.cmd("wincmd =")
+        vim.cmd("tabdo wincmd =")
     end,
 })
