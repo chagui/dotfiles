@@ -58,3 +58,29 @@ autocmd({ "BufWritePre" }, {
     desc = "Remove trailing spaces on save",
     command = [[%s/\s\+$//e]],
 })
+
+autocmd("FileType", {
+    desc = "Close with q",
+    group = augroups.visual,
+    pattern = {
+        "PlenaryTestPopup",
+        "help",
+        "lspinfo",
+        "man",
+        "notify",
+        "qf",
+        "query", -- :InspectTree
+        "spectre_panel",
+        "startuptime",
+        "tsplayground",
+    },
+    callback = function(event)
+        vim.bo[event.buf].buflisted = false
+        vim.keymap.set(
+            "n",
+            "q",
+            "<cmd>close<cr>",
+            { buffer = event.buf, desc = "Close some filetype windows with <q>" }
+        )
+    end,
+})
