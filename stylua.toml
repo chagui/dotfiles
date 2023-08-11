@@ -2,3 +2,7 @@ column_width = 120
 indent_type = "Spaces"
 indent_width = 4
 quote_style = "AutoPreferDouble"
+
+[sort_requires]
+enabled = true
+
