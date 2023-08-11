@@ -4,6 +4,20 @@
 local nvim_tree = require("nvim-tree")
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
+local function on_attach(bufnr)
+    local function opts(desc)
+        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    end
+
+    -- default mappings
+    nvim_tree.api.config.mappings.default_on_attach(bufnr)
+
+    -- custom mappings
+    local utils = require("user.utils")
+    utils.nnoremap("<C-t>", nvim_tree.api.tree.change_root_to_parent, opts("Up"))
+    utils.nnoremap("?", nvim_tree.api.tree.toggle_help, opts("Help"))
+end
+
 nvim_tree.setup({
     disable_netrw = true,
     hijack_netrw = true,
@@ -42,14 +56,7 @@ nvim_tree.setup({
                 height = 30,
             },
         },
-        mappings = {
-            custom_only = false,
-            list = {
-                { key = { "l", "<CR>", "o" }, cb = tree_cb("edit") },
-                { key = "h", cb = tree_cb("close_node") },
-                { key = "v", cb = tree_cb("vsplit") },
-            },
-        },
+        on_attach = on_attach,
         number = true,
         relativenumber = true,
     },
