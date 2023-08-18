@@ -62,7 +62,6 @@ if [[ -n $(brew --prefix llvm) ]]; then
     path=("$(brew --prefix llvm)/bin" "$path[@]")
 fi
 
-[ -s "$(brew --prefix)/etc/profile.d/autojump.sh" ] && source "$(brew --prefix)/etc/profile.d/autojump.sh"
 [ -s "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 [ -s "$(brew --prefix asdf)/libexec/asdf.sh" ] && . "$(brew --prefix asdf)/libexec/asdf.sh"
 {{ else if eq .chezmoi.os "linux" }}
