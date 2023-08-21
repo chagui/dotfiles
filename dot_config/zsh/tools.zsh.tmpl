@@ -25,6 +25,7 @@ if which kubectl &>/dev/null; then
     alias ke='kubectl edit'
     alias kg='kubectl get'
     alias kl='kubectl logs'
+    alias kx='kubectl exec -it'
     export KUBECACHEDIR="$XDG_CACHE_HOME/kube"
     export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
 fi
