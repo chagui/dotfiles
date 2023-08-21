@@ -1,3 +1,4 @@
 export EDITOR=nvim
 export LANG=en_US.UTF-8
+export MANPAGER='nvim +Man!'
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
