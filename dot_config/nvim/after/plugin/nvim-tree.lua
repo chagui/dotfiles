@@ -2,7 +2,6 @@
 -- options are documented in `:help nvim-tree.OPTION_NAME`
 -- see https://github.com/kyazdani42/nvim-tree.lua
 local nvim_tree = require("nvim-tree")
-local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
 local function on_attach(bufnr)
     local function opts(desc)
