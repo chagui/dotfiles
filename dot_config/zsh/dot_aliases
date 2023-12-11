@@ -64,12 +64,12 @@ alias nvimu='nvim --headless -c "autocmd User PackerComplete quitall" -c "Packer
 alias count_endpoint_verbs="yq 'reduce .paths[] as \$item (0; . + (\$item | length))'"
 alias tmux-rename='tmux rename-window "$(basename "$(git root)")"'
 
-if hash exa &>/dev/null; then
-    alias ls='exa'
-    alias l='exa -F'
-    alias ll='exa -al'
-    alias llmod='exa -al --sort=modified --reverse'
-    alias ltree='exa -al --tree'
+if hash eza &>/dev/null; then
+    alias ls='eza'
+    alias l='eza -F'
+    alias ll='eza -al'
+    alias lmod='eza -al --sort=modified --reverse'
+    alias ltree='eza -al --tree'
 fi
 
 if hash procs &>/dev/null; then
