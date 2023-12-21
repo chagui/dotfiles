@@ -1,4 +1,6 @@
-# unbind default prefix and set it to ctrl-a
+{{- if eq .chezmoi.os "darwin" -}}
+set-environment -g PATH "/opt/homebrew/bin:/bin:/usr/bin"
+{{ end -}}
 unbind C-b
 set -g prefix C-w
 bind C-a send-prefix
