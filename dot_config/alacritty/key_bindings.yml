@@ -1,3 +1,5 @@
+# use xxd -psd will provide the hex code that represents the key stroke
+# '\x17' is ctrl-w our configured tmux leader key
 key_bindings:
   # Map command + key to tmux session management
   - { key: S,     mods: Command,       chars: "\x17\x77" }
