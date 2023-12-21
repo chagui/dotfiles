@@ -66,3 +66,11 @@ if-shell '[ "$(tmux has-session -t dev 2>/dev/null && "exists")" != "exists" ]' 
     split-window -v -p 10 -t dev
 }
 
+# Plugins
+set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.local/share/tmux/plugins"
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run ~/.local/share/tmux/plugins/tpm/tpm
