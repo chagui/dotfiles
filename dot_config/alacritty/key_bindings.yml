@@ -27,6 +27,9 @@ key_bindings:
   - { key: Up,        mods: Command,       chars: "\x17\x1b\x5b\x41" }
   - { key: Right,     mods: Command,       chars: "\x17\x1b\x5b\x43" }
   - { key: Semicolon, mods: Command,       chars: "\x17\x3b" }
+  # Move the current pane
+  - { key: LBracket,  mods: Command,       chars: "\x17\x7b" }
+  - { key: RBracket,  mods: Command,       chars: "\x17\x7d" }
 
   # Tab resizing
   - { key: Z,     mods: Command,       chars: "\x17\x7a" }
