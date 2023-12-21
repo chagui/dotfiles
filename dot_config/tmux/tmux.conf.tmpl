@@ -54,8 +54,8 @@ set -g display-time 4000
 
 # pre-configured sessions
 if-shell '[ "$(tmux has-session -t dev 2>/dev/null && "exists")" != "exists" ]' {
-    new-session -s dev -n ide
-    split-window -v -p 10 -t dev
+    new-session -s dev -n dotfiles -c ~/.local/share/chezmoi
+    split-window -v -p 10 -t dev -c "#{pane_current_path}"
 }
 
 set -g @catppuccin_flavour 'macchiato'
