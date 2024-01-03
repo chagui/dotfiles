@@ -8,3 +8,8 @@
     url = "https://github.com/tmux-plugins/tpm"
     refreshPeriod = "168h"  # 1 week
 
+[".config/alacritty/catppuccin-macchiato.toml"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/alacritty/main/catppuccin-macchiato.toml"
+    refreshPeriod = "168h"  # 1 week
+
