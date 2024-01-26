@@ -48,7 +48,7 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
 [ -s ~/.fzf.zsh ] && . ~/.fzf.zsh
 
 # Prompt theme
-source "{{- if eq .chezmoi.os "darwin" }}$(brew --prefix){{ end -}}/opt/powerlevel10k/powerlevel10k.zsh-theme"
+source "{{- if eq .chezmoi.os "darwin" }}$(brew --prefix){{ end -}}/share/powerlevel10k/powerlevel10k.zsh-theme"
 [ -s "$ZCONFDIR/.p10k.zsh" ] && . "$ZCONFDIR/.p10k.zsh"
 
 {{ if eq .chezmoi.os "darwin" }}
