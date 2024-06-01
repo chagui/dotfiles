@@ -20,6 +20,13 @@ return {
         },
     },
     {
+        "nvim-telescope/telescope-frecency.nvim",
+        config = function()
+            require("telescope").load_extension("frecency")
+        end,
+        dependencies = { "kkharji/sqlite.lua" },
+    },
+    {
         "nvim-lualine/lualine.nvim",
         dependencies = { "kyazdani42/nvim-web-devicons" },
     },
