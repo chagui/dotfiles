@@ -97,6 +97,7 @@ local servers = {
     },
 }
 
+local mason = require("mason").setup({})
 local mason_lspconfig = require("mason-lspconfig")
 -- Ensure the servers above are installed
 mason_lspconfig.setup({

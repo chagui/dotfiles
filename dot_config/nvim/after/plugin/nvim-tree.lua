@@ -8,13 +8,14 @@ local function on_attach(bufnr)
         return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
     end
 
+    local api = require("nvim-tree.api")
     -- default mappings
-    nvim_tree.api.config.mappings.default_on_attach(bufnr)
+    api.config.mappings.default_on_attach(bufnr)
 
     -- custom mappings
     local utils = require("user.utils")
-    utils.nnoremap("<C-t>", nvim_tree.api.tree.change_root_to_parent, opts("Up"))
-    utils.nnoremap("?", nvim_tree.api.tree.toggle_help, opts("Help"))
+    vim.keymap.set("n", "<C-t>", api.tree.change_root_to_parent, opts("Up"))
+    vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
 end
 
 nvim_tree.setup({
@@ -26,6 +27,7 @@ nvim_tree.setup({
         enable = true,
         auto_open = true,
     },
+    on_attach = on_attach,
     diagnostics = {
         enable = true,
         icons = {
@@ -47,7 +49,6 @@ nvim_tree.setup({
     },
     view = {
         width = 50,
-        hide_root_folder = false,
         side = "left",
         float = {
             open_win_config = {
@@ -55,7 +56,6 @@ nvim_tree.setup({
                 height = 30,
             },
         },
-        on_attach = on_attach,
         number = true,
         relativenumber = true,
     },
@@ -70,6 +70,7 @@ nvim_tree.setup({
     },
     renderer = {
         highlight_git = true,
+        root_folder_label = false,
         root_folder_modifier = ":t",
         icons = {
             show = {

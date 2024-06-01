@@ -9,7 +9,7 @@ return {
     -- LSP
     {
         "VonHeikemen/lsp-zero.nvim",
-        branch = "v2.x",
+        branch = "v3.x",
         dependencies = {
             -- Core
             { "neovim/nvim-lspconfig" },
