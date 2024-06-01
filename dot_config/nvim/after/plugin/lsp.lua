@@ -169,6 +169,7 @@ cmp.setup.cmdline("/", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
         { name = "buffer" },
+        { name = "cmdline_history" },
     }),
     window = {
         completion = window_config,
@@ -181,6 +182,7 @@ cmp.setup.cmdline(":", {
     sources = cmp.config.sources({
         { name = "path" },
         { name = "cmdline" },
+        { name = "cmdline_history" },
     }),
     window = {
         completion = window_config,
