@@ -30,6 +30,11 @@ if which kubectl &>/dev/null; then
     export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
 fi
 
+# k9s
+if which k9s &>/dev/null; then
+    alias k9s='EDITOR=nvim k9s'
+fi
+
 # less
 export LESSHISTFILE="$XDG_STATE_HOME/less/history"
 export LESSKEY="$XDG_STATE_HOME/less/keys"
