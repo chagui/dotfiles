@@ -77,6 +77,8 @@ local servers = {
     lua_ls = {},
     ruff_lsp = {},
     rust_analyzer = {},
+    -- https://github.com/withered-magic/starpls
+    starpls = {},
     taplo = {},
     -- https://github.com/hashicorp/terraform-ls
     terraformls = {},
