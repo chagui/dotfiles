@@ -99,19 +99,17 @@ local servers = {
     },
 }
 
-local mason = require("mason").setup({})
+require("mason").setup()
+local lspconfig = require("lspconfig")
 local mason_lspconfig = require("mason-lspconfig")
 -- Ensure the servers above are installed
 mason_lspconfig.setup({
     ensure_installed = vim.tbl_keys(servers),
-})
-
--- Ensure the servers above are installed
-local lspconfig = require("lspconfig")
-mason_lspconfig.setup_handlers({
-    function(server)
-        lspconfig[server].setup(servers[server])
-    end,
+    handlers = {
+        function(server_name)
+            lspconfig[server_name].setup(servers[server_name] or {})
+        end,
+    },
 })
 
 local augroups = require("user.augroups")
