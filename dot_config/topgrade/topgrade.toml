@@ -1,0 +1,11 @@
+[misc]
+# Disable specific steps - same options as the command line flag
+disable = [
+    "asdf",
+    "chezmoi",
+    "gem",
+    "ruby_gems",
+    "system",
+    "vim",
+]
+
