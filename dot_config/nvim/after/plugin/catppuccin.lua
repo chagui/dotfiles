@@ -2,6 +2,7 @@ require("catppuccin").setup({
     flavor = "macchiato",
     integrations = {
         cmp = true,
+        flash = true,
         fzf = true,
         gitsigns = true,
         nvimtree = true,
