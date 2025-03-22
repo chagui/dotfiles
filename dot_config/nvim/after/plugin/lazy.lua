@@ -1,5 +1,5 @@
-local lazy = require("lazy")
 local augroups = require("user.augroups")
+local lazy = require("lazy")
 
 vim.api.nvim_create_autocmd("BufWritePost", {
     group = augroups.lazy,
