@@ -26,7 +26,8 @@
     co = checkout
     cp = cherry-pick
     d = diff
-    default-branch = rev-parse --abbrev-ref origin/HEAD
+    default-branch = !git rev-parse --abbrev-ref origin/HEAD | sed 's@^origin/@@'
+    cdb = !git checkout $(git default-branch)
     ds = diff --staged
     dt = difftool
     dump = cat-file -p
