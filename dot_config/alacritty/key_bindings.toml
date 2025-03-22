@@ -137,3 +137,13 @@ mods = "Command|Shift"
 chars = "\u0017\u001B[1;5C"
 key = "Right"
 mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0017p"
+key = "Tab"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0017n"
+key = "Tab"
+mods = "Control"
