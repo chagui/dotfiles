@@ -9,6 +9,9 @@ ignore/**
 
 .cursorindexingignore
 
+# bazel output dirs
+bazel-*
+
 # Created by https://www.toptal.com/developers/gitignore/api/macos,pycharm,python,rust,git
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,pycharm,python,rust,git
 
