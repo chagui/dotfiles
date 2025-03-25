@@ -28,7 +28,7 @@ else
     })
 
     -- Python
-    vim.g.python3_host_prog = os.getenv("XDG_DATA_HOME") .. "/pyenv/versions/3.9.9/envs/nvim/bin/python3"
+    vim.g.python3_host_prog = os.getenv("XDG_DATA_HOME") .. "/pyenv/versions/neovim/bin/python3"
 
     -- Files to ignore
     -- Python
