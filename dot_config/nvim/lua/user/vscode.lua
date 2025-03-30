@@ -1,4 +1,5 @@
 local utils = require("user.utils")
+
 local globals = vim.g
 
 -- remap leader
@@ -8,3 +9,6 @@ globals.maplocalleader = " "
 
 -- Save with leader s
 utils.nmap("<leader>s", "<Cmd>w<CR>")
+
+-- preserve the unnamed register (changed to clipboard above) by default
+utils.vmap("p", "P")
