@@ -13,6 +13,14 @@ local function set_if_absent(lhs, rhs)
     end
 end
 
+-- Convenience function to set multiple options via a table.
+-- tip: use vim.inspect to know what's inside a variable, e.g. print(vim.inspect(vim.opt.syntax))
+function utils.set_options(opts)
+    for k, v in pairs(opts) do
+        vim.opt[k] = v
+    end
+end
+
 local function keymap(mode, lhs, rhs, opts)
     opts = opts and opts or {}
     set_if_absent(opts, { silent = true })
