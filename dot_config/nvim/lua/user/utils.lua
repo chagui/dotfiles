@@ -22,7 +22,7 @@ end
 local function keymap(mode, lhs, rhs, opts)
     opts = opts and opts or {}
     set_if_absent(opts, { silent = true })
-    vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
+    vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 function utils.map(lhs, rhs, opts)
@@ -48,7 +48,7 @@ end
 local function keynoremap(mode, lhs, rhs, opts)
     opts = opts and opts or {}
     set_if_absent(opts, { noremap = true, silent = true })
-    vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
+    vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 function utils.noremap(lhs, rhs, opts)
