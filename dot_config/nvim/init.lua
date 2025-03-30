@@ -1,3 +1,5 @@
+require("user.options")
+
 -- When running in VSCode, avoid plugins that duplicate VSCode features
 -- (highlighting, completion, LSP, file explorers, fuzzy finders).
 -- Use VSCode's built-in line numbers, indent guides and bracket highlighting
@@ -11,7 +13,6 @@ else
     vim.g.loaded_netrwPlugin = 1
 
     require("user.keymaps")
-    require("user.options")
     require("user.plugin_manager")
     require("user.tui")
 
