@@ -5,12 +5,6 @@ function utils.reveal(item, options)
     print(vim.inspect(item, options))
 end
 
--- Tells you if we're running in VSCode.
-function utils.is_vscode()
-    -- adapted from https://github.com/vscode-neovim/vscode-neovim#conditional-initvim
-    return vim.g.vscode
-end
-
 local function set_if_absent(lhs, rhs)
     for k, v in pairs(rhs) do
         if lhs[k] == nil then
