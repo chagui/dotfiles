@@ -1,13 +1,14 @@
 # vi: ft=gitignore
 .python-version
 pyrightconfig.json
+.tool-versions
 ignore/**
-.idea/
 .vscode/
+.cursorindexingignore
+.cursor/
+.idea/
 # IntelliJ Bazel Plugin
 .ijwb/**
-
-.cursorindexingignore
 
 # bazel output dirs
 bazel-*
