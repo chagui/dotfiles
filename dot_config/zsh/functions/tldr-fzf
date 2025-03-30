@@ -1,0 +1,10 @@
+# https://junegunn.github.io/fzf/
+tldr --list | fzf --height 50% --tmux 90%,70% \
+                  --layout reverse --multi --min-height 20+ --border \
+                  --no-separator --header-border horizontal --border-label-pos 2 --ansi --color 'label:blue' \
+                  --border-label '  Command cheatsheets ' \
+                  --color 'label:blue' \
+                  --preview 'tldr {-1} --color=always' \
+                  --preview-window 'right,80%' --preview-border line \
+                  --color bg:#222222,preview-bg:#333333
+                  --bind 'enter:become(tldr {-1})'

@@ -85,8 +85,10 @@ bindkey "^J" backward-kill-line
 
 [ -s "$ZCONFDIR/tools.zsh" ] && source "$ZCONFDIR/tools.zsh"
 
-# load functions
+# load custom functions
 fpath+="$ZCONFDIR/functions"
+autoload -Uz tldr-fzf
+
 {{- if eq .chezmoi.os "darwin" }}
 fpath+="$(brew --prefix)/share/zsh/site-functions"
 {{ end }}
@@ -101,4 +103,3 @@ source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 {{ end -}}
-
