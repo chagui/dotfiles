@@ -24,3 +24,4 @@ utils.nmap("<leader>]", vscode_action("editor.unfold"))
 
 -- Focus the file explorer panel
 utils.nmap("<leader>e", vscode_action("workbench.explorer.fileView.focus"))
+utils.nmap("<leader>,", vscode_action("workbench.action.showAllEditorsByMostRecentlyUsed"))
