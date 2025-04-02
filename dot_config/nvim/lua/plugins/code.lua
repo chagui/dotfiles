@@ -3,7 +3,33 @@ return {
     "folke/neodev.nvim",
 
     -- Treesitter
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        opts = {
+            ensure_installed = {
+                "c",
+                "cmake",
+                "dockerfile",
+                "dot",
+                "go",
+                "hcl",
+                "lua",
+                "make",
+                "python",
+                "rust",
+            },
+            sync_install = false,
+            autopairs = {
+                enable = true,
+            },
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = false,
+            },
+            indent = { enable = true },
+        },
+    },
     { "nvim-treesitter/nvim-treesitter-context", dependencies = "nvim-treesitter/nvim-treesitter" },
 
     -- LSP
