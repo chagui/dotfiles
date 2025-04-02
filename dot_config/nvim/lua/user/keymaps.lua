@@ -25,6 +25,7 @@ utils.nmap("<leader>e", "<Cmd>Buffers<CR>") -- list buffers
 
 -- Save with Ctrl + s
 utils.nmap("<C-s>", "<Cmd>w<CR>")
+utils.nmap("<leader>s", "<Cmd>w<CR>")
 
 -- Navigation hotkeys
 utils.nmap("<C-c>", "<Cmd>q<CR>")
