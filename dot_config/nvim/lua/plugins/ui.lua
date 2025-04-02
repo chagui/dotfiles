@@ -28,6 +28,21 @@ return {
             -- Delete buffers and close files in Vim without closing your windows or messing up your layout.
             "moll/vim-bbye",
         },
+        opts = {
+            options = {
+                close_command = "bdelete! %d",
+                right_mouse_command = "bdelete! %d",
+                left_mouse_command = "buffer %d",
+                offsets = {
+                    {
+                        filetype = "NvimTree",
+                        text = " פּ   Nvim Tree",
+                        text_align = "left",
+                        padding = 1,
+                    },
+                },
+            },
+        },
     },
     {
         "kyazdani42/nvim-tree.lua",
