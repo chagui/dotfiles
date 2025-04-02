@@ -1,5 +1,25 @@
 return {
-    { "catppuccin/nvim", name = "catppuccin" },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        opts = {
+            flavor = "macchiato",
+            integrations = {
+                cmp = true,
+                flash = true,
+                fzf = true,
+                gitsigns = true,
+                nvimtree = true,
+                treesitter = true,
+            },
+        },
+        -- https://lazy.folke.io/spec/lazy_loading#-colorschemes
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd([[colorscheme catppuccin]])
+        end,
+    },
     {
         "akinsho/bufferline.nvim",
         version = "v4.*",
