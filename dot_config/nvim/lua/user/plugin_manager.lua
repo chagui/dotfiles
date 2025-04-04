@@ -18,6 +18,18 @@ if status_ok then
     lazy.setup("plugins", {
         lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",
     })
+    local augroups = require("user.augroups")
+
+    vim.api.nvim_create_autocmd("BufWritePost", {
+        group = augroups.lazy,
+        pattern = {
+            vim.fn.expand("~") .. "/.local/share/chezmoi/dot_config/nvim/lua/plugins/*",
+            vim.fn.expand("~") .. "/.local/share/chezmoi/dot_config/nvim/lua/user/plugin_manager.lua",
+        },
+        callback = function()
+            lazy.sync()
+        end,
+    })
 end
 
 return lazy
