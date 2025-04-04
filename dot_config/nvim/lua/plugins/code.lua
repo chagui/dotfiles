@@ -1,9 +1,58 @@
 return {
-    { "windwp/nvim-autopairs", event = "InsertEnter" },
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        opts = {
+            check_ts = true,
+            ts_config = {
+                lua = { "string", "source" },
+                javascript = { "string", "template_string" },
+                java = false,
+            },
+            disable_filetype = { "TelescopePrompt", "spectre_panel" },
+            fast_wrap = {
+                map = "<M-e>",
+                chars = { "{", "[", "(", '"', "'" },
+                pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
+                offset = 0, -- Offset from pattern match
+                end_key = "$",
+                keys = "qwertyuiopzxcvbnmasdfghjkl",
+                check_comma = true,
+                highlight = "PmenuSel",
+                highlight_grey = "LineNr",
+            },
+        },
+    },
     "folke/neodev.nvim",
 
     -- Treesitter
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        opts = {
+            ensure_installed = {
+                "c",
+                "cmake",
+                "dockerfile",
+                "dot",
+                "go",
+                "hcl",
+                "lua",
+                "make",
+                "python",
+                "rust",
+            },
+            sync_install = false,
+            autopairs = {
+                enable = true,
+            },
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = false,
+            },
+            indent = { enable = true },
+        },
+    },
     { "nvim-treesitter/nvim-treesitter-context", dependencies = "nvim-treesitter/nvim-treesitter" },
 
     -- LSP

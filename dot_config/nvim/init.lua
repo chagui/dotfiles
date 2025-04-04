@@ -7,14 +7,14 @@ require("user.options")
 -- This prevents cursor jitter and performance issues.
 -- https://github.com/vscode-neovim/vscode-neovim#performance
 if vim.g.vscode then
-    -- todo
+    require("user.vscode")
 else
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
 
     require("user.keymaps")
-    require("user.tui")
     require("user.plugin_manager")
+    require("user.tui")
 
     -- automatically hide and show the command line
     vim.o.ch = 0

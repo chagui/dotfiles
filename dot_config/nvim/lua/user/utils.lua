@@ -5,17 +5,19 @@ function utils.reveal(item, options)
     print(vim.inspect(item, options))
 end
 
--- Tells you if we're running in VSCode.
-function utils.is_vscode()
-    -- adapted from https://github.com/vscode-neovim/vscode-neovim#conditional-initvim
-    return vim.g.vscode
-end
-
 local function set_if_absent(lhs, rhs)
     for k, v in pairs(rhs) do
         if lhs[k] == nil then
             lhs[k] = v
         end
+    end
+end
+
+-- Convenience function to set multiple options via a table.
+-- tip: use vim.inspect to know what's inside a variable, e.g. print(vim.inspect(vim.opt.syntax))
+function utils.set_options(opts)
+    for k, v in pairs(opts) do
+        vim.opt[k] = v
     end
 end
 
