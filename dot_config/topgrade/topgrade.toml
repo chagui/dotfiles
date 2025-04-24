@@ -3,9 +3,9 @@
 disable = [
     "asdf",
     "chezmoi",
+    "containers",
     "gem",
     "ruby_gems",
     "system",
     "vim",
 ]
-
