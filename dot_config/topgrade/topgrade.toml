@@ -5,6 +5,7 @@ disable = [
     "chezmoi",
     "containers",
     "gem",
+    "pnpm",
     "ruby_gems",
     "system",
     "vim",
