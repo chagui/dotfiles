@@ -39,4 +39,3 @@ function get_container_network_ip {
     local -r network_name="${2}"
     docker inspect "${container_name}" | jq -r ".[0].NetworkSettings.Networks.\"${network_name}\".IPAddress"
 }
-

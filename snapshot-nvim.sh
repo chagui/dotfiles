@@ -29,4 +29,3 @@ function packer_snapshot {
 
 packer_compile
 packer_snapshot
-

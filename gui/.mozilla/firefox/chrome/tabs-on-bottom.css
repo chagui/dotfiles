@@ -54,4 +54,3 @@
 *|*:root[tabsintitlebar]:not([inFullscreen="true"])
  #toolbar-menubar[autohide="true"] ~ #TabsToolbar
  .titlebar-buttonbox-container {display: none !important;}
-

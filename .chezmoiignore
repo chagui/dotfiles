@@ -13,4 +13,3 @@ Library/Application Support/pip/pip.conf
 .functions
 {{- end }}
 .pre-commit-config.yaml
-

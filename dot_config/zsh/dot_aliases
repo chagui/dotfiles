@@ -94,4 +94,3 @@ alias no-idea='echo "¯\_(ツ)_/¯"'
 if [ -s "$ZDOTDIR/.os_aliases" ]; then
     source $ZDOTDIR/.os_aliases
 fi
-
