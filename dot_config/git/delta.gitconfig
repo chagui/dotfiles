@@ -6,7 +6,7 @@
     features = no-interactive decorations nord-aurora-line-numbers
     hyperlinks = true
     line-numbers = true
-    syntax-theme = "Visual Studio Dark+"
+    syntax-theme = "Catppuccin-macchiato"
 
 [delta "interactive"]
     keep-plus-minus-markers = false
