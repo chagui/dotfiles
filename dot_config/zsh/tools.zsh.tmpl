@@ -18,6 +18,11 @@ if which delta &>/dev/null; then
     compdef _gnu_generic delta
 fi
 
+# graphite
+if which gt &>/dev/null; then
+    eval "$(gt completion)"
+fi
+
 # kubectl
 if which kubectl &>/dev/null; then
     alias k='kubectl'
