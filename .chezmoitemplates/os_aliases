@@ -1,6 +1,7 @@
 {{ if eq .chezmoi.os "darwin" }}
 alias brewi='brew install'
 alias brewu='brew update && brew upgrade && brew cleanup && brew doctor'
+alias brew-dump='brew bundle dump --file="$(chezmoi source-path)/Brewfile" --force'
 {{ else if eq .chezmoi.os "linux" }}
 alias apti='sudo apt install'
 alias aptu='sudo apt update && sudo apt upgrade -y'
