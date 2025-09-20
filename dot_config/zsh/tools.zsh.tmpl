@@ -96,3 +96,8 @@ export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 if which zoxide &>/dev/null; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
+
+if [[ -d $HOME/.volta ]]; then
+    export VOLTA_HOME="$HOME/.volta"
+    export PATH="$VOLTA_HOME/bin:$PATH"
+fi
