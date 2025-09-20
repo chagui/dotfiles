@@ -83,8 +83,6 @@ bindkey "3D" backward-word
 bindkey "5D" backward-word
 bindkey "^J" backward-kill-line
 
-[ -s "$ZCONFDIR/tools.zsh" ] && source "$ZCONFDIR/tools.zsh"
-
 # load custom functions
 fpath+="$ZCONFDIR/functions"
 autoload -Uz tldr-fzf
@@ -103,3 +101,5 @@ source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 {{ end -}}
+
+[ -s "$ZCONFDIR/tools.zsh" ] && source "$ZCONFDIR/tools.zsh"
