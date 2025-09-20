@@ -1,0 +1,17 @@
+{
+    "context_servers": {
+        "atlassian": {
+            "source": "custom",
+            "enabled": true,
+            "command": "npx",
+            "args": ["-y", "mcp-remote", "https://mcp.atlassian.com/v1/sse"]
+        },
+        "github": {
+            "source": "custom",
+            "enabled": true,
+            "command": "gh-mcp",
+            "command": "$HOME/.local/bin/github_mcp.sh",
+            "args": []
+        }
+    }
+}
