@@ -39,3 +39,15 @@ function get_container_network_ip {
     local -r network_name="${2}"
     docker inspect "${container_name}" | jq -r ".[0].NetworkSettings.Networks.\"${network_name}\".IPAddress"
 }
+
+# P10K doesn't support kubie so we need to write our own custom segment for it.
+function prompt_kubie() {
+  if [ -z "$KUBIE_ACTIVE" ]; then
+    return
+  fi
+  local -r ctx="$(kubie info ctx)"
+  local -r ns="$(kubie info ns)"
+  p10k segment -t "%f[%F{009}$ctx%f|%F{002}$ns%f]"
+  # alternative:
+  # p10k segment -t "%F{134}$ctx%f/%F{034}$ns%f"
+}

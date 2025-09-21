@@ -7,5 +7,9 @@ configs:
     - ~/.kube/kubie.yaml
 
 prompt:
-  disable: false
-  zsh_use_rps1: true
+  # we use our own p10k segment instead, see hooks
+  disable: true
+
+hooks:
+  start_ctx: >
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir kubie prompt_char)
