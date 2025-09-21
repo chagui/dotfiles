@@ -60,18 +60,16 @@ if-shell '[ "$(tmux has-session -t dev 2>/dev/null && echo "exists")" != "exists
     split-window -v -l 30% -t dev -c "#{pane_current_path}"
 }
 
-set -g status-right '#(gitmux "#{pane_current_path}")'
-
 # Plugins
 set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.local/share/tmux/plugins"
 
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'catppuccin/tmux'
 
+set -g @plugin 'catppuccin/tmux'
 set -g @catppuccin_flavor 'macchiato'
 set -g @catppuccin_window_status_style "rounded"
-set -g status-right '#(gitmux "#{pane_current_path}")'
+
 set -g @catppuccin_window_left_separator ""
 set -g @catppuccin_window_right_separator ""
 set -g @catppuccin_window_middle_separator " █"
@@ -89,7 +87,6 @@ set -g @catppuccin_status_right_separator_inverse "no"
 set -g @catppuccin_status_fill "icon"
 set -g @catppuccin_status_connect_separator "no"
 set -g @catppuccin_directory_text "#{pane_current_path}"
-set -g @catppuccin_meetings_text "#($HOME/.config/tmux/scripts/cal.sh)"
 set -g @catppuccin_date_time_text "%H:%M"
 
 run '#{TMUX_PLUGIN_MANAGER_PATH}/tmux/catppuccin.tmux'
