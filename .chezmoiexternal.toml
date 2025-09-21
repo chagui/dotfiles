@@ -12,3 +12,13 @@
     type = "file"
     url = "https://raw.githubusercontent.com/catppuccin/alacritty/main/catppuccin-macchiato.toml"
     refreshPeriod = "168h"  # 1 week
+
+[".config/bat/themes"]
+    type = "archive"
+    url = "https://github.com/catppuccin/bat/archive/master.tar.gz"
+    exact = true
+    stripComponents = 2
+    refreshPeriod = "168h"
+    #include = ["*/themes/Catppuccin Frappe.tmThem", "**/Catppuccin Macchiato.tmThem"]
+    include = ["*/themes/**"]
+    #path = "themes"
