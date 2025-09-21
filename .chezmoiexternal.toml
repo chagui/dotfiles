@@ -3,7 +3,7 @@
     url = "https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh"
     refreshPeriod = "168h"  # 1 week
 
-[".local/share/tpm"]
+[".local/share/tmux/plugins/tpm"]
     type = "git-repo"
     url = "https://github.com/tmux-plugins/tpm"
     refreshPeriod = "168h"  # 1 week
