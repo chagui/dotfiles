@@ -1,0 +1,11 @@
+shell: zsh
+default_editor: nvim
+configs:
+  include:
+    - ~/.config/kube/config
+  exclude:
+    - ~/.kube/kubie.yaml
+
+prompt:
+  disable: false
+  zsh_use_rps1: true
