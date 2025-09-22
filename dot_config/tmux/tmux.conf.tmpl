@@ -66,6 +66,11 @@ if-shell '[ "$(tmux has-session -t dev 2>/dev/null && echo "exists")" != "exists
 set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.local/share/tmux/plugins"
 set -g @plugin 'tmux-plugins/tpm'
 
+# Functionality plugins
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
 # UI
 set -g @plugin 'catppuccin/tmux'
 set -g @catppuccin_flavor 'macchiato'
