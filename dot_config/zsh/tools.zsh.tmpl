@@ -53,11 +53,6 @@ if which op &>/dev/null; then
     compdef _op op
 fi
 
-# pipx
-if which pipx &>/dev/null; then
-    eval "$(register-python-argcomplete pipx)"
-fi
-
 # psql
 export PSQLRC="$XDG_CONFIG_HOME/psql/psqlrc"
 export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
