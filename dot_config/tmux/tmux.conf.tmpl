@@ -98,10 +98,20 @@ set -g @catppuccin_directory_text "#{pane_current_path}"
 
 set -g status-right-length 200
 set -g status-right "#{E:@catppuccin_status_application}"
+set -agF status-right "#{E:@catppuccin_status_cpu}"
+set -agF status-right "#{E:@catppuccin_status_battery}"
 set -ag status-right '#{E:@catppuccin_status_date_time}'
 set -agF status-right "#{@catppuccin_status_gitmux}"
 
 run '#{TMUX_PLUGIN_MANAGER_PATH}/tmux/catppuccin.tmux'
+
+# System monitoring plugins (catppuccin dependencies)
+set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g @plugin 'tmux-plugins/tmux-battery'
+
+# Manual plugin loading (disabled in favor of tpm)
+run '#{TMUX_PLUGIN_MANAGER_PATH}/tmux-battery/battery.tmux'
+run '#{TMUX_PLUGIN_MANAGER_PATH}/tmux-cpu/cpu.tmux'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '#{TMUX_PLUGIN_MANAGER_PATH}/tpm/tpm'
