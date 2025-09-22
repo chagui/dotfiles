@@ -37,7 +37,8 @@ set -g mouse on
 # True Color (24-bit) configuration for alacritty + tmux
 # kudos to https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
 set -g default-terminal "tmux-256color"
-set -ag terminal-overrides ",xterm-256color:RGB"
+set -sa terminal-overrides ",xterm*:Tc"
+# previous configurations:
 #set -ag terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # colored underscores
 #set -ag terminal-overrides ",alacritty:RGB"
 
@@ -61,16 +62,16 @@ if-shell '[ "$(tmux has-session -t dev 2>/dev/null && echo "exists")" != "exists
     split-window -v -l 30% -t dev -c "#{pane_current_path}"
 }
 
-# Plugins
+# Plugin Configuration
 set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.local/share/tmux/plugins"
-
-# List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 
+# UI
 set -g @plugin 'catppuccin/tmux'
 set -g @catppuccin_flavor 'macchiato'
 set -g @catppuccin_window_status_style "rounded"
 
+# Window appearance
 set -g @catppuccin_window_left_separator ""
 set -g @catppuccin_window_right_separator ""
 set -g @catppuccin_window_middle_separator " █"
@@ -79,16 +80,26 @@ set -g @catppuccin_window_default_fill "number"
 set -g @catppuccin_window_default_text "#W"
 set -g @catppuccin_window_current_fill "number"
 set -g @catppuccin_window_current_text "#W#{?window_zoomed_flag, , }"
-set -g @catppuccin_status_modules_right "directory meetings date_time"
-set -g @catppuccin_date_time_icon ""
-set -g @catppuccin_status_modules_left "session"
+set -g @catppuccin_window_text "#{window_name}"
+# Status appearance
 set -g @catppuccin_status_left_separator  " "
 set -g @catppuccin_status_right_separator " "
 set -g @catppuccin_status_right_separator_inverse "no"
 set -g @catppuccin_status_fill "icon"
 set -g @catppuccin_status_connect_separator "no"
-set -g @catppuccin_directory_text "#{pane_current_path}"
+set -g @catppuccin_date_time_icon ""
 set -g @catppuccin_date_time_text "%H:%M"
+
+# Status bar modules and layout
+# See https://github.com/catppuccin/tmux/blob/main/docs/reference/status-line.md
+set -g status-left-length 100
+set -g status-left "#{E:@catppuccin_status_session}"
+set -g @catppuccin_directory_text "#{pane_current_path}"
+
+set -g status-right-length 200
+set -g status-right "#{E:@catppuccin_status_application}"
+set -ag status-right '#{E:@catppuccin_status_date_time}'
+set -agF status-right "#{@catppuccin_status_gitmux}"
 
 run '#{TMUX_PLUGIN_MANAGER_PATH}/tmux/catppuccin.tmux'
 
