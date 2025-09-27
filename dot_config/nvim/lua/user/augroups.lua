@@ -4,11 +4,11 @@ local augroup = function(name)
     vim.api.nvim_create_augroup(name, { clear = true })
 end
 
-M.chezmoi = augroup("UserChezmoi")
-M.filetype = augroup("UserFileType")
-M.lazy = augroup("UserLazyPlugin")
-M.lsp = augroup("UserFormatBufWritePre")
-M.toggle_term = augroup("UserToggleTerm")
-M.visual = augroup("UserVisual")
+M.chezmoi = augroup("user.chezmoi")
+M.filetype = augroup("user.filetype")
+M.lazy = augroup("user.lazy")
+M.lsp = augroup("user.lsp")
+M.toggle_term = augroup("user.terminal")
+M.visual = augroup("user.visual")
 
 return M
