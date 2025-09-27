@@ -5,6 +5,7 @@ require("catppuccin").setup({
         flash = true,
         fzf = true,
         gitsigns = true,
+        mason = true,
         nvimtree = true,
         treesitter = true,
     },
