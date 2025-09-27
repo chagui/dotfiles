@@ -8,32 +8,39 @@ return {
 
     -- LSP
     {
-        "VonHeikemen/lsp-zero.nvim",
-        branch = "v3.x",
+        "mason-org/mason-lspconfig.nvim",
+        lazy = false,
+        opts = {
+            ensure_installed = {
+                "bashls",
+                "clangd",
+                "cmake",
+                "dockerls",
+                "gitlab_ci_ls",
+                "jsonls",
+                "gopls",
+                "lua_ls",
+                "ruff",
+                "rust_analyzer",
+                "starpls",
+                "taplo",
+                "terraformls",
+                "yamlls",
+            },
+            automatic_enable = true,
+        },
         dependencies = {
-            -- Core
-            { "neovim/nvim-lspconfig" },
             {
-                "williamboman/mason.nvim",
+                "mason-org/mason.nvim",
                 build = function()
                     pcall(vim.api.nvim_command, "MasonUpdate")
                 end,
+                opts = {},
+                keys = {
+                    { "<leader>mm", "<Cmd>Mason<CR>", desc = "Packages" },
+                },
             },
-            { "williamboman/mason-lspconfig.nvim" },
-            { "onsails/lspkind.nvim" },
-
-            -- Completion
-            { "hrsh7th/cmp-buffer" },
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "hrsh7th/cmp-nvim-lua" },
-            { "hrsh7th/cmp-path" },
-            { "hrsh7th/cmp-cmdline" },
-            { "hrsh7th/nvim-cmp" },
-
-            -- Snippets
-            { "L3MON4D3/LuaSnip" },
-            { "rafamadriz/friendly-snippets" },
-            { "saadparwaiz1/cmp_luasnip", dependencies = "L3MON4D3/LuaSnip" },
+            "neovim/nvim-lspconfig",
         },
     },
 }

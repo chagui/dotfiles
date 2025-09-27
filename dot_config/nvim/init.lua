@@ -15,6 +15,7 @@ else
     require("user.keymaps")
     require("user.tui")
     require("user.plugin_manager")
+    require("user.lsp")
 
     -- automatically hide and show the command line
     vim.o.ch = 0
