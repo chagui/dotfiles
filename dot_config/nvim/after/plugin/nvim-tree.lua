@@ -14,8 +14,8 @@ local function on_attach(bufnr)
 
     -- custom mappings
     local utils = require("user.utils")
-    vim.keymap.set("n", "<C-t>", api.tree.change_root_to_parent, opts("Up"))
-    vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
+    utils.nmap("<C-t>", api.tree.change_root_to_parent, opts("Up"))
+    utils.nmap("?", api.tree.toggle_help, opts("Help"))
 end
 
 nvim_tree.setup({
