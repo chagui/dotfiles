@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
     "folke/lazy.nvim",
     "tpope/vim-fugitive",
