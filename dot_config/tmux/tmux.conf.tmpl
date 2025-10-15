@@ -1,5 +1,5 @@
 {{- if eq .chezmoi.os "darwin" -}}
-set-environment -g PATH "/opt/homebrew/bin:/bin:/usr/bin"
+set-environment -g PATH "/opt/homebrew/bin:/bin:/usr/bin:/usr/sbin"
 {{ end -}}
 unbind C-b
 set -g prefix C-w
