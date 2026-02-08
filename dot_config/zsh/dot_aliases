@@ -61,9 +61,10 @@ alias dsys='docker system'
 
 # misc
 alias nvimu='nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"'
+alias nvimm='NVIM_MINIMAL=1 nvim'
 alias count_endpoint_verbs="yq 'reduce .paths[] as \$item (0; . + (\$item | length))'"
 alias tmux-rename='tmux rename-window "$(basename "$(git root)")"'
-alias claude='EDITOR="nvim --clean" claude'
+alias claude='EDITOR="NVIM_MINIMAL=1 nvim" claude'
 
 if hash eza &>/dev/null; then
     alias ls='eza'

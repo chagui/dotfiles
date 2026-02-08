@@ -25,6 +25,9 @@ vim.opt.rtp:prepend(lazypath)
 local status_ok, lazy = pcall(require, "lazy")
 if status_ok then
     lazy.setup("plugins", {
+        defaults = {
+            cond = not vim.env.NVIM_MINIMAL,
+        },
         lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",
     })
 end
