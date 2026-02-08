@@ -26,7 +26,7 @@ local status_ok, lazy = pcall(require, "lazy")
 if status_ok then
     lazy.setup("plugins", {
         defaults = {
-            cond = not vim.env.NVIM_MINIMAL,
+            cond = require("user.profile").active("editor"),
         },
         lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",
     })

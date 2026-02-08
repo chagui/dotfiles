@@ -59,10 +59,11 @@ alias dnet='docker network'
 alias dsys='docker system'
 
 # misc
-alias nvimm='NVIM_MINIMAL=1 nvim'
+alias nvimm='NVIM_PROFILE=minimal nvim'
+alias nvime='NVIM_PROFILE=editor nvim'
 alias count_endpoint_verbs="yq 'reduce .paths[] as \$item (0; . + (\$item | length))'"
 alias tmux-rename='tmux rename-window "$(basename "$(git root)")"'
-alias claude='EDITOR="NVIM_MINIMAL=1 nvim" claude'
+alias claude='EDITOR="NVIM_PROFILE=editor nvim" claude'
 
 if hash eza &>/dev/null; then
     alias ls='eza'

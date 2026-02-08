@@ -1,3 +1,5 @@
+local profile = require("user.profile")
+
 ---@type LazySpec
 return {
     {
@@ -7,6 +9,7 @@ return {
     },
     {
         "akinsho/bufferline.nvim",
+        cond = profile.active("default"),
         version = "v4.*",
         dependencies = {
             "kyazdani42/nvim-web-devicons",
@@ -16,16 +19,19 @@ return {
     },
     {
         "kyazdani42/nvim-tree.lua",
+        cond = profile.active("default"),
         dependencies = { "kyazdani42/nvim-web-devicons" },
     },
     {
         "nvim-telescope/telescope.nvim",
+        cond = profile.active("default"),
         dependencies = {
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
     },
     {
         "nvim-telescope/telescope-frecency.nvim",
+        cond = profile.active("default"),
         config = function()
             require("telescope").load_extension("frecency")
         end,
@@ -35,5 +41,5 @@ return {
         "nvim-lualine/lualine.nvim",
         dependencies = { "kyazdani42/nvim-web-devicons" },
     },
-    "akinsho/toggleterm.nvim",
+    { "akinsho/toggleterm.nvim", cond = profile.active("default") },
 }

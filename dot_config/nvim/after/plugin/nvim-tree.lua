@@ -1,7 +1,10 @@
 -- Setup nvim-tree.
 -- options are documented in `:help nvim-tree.OPTION_NAME`
 -- see https://github.com/kyazdani42/nvim-tree.lua
-local nvim_tree = require("nvim-tree")
+local ok, nvim_tree = pcall(require, "nvim-tree")
+if not ok then
+    return
+end
 
 local function on_attach(bufnr)
     local function opts(desc)

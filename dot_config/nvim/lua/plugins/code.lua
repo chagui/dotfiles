@@ -1,8 +1,11 @@
+local profile = require("user.profile")
+
 ---@type LazySpec
 return {
     { "windwp/nvim-autopairs", event = "InsertEnter" },
     {
         "folke/lazydev.nvim",
+        cond = profile.active("default"),
         ft = "lua", -- only load on lua files
         opts = {
             -- It can also be a table with trigger words / mods
@@ -20,6 +23,7 @@ return {
     -- LSP
     {
         "mason-org/mason-lspconfig.nvim",
+        cond = profile.active("default"),
         lazy = false,
         opts = {
             ensure_installed = {
@@ -61,6 +65,7 @@ return {
     -- Completion
     {
         "saghen/blink.cmp",
+        cond = profile.active("default"),
         dependencies = {
             "rafamadriz/friendly-snippets",
             "kyazdani42/nvim-web-devicons",

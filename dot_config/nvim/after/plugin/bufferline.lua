@@ -1,6 +1,9 @@
 -- Setup bufferline.
 -- see https://github.com/akinsho/bufferline.nvim
-local bufferline = require("bufferline")
+local ok, bufferline = pcall(require, "bufferline")
+if not ok then
+    return
+end
 
 -- Note: termguicolors option is set in user.tui module
 bufferline.setup({

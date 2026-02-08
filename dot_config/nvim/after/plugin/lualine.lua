@@ -1,6 +1,9 @@
 -- Setup lualine.
 -- see https://github.com/nvim-lualine/lualine.nvim
-local lualine = require("lualine")
+local ok, lualine = pcall(require, "lualine")
+if not ok then
+    return
+end
 
 lualine.setup({
     options = {
