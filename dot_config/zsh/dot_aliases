@@ -2,7 +2,6 @@
 alias cdr='cd ~/Repos'
 alias gotmp='cd /tmp'
 alias goplay='cd ~/Playground'
-alias gopacker='cd ~/.local/share/nvim/site/pack/packer/start/packer.nvim'
 
 # search
 alias rgcpp='rg -tcpp'
@@ -60,7 +59,6 @@ alias dnet='docker network'
 alias dsys='docker system'
 
 # misc
-alias nvimu='nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"'
 alias nvimm='NVIM_MINIMAL=1 nvim'
 alias count_endpoint_verbs="yq 'reduce .paths[] as \$item (0; . + (\$item | length))'"
 alias tmux-rename='tmux rename-window "$(basename "$(git root)")"'
