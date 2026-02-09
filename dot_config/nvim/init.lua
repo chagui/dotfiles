@@ -40,7 +40,11 @@ else
     })
 
     -- Python
-    vim.g.python3_host_prog = os.getenv("XDG_DATA_HOME") .. "/pyenv/versions/neovim/bin/python3"
+    local xdg_data = os.getenv("XDG_DATA_HOME") or (os.getenv("HOME") .. "/.local/share")
+    local python3 = xdg_data .. "/pyenv/versions/neovim/bin/python3"
+    if vim.uv.fs_stat(python3) then
+        vim.g.python3_host_prog = python3
+    end
 
     -- Files to ignore
     -- Python
