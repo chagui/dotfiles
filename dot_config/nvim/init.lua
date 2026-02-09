@@ -25,7 +25,18 @@ else
     vim.api.nvim_create_autocmd("BufWritePost", {
         group = augroups.chezmoi,
         pattern = vim.fn.expand("~") .. "/.local/share/chezmoi/*",
-        command = "silent! !chezmoi apply --no-tty --force --source-path '%'",
+        callback = function(event)
+            local source_path = vim.api.nvim_buf_get_name(event.buf)
+            vim.fn.jobstart({ "chezmoi", "apply", "--no-tty", "--force", "--source-path", source_path }, {
+                on_exit = function(_, code)
+                    if code ~= 0 then
+                        vim.schedule(function()
+                            vim.notify("chezmoi apply failed (exit " .. code .. ")", vim.log.levels.ERROR)
+                        end)
+                    end
+                end,
+            })
+        end,
     })
 
     -- Files to ignore
