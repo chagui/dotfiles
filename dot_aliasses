@@ -46,6 +46,9 @@ alias gfa='git fetch --all --prune'
 alias gfo='git fetch origin'
 alias clone='git_clone'
 
+# graphite
+alias gt-sync='claude -p /gt-sync'
+
 # docker
 alias dc='docker-compose'
 alias dcu='docker-compose up -d'
