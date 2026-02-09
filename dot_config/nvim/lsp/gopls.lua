@@ -3,21 +3,17 @@ return {
     cmd = { "gopls" },
     filetypes = { "go", "gomod", "gowork", "gotmpl", "gosum" },
     root_markers = { "go.mod", "go.work", ".git" },
+    init_options = {
+        usePlaceholders = true,
+    },
     settings = {
         gopls = {
-            settings = {
-                gopls = {
-                    experimentalPostfixCompletions = true,
-                    analyses = {
-                        unusedparams = true,
-                        shadow = true,
-                    },
-                    staticcheck = true,
-                },
+            experimentalPostfixCompletions = true,
+            analyses = {
+                unusedparams = true,
+                shadow = true,
             },
-            init_options = {
-                usePlaceholders = true,
-            },
+            staticcheck = true,
         },
     },
 }
