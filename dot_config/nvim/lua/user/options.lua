@@ -14,6 +14,7 @@ local options = {
     autoindent = true,
 
     -- Navigation
+    smoothscroll = true,
     title = true,
     number = true,
     relativenumber = true,
