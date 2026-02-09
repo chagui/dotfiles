@@ -8,11 +8,10 @@ return {
         cond = profile.active("default"),
         ft = "lua", -- only load on lua files
         opts = {
-            -- It can also be a table with trigger words / mods
-            -- Only load luvit types when the `vim.uv` word is found
-            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-            -- Only load the lazyvim library when the `LazyVim` global is found
-            { path = "LazyVim", words = { "LazyVim" } },
+            library = {
+                -- Only load luvit types when the `vim.uv` word is found
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
         },
     },
 
