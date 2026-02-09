@@ -39,7 +39,7 @@ else
     -- Use ripgrep when available
     if vim.fn.executable("rg") == 1 then
         vim.o.grepprg = "rg --no-heading --vimgrep"
-        vim.o.grepformat = "f:%l:%c:%m"
+        vim.o.grepformat = "%f:%l:%c:%m"
     end
 end
 
