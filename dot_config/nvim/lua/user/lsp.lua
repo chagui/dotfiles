@@ -31,8 +31,7 @@ local augroups = require("user.augroups")
 -- Format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
     group = augroups.lsp,
-    -- todo: use file types? pattern = { "terraform", "go" },
-    pattern = { "*.tf", "*.tfvars" },
+    pattern = { "*.tf", "*.tfvars", "*.go" },
     callback = vim.lsp.buf.format,
 })
 
