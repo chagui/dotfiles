@@ -30,7 +30,6 @@ utils.nmap("<leader>s", "<Cmd>w<CR>")
 -- Navigation hotkeys
 utils.nmap("<C-c>", "<Cmd>q<CR>")
 utils.nmap("<C-q>", "<Cmd>q!<CR>")
-utils.inoremap("<Caps_Lock>", "<Esc>")
 utils.inoremap("jk", "<Esc>")
 utils.inoremap("kj", "<Esc>")
 
