@@ -16,3 +16,5 @@ capabilities = vim.tbl_deep_extend("force", capabilities, {
         },
     },
 })
+
+vim.lsp.config("*", { capabilities = capabilities })

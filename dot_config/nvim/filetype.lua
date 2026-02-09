@@ -28,27 +28,27 @@ vim.filetype.add({
 
 local augroups = require("user.augroups")
 local autocmd = vim.api.nvim_create_autocmd
-local set = vim.opt
+-- Use vim.bo (buffer-local) not vim.opt (global) to avoid leaking settings across buffers
 -- https://neovim.io/doc/user/api.html#nvim_create_autocmd()
 autocmd({ "FileType" }, {
     group = augroups.filetype,
     pattern = { "terraform", "hcl", "json", "yaml" },
-    callback = function()
-        set.tabstop = 2
-        set.shiftwidth = 2
-        set.softtabstop = 2
-        set.expandtab = true
+    callback = function(event)
+        vim.bo[event.buf].tabstop = 2
+        vim.bo[event.buf].shiftwidth = 2
+        vim.bo[event.buf].softtabstop = 2
+        vim.bo[event.buf].expandtab = true
     end,
 })
 
 autocmd({ "FileType" }, {
     group = augroups.filetype,
     pattern = { "go", "make" },
-    callback = function()
-        set.expandtab = false
-        set.tabstop = 4
-        set.shiftwidth = 4
-        set.softtabstop = 4
+    callback = function(event)
+        vim.bo[event.buf].expandtab = false
+        vim.bo[event.buf].tabstop = 4
+        vim.bo[event.buf].shiftwidth = 4
+        vim.bo[event.buf].softtabstop = 4
     end,
 })
 

@@ -31,8 +31,7 @@ local augroups = require("user.augroups")
 -- Format on save
 vim.api.nvim_create_autocmd("BufWritePre", {
     group = augroups.lsp,
-    -- todo: use file types? pattern = { "terraform", "go" },
-    pattern = { "*.tf", "*.tfvars" },
+    pattern = { "*.tf", "*.tfvars", "*.go" },
     callback = vim.lsp.buf.format,
 })
 
@@ -41,7 +40,22 @@ local utils = require("user.utils")
 vim.api.nvim_create_autocmd("LspAttach", {
     group = augroups.lsp,
     callback = function(attach)
-        utils.nmap("<leader>fb", vim.lsp.buf.format, { buffer = true, desc = "[F]ormat [B]uffer" })
+        -- Buffer-scoped keymaps: only active while an LSP client is attached
+        local buf_opts = { buffer = attach.buf }
+        utils.nmap("<leader>fb", vim.lsp.buf.format, vim.tbl_extend("force", buf_opts, { desc = "[F]ormat [B]uffer" }))
+        utils.nmap("gd", vim.lsp.buf.definition, vim.tbl_extend("force", buf_opts, { desc = "[G]oto [D]efinition" }))
+        utils.nmap("gD", vim.lsp.buf.declaration, vim.tbl_extend("force", buf_opts, { desc = "[G]oto [D]eclaration" }))
+        utils.nmap(
+            "<leader>ca",
+            vim.lsp.buf.code_action,
+            vim.tbl_extend("force", buf_opts, { desc = "[C]ode [A]ction" })
+        )
+        utils.nmap("<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", buf_opts, { desc = "[R]e[n]ame" }))
+        utils.nmap(
+            "<leader>D",
+            vim.lsp.buf.type_definition,
+            vim.tbl_extend("force", buf_opts, { desc = "Type [D]efinition" })
+        )
 
         local client = assert(vim.lsp.get_client_by_id(attach.data.client_id))
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
@@ -57,15 +71,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 group = augroups.lsp,
                 callback = vim.lsp.buf.clear_references,
             })
+        end
+    end,
+})
 
-            -- When LSP detaches: Clears the highlighting
-            vim.api.nvim_create_autocmd("LspDetach", {
-                group = augroups.lsp,
-                callback = function(detach)
-                    vim.lsp.buf.clear_references()
-                    vim.api.nvim_clear_autocmds({ group = augroups.lsp, buffer = detach.buf })
-                end,
-            })
+-- Top-level (not inside LspAttach) to avoid registering a new handler on every attach.
+-- Only clears buffer autocmds when no LSP clients remain.
+vim.api.nvim_create_autocmd("LspDetach", {
+    group = augroups.lsp,
+    callback = function(detach)
+        vim.lsp.buf.clear_references()
+        local remaining = vim.lsp.get_clients({ bufnr = detach.buf })
+        if #remaining == 0 then
+            vim.api.nvim_clear_autocmds({ group = augroups.lsp, buffer = detach.buf })
         end
     end,
 })

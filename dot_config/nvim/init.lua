@@ -20,16 +20,32 @@ else
     -- automatically hide and show the command line
     vim.o.ch = 0
 
-    -- Run `chezmoi apply` whenever its configuration is modified.
+    -- Run `chezmoi apply` asynchronously whenever its source files are saved.
+    -- Uses jobstart to avoid blocking the UI; errors are reported via vim.notify.
     local augroups = require("user.augroups")
     vim.api.nvim_create_autocmd("BufWritePost", {
         group = augroups.chezmoi,
         pattern = vim.fn.expand("~") .. "/.local/share/chezmoi/*",
-        command = "silent! !chezmoi apply --no-tty --force --source-path '%'",
+        callback = function(event)
+            local source_path = vim.api.nvim_buf_get_name(event.buf)
+            vim.fn.jobstart({ "chezmoi", "apply", "--no-tty", "--force", "--source-path", source_path }, {
+                on_exit = function(_, code)
+                    if code ~= 0 then
+                        vim.schedule(function()
+                            vim.notify("chezmoi apply failed (exit " .. code .. ")", vim.log.levels.ERROR)
+                        end)
+                    end
+                end,
+            })
+        end,
     })
 
     -- Python
-    vim.g.python3_host_prog = os.getenv("XDG_DATA_HOME") .. "/pyenv/versions/neovim/bin/python3"
+    local xdg_data = os.getenv("XDG_DATA_HOME") or (os.getenv("HOME") .. "/.local/share")
+    local python3 = xdg_data .. "/pyenv/versions/neovim/bin/python3"
+    if vim.uv.fs_stat(python3) then
+        vim.g.python3_host_prog = python3
+    end
 
     -- Files to ignore
     -- Python
@@ -42,7 +58,8 @@ else
     -- Use ripgrep when available
     if vim.fn.executable("rg") == 1 then
         vim.o.grepprg = "rg --no-heading --vimgrep"
-        vim.o.grepformat = "f:%l:%c:%m"
+        -- https://neovim.io/doc/user/quickfix.html#errorformat
+        vim.o.grepformat = "%f:%l:%c:%m"
     end
 end
 

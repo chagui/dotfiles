@@ -5,16 +5,21 @@ end
 
 configs.setup({
     ensure_installed = {
+        "bash",
         "c",
         "cmake",
         "dockerfile",
         "dot",
         "go",
         "hcl",
+        "json",
         "lua",
         "make",
         "python",
         "rust",
+        "terraform",
+        "toml",
+        "yaml",
     },
     sync_install = false,
     autopairs = {
