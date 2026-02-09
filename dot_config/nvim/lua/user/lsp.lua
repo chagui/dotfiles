@@ -40,6 +40,7 @@ local utils = require("user.utils")
 vim.api.nvim_create_autocmd("LspAttach", {
     group = augroups.lsp,
     callback = function(attach)
+        -- Buffer-scoped keymaps: only active while an LSP client is attached
         local buf_opts = { buffer = attach.buf }
         utils.nmap("<leader>fb", vim.lsp.buf.format, vim.tbl_extend("force", buf_opts, { desc = "[F]ormat [B]uffer" }))
         utils.nmap("gd", vim.lsp.buf.definition, vim.tbl_extend("force", buf_opts, { desc = "[G]oto [D]efinition" }))
@@ -74,7 +75,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
--- When LSP detaches: Clears the highlighting
+-- Top-level (not inside LspAttach) to avoid registering a new handler on every attach.
+-- Only clears buffer autocmds when no LSP clients remain.
 vim.api.nvim_create_autocmd("LspDetach", {
     group = augroups.lsp,
     callback = function(detach)
