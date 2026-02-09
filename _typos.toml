@@ -1,0 +1,11 @@
+[default]
+extend-ignore-re = [
+    # kickstart.nvim keybinding descriptions: [S]earch, [B]uffers, etc.
+    "\\[[A-Z]\\]\\w+",
+]
+
+[default.extend-words]
+# catppuccin theme variable prefix
+thm = "thm"
+# LESS_TERMCAP_ue terminal capability
+ue = "ue"

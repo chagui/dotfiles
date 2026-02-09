@@ -5,15 +5,37 @@ repos:
     hooks:
       - id: stylua
 
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1
+    hooks:
+      - id: shellcheck
+        exclude: '\.tmpl$'
+
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.12.0-2
+    hooks:
+      - id: shfmt
+        exclude: '\.tmpl$'
+
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.43.3
+    hooks:
+      - id: typos
+
   # out of the box hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
       - id: check-added-large-files
       - id: check-case-conflict
+      - id: check-json
       - id: check-merge-conflict
+      - id: check-shebang-scripts-are-executable
+        exclude: '^\.chezmoiscripts/'
       - id: check-toml
+        exclude: '\.tmpl$'
       - id: check-yaml
+        exclude: '\.tmpl$'
       - id: end-of-file-fixer
       - id: mixed-line-ending
       - id: trailing-whitespace
