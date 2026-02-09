@@ -8,7 +8,7 @@ Library/Application Support/pip/pip.conf
 .config/pip
 {{- end }}
 {{- if ( env "SHELL" | ne "/bin/bash" ) }}
-.aliasses
+.aliases
 .bashrc
 .functions
 {{- end }}

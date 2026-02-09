@@ -19,7 +19,7 @@ dot_config/          → ~/.config/ (main config directory)
   zsh/               → Zsh config fragments
 dot_zshenv           → ~/.zshenv
 dot_bashrc           → ~/.bashrc
-dot_aliasses         → shell aliases
+dot_aliases         → shell aliases
 dot_functions        → shell functions
 dot_kube/            → Kubernetes config
 dot_cargo/           → Cargo (Rust) config
