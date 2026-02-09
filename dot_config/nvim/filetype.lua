@@ -28,6 +28,7 @@ vim.filetype.add({
 
 local augroups = require("user.augroups")
 local autocmd = vim.api.nvim_create_autocmd
+-- Use vim.bo (buffer-local) not vim.opt (global) to avoid leaking settings across buffers
 -- https://neovim.io/doc/user/api.html#nvim_create_autocmd()
 autocmd({ "FileType" }, {
     group = augroups.filetype,

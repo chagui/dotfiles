@@ -20,7 +20,8 @@ else
     -- automatically hide and show the command line
     vim.o.ch = 0
 
-    -- Run `chezmoi apply` whenever its configuration is modified.
+    -- Run `chezmoi apply` asynchronously whenever its source files are saved.
+    -- Uses jobstart to avoid blocking the UI; errors are reported via vim.notify.
     local augroups = require("user.augroups")
     vim.api.nvim_create_autocmd("BufWritePost", {
         group = augroups.chezmoi,
@@ -57,6 +58,7 @@ else
     -- Use ripgrep when available
     if vim.fn.executable("rg") == 1 then
         vim.o.grepprg = "rg --no-heading --vimgrep"
+        -- https://neovim.io/doc/user/quickfix.html#errorformat
         vim.o.grepformat = "%f:%l:%c:%m"
     end
 end
