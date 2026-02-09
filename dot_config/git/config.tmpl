@@ -15,7 +15,7 @@
     branch = bold 28
     remoteBranch = bold blue
 [alias]
-    af = !git add `git status --short | fzf`
+    af = "!git add $(git status --short | fzf --multi | awk '{print $NF}')"
     amend = commit --amend
     ap = add --patch
     br = branch
@@ -62,7 +62,6 @@
     tree-all = !git tree --all
 [merge]
     conflictStyle = zdiff3
-    ff = yes
 [diff]
     algorithm = histogram
     colorMoved = default
@@ -72,6 +71,20 @@
     autoSetupRemote = true
 [rebase]
     updateRefs = true
+[fetch]
+    prune = true
+[init]
+    defaultBranch = main
+[rerere]
+    enabled = true
+[commit]
+    verbose = true
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
 
 [url "ssh://git@github.com/"]
     insteadOf = https://github.com/
@@ -86,14 +99,14 @@
     path = ~/Repos/.gitconfig
 
 [url "git@github.com:"]
-  insteadOf = gh:
+    insteadOf = gh:
 [url "git@github.com:chagui/"]
-  insteadOf = me:
+    insteadOf = me:
 [url "https://gitlab.com/"]
-  insteadOf = gl:
+    insteadOf = gl:
 [includeIf "hasconfig:remote.*.url:me:**"]
-  path = ~/.config/git/chagui
+    path = ~/.config/git/chagui
 [includeIf "hasconfig:remote.*.url:git@github.com:chagui/**"]
-  path = ~/.config/git/chagui
+    path = ~/.config/git/chagui
 [includeIf "hasconfig:remote.*.url:https://github.com/chagui/**"]
-  path = ~/.config/git/chagui
+    path = ~/.config/git/chagui

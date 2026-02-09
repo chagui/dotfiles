@@ -23,7 +23,6 @@
     file-style = omit
     hunk-header-decoration-style = box "#225095"
     hunk-header-file-style = "#fac901"
-    hunk-header-line-number-style = "#225095"
     hunk-header-line-number-style = blue
     hunk-header-style = file line-number syntax
 
