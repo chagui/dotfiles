@@ -40,7 +40,21 @@ local utils = require("user.utils")
 vim.api.nvim_create_autocmd("LspAttach", {
     group = augroups.lsp,
     callback = function(attach)
-        utils.nmap("<leader>fb", vim.lsp.buf.format, { buffer = true, desc = "[F]ormat [B]uffer" })
+        local buf_opts = { buffer = attach.buf }
+        utils.nmap("<leader>fb", vim.lsp.buf.format, vim.tbl_extend("force", buf_opts, { desc = "[F]ormat [B]uffer" }))
+        utils.nmap("gd", vim.lsp.buf.definition, vim.tbl_extend("force", buf_opts, { desc = "[G]oto [D]efinition" }))
+        utils.nmap("gD", vim.lsp.buf.declaration, vim.tbl_extend("force", buf_opts, { desc = "[G]oto [D]eclaration" }))
+        utils.nmap(
+            "<leader>ca",
+            vim.lsp.buf.code_action,
+            vim.tbl_extend("force", buf_opts, { desc = "[C]ode [A]ction" })
+        )
+        utils.nmap("<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", buf_opts, { desc = "[R]e[n]ame" }))
+        utils.nmap(
+            "<leader>D",
+            vim.lsp.buf.type_definition,
+            vim.tbl_extend("force", buf_opts, { desc = "Type [D]efinition" })
+        )
 
         local client = assert(vim.lsp.get_client_by_id(attach.data.client_id))
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
