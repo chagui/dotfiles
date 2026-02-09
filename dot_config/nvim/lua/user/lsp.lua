@@ -57,15 +57,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 group = augroups.lsp,
                 callback = vim.lsp.buf.clear_references,
             })
+        end
+    end,
+})
 
-            -- When LSP detaches: Clears the highlighting
-            vim.api.nvim_create_autocmd("LspDetach", {
-                group = augroups.lsp,
-                callback = function(detach)
-                    vim.lsp.buf.clear_references()
-                    vim.api.nvim_clear_autocmds({ group = augroups.lsp, buffer = detach.buf })
-                end,
-            })
+-- When LSP detaches: Clears the highlighting
+vim.api.nvim_create_autocmd("LspDetach", {
+    group = augroups.lsp,
+    callback = function(detach)
+        vim.lsp.buf.clear_references()
+        local remaining = vim.lsp.get_clients({ bufnr = detach.buf })
+        if #remaining == 0 then
+            vim.api.nvim_clear_autocmds({ group = augroups.lsp, buffer = detach.buf })
         end
     end,
 })
