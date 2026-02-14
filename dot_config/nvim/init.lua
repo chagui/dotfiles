@@ -28,9 +28,6 @@ else
         command = "silent! !chezmoi apply --no-tty --force --source-path '%'",
     })
 
-    -- Python
-    vim.g.python3_host_prog = os.getenv("XDG_DATA_HOME") .. "/pyenv/versions/neovim/bin/python3"
-
     -- Files to ignore
     -- Python
     vim.opt.wildignore:append("*.pyc,*.pyo,*/__pycache__/*")
