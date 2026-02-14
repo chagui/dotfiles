@@ -1,6 +1,7 @@
 #!/bin/bash
-
 set -eufo pipefail
+
+mkdir -p "$XDG_DATA_HOME/zsh/completions"
 
 # shellcheck disable=1054,1083
 {{- if eq .chezmoi.os "darwin" }}
@@ -102,7 +103,6 @@ brew "ollama"
 brew "parallel"
 brew "pgcli"
 brew "pinentry-mac"
-brew "pipx"
 brew "powerlevel10k"
 brew "pre-commit"
 brew "procs"
@@ -156,7 +156,6 @@ cask "betterdisplay"
 cask "brave-browser"
 cask "finicky"
 cask "firefox"
-cask "gcloud-cli"
 cask "itsycal"
 cask "meld"
 cask "netnewswire"
@@ -167,13 +166,7 @@ cask "vanilla"
 cask "vlc"
 EOF
 
-pip install argcomplete
-activate-global-python-argcomplete
-
 echo "Package installation completed."
-
-echo "Configuring packages"
-pipx ensurepath
 
 
 # shellcheck disable=1054,1083
