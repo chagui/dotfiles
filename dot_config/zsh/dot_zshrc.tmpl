@@ -25,9 +25,9 @@ setopt HIST_IGNORE_SPACE
 setopt appendhistory
 
 # elephant memory
-HISTSIZE=10050000  # due to HIST_EXPIRE_DUPS_FIRST
-SAVEHIST=10000000
-HISTFILE="${XDG_STATE_HOME:-$HOME/.state}/zsh/history"
+export HISTSIZE=10050000  # due to HIST_EXPIRE_DUPS_FIRST
+export SAVEHIST=10000000
+export HISTFILE="${XDG_STATE_HOME:-$HOME/.state}/zsh/history"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
