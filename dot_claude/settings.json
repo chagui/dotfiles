@@ -13,6 +13,7 @@
       "Bash(find:*)",
       "Bash(grep:*)",
       "Bash(head:*)",
+      "Bash(sort:*)",
       "Bash(ls:*)",
       "Bash(mkdir:*)",
       "Bash(pwd:*)",
