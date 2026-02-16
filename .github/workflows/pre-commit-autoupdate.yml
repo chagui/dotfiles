@@ -1,0 +1,49 @@
+name: Pre-commit autoupdate
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  autoupdate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - run: pip install pre-commit
+
+      - name: Run pre-commit autoupdate
+        run: pre-commit autoupdate
+
+      - name: Pin typos to latest specific release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # pre-commit autoupdate resolves typos to the rolling 'v1' tag.
+          # Fix by fetching the actual latest release and pinning to it.
+          # See: https://github.com/pre-commit/pre-commit/issues/3521
+          LATEST_TYPOS=$(gh api repos/crate-ci/typos/releases/latest --jq '.tag_name')
+          echo "Pinning typos to ${LATEST_TYPOS}"
+          sed -i '/crate-ci\/typos/{n;s/rev: .*/rev: '"${LATEST_TYPOS}"'/;}' .pre-commit-config.yaml
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          branch: chore/pre-commit-autoupdate
+          commit-message: "chore(pre-commit): autoupdate hook versions"
+          title: "chore(pre-commit): autoupdate hook versions"
+          body: |
+            Automated weekly pre-commit hook version updates.
+
+            Created by the [pre-commit autoupdate workflow](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+          labels: dependencies
+          delete-branch: true
