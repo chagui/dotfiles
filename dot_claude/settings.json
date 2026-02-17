@@ -6,7 +6,8 @@
   },
   "permissions": {
     "allow": [
-"Bash(cat:*)",
+      "Bash(awk:*)",
+      "Bash(cat:*)",
       "Bash(date:*)",
       "Bash(fd:*)",
       "Bash(file:*)",
@@ -39,6 +40,7 @@
       "Bash(git show:*)",
       "Bash(git status:*)",
 
+      "Bash(gh api user:*)",
       "Bash(gh issue list:*)",
       "Bash(gh issue view:*)",
       "Bash(gh pr checks:*)",
@@ -47,6 +49,7 @@
       "Bash(gh pr view:*)",
       "Bash(gh repo list:*)",
       "Bash(gh repo view:*)",
+      "Bash(gh search prs:*)",
       "Bash(gh status:*)",
 
       "Bash(bzl run //:gazelle)",
@@ -64,6 +67,8 @@
       "Bash(cargo check:*)",
       "Bash(cargo clippy:*)",
       "Bash(cargo test:*)",
+
+      "Bash(swift:*)",
 
       "Bash(npm info:*)",
       "Bash(npm run build:*)",
