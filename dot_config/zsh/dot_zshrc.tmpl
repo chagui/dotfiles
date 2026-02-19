@@ -86,9 +86,10 @@ autoload -Uz tldr-fzf
 {{- if eq .chezmoi.os "darwin" }}
 fpath+="$(brew --prefix)/share/zsh/site-functions"
 {{ end }}
-fpath+="$HOME/.rustup/toolchains/stable-x86_64-apple-darwin/share/zsh/site-functions"
-fpath+="$HOME/.docker/completions"
+fpath+=($HOME/.rustup/toolchains/stable-x86_64-apple-darwin/share/zsh/site-functions(N/))
+fpath+=($HOME/.docker/completions(N/))
 fpath+="$XDG_DATA_HOME/zsh/completions"
+fpath+=($XDG_DATA_HOME/uv/tools/argcomplete/lib/python*/site-packages/argcomplete/bash_completion.d(N))
 
 autoload -Uz compinit && compinit
 autoload -Uz select-word-style && select-word-style bash
