@@ -12,15 +12,6 @@ function git_clone {
     pushd ${repos}
 }
 
-function venv {
-    local -r env="${PYENVDIR}/${1}/bin/activate"
-    if [ -s "${env}" ]; then
-        source "${env}"
-    else
-        >&2 echo "error: '$1' is not a valid virtual environment"
-    fi
-}
-
 function github {
     firefox https://github.com/$1
 }

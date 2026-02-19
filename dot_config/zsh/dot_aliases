@@ -86,7 +86,6 @@ fi
 # pip install package[plugin] instead of pip install package\[plugin\]
 alias bazel='noglob bazel'
 alias pip='noglob pip'
-alias poetry='noglob poetry'
 
 # ascii art
 alias no-idea='echo "¯\_(ツ)_/¯"'

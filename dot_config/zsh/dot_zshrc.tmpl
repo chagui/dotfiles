@@ -52,8 +52,6 @@ source "{{- if eq .chezmoi.os "darwin" }}$(brew --prefix){{ end -}}/share/powerl
 [ -s "$ZCONFDIR/.p10k.zsh" ] && . "$ZCONFDIR/.p10k.zsh"
 
 {{ if eq .chezmoi.os "darwin" }}
-export PYENV_ROOT=$XDG_DATA_HOME/pyenv
-
 # some brew packages are installed in sbin (e.g. mtr)
 path=("/usr/local/sbin" "$path[@]")
 path+=("$HOME/Library/Application Support/JetBrains/Toolbox/scripts")
@@ -71,8 +69,6 @@ fi
 [ -s /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -s /opt/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /opt/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-export PYENV_ROOT="/opt/pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 {{   end -}}
 {{ end -}}
 

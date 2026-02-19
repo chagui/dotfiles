@@ -52,8 +52,6 @@ fi
 if hash bat &>/dev/null; then
     export BAT_THEME=1337
 fi
-export PYTHON_ENVS="${HOME}/Work/python_envs"
-
 #### tune history ####
 export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend

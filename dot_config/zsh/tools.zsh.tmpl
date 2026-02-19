@@ -59,17 +59,6 @@ export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
 export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
 export PSQL_HISTORY="$XDG_STATE_HOME/psql/history"
 
-# pyenv
-if which pyenv &>/dev/null; then
-    export PYENV_VIRTUALENV_CACHE_PATH="$XDG_CACHE_HOME/pyenv-virtualenv"
-    eval "$(pyenv init -)"
-{{- if eq .chezmoi.os "darwin" }}
-    # fix Brew Doctor: "Warning: "config" scripts exist outside your system or Homebrew directories"
-    alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
-{{ end }}
-    eval "$(pyenv virtualenv-init -)"
-fi
-
 # redis-cli
 export REDISCLI_RCFILE="$XDG_CONFIG_HOME/rediscli/config"
 export REDISCLI_HISTFILE="$XDG_STATE_HOME/rediscli/history"
