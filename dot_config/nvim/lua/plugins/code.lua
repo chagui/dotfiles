@@ -54,10 +54,7 @@ return {
                     { "<leader>mm", "<Cmd>Mason<CR>", desc = "Packages" },
                 },
             },
-            {
-                "neovim/nvim-lspconfig",
-                dependencies = { "saghen/blink.cmp" },
-            },
+            { "neovim/nvim-lspconfig" },
         },
     },
 

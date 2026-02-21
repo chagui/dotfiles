@@ -1,7 +1,10 @@
+local profile = require("user.profile")
+
 ---@type LazySpec
 return {
     {
         "lewis6991/gitsigns.nvim",
+        cond = profile.active("default"),
         dependencies = { "nvim-lua/plenary.nvim" },
     },
     -- Flash enhances the built-in search functionality by showing labels
