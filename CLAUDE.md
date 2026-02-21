@@ -25,6 +25,7 @@ dot_kube/            → Kubernetes config
 dot_cargo/           → Cargo (Rust) config
 dot_cache/           → cached files
 dot_local/           → local binaries/share
+dot_claude/          → ~/.claude/ (Claude Code settings, skills, permissions)
 Library/             → macOS Library preferences
 gui/                 → GUI app configs (not managed by chezmoi)
 ```
