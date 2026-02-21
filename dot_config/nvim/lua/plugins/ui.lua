@@ -37,9 +37,6 @@ return {
         end,
         dependencies = { "kkharji/sqlite.lua" },
     },
-    {
-        "nvim-lualine/lualine.nvim",
-        dependencies = { "kyazdani42/nvim-web-devicons" },
-    },
+    { "nvim-lualine/lualine.nvim" },
     { "akinsho/toggleterm.nvim", cond = profile.active("default") },
 }
