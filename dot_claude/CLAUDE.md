@@ -53,18 +53,12 @@ Derived from [Software Engineering at Google, Ch. 9](https://abseil.io/resources
 - One concern per change. Do not mix bug fixes with refactors, feature work with style cleanups, or behavioral changes with optimizations. Each commit should have a single, clear reason to exist.
 - Scope discipline: do not expand beyond what was asked. A bug fix does not need surrounding code cleaned up. A feature addition does not need neighboring code refactored. Resist the urge to "improve while you're in there."
 
-### Commit Descriptions
-
-- First line is the summary — it appears in logs, email subjects, and search results. Make it count.
-- Body explains *what* changed and *why*. Never just "fix bug" or "update code." Name the bug, the root cause, and the reasoning behind the fix.
-- If a commit touches multiple concerns (unavoidably), enumerate them in the description.
-- Add inline implementation comments for non-obvious decisions. Explain *why*, not *what*.
-
 ### Optimize for Readers
 
 - Code is read far more than written. When choosing between clever-but-compact and obvious-but-verbose, choose obvious.
 - Treat reviewer confusion as a bug. If something needs explaining in review, it needs a comment in the code or a clearer name.
 - Consistency over personal preference. Match existing patterns in the codebase even when you'd prefer a different style.
+- Add inline implementation comments for non-obvious decisions. Explain *why*, not *what*.
 
 ### Code as Liability
 

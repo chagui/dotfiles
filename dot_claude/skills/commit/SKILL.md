@@ -17,6 +17,12 @@ Create a git commit for the current changes.
 6. Create the commit
 7. Show the result with `git log --oneline -1`
 
+## Commit Message Guidelines
+
+- First line is the summary — it appears in logs, email subjects, and search results. Make it count.
+- Body explains *what* changed and *why*. Never just "fix bug" or "update code." Name the bug, the root cause, and the reasoning behind the fix.
+- If a commit touches multiple concerns (unavoidably), enumerate them in the description.
+
 ## Rules
 
 - NEVER use `git add .` or `git add -A` — always add specific files
