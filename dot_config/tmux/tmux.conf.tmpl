@@ -58,8 +58,9 @@ set -g display-time 4000
 
 # pre-configured sessions
 if-shell '[ "$(tmux has-session -t dev 2>/dev/null && echo "exists")" != "exists" ]' {
-    new-session -s dev -n dotfiles -c ~/.local/share/chezmoi
-    split-window -v -l 30% -t dev -c "#{pane_current_path}"
+    new-session -s dev -n dotfiles
+    send-keys "cd ~/.local/share/chezmoi" C-m
+    split-window -v -l 30% -t dev:dotfiles -c "#{pane_current_path}"
 }
 
 # Plugin Configuration
