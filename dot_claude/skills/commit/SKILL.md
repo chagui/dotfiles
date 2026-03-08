@@ -23,10 +23,18 @@ Create a git commit for the current changes.
 - Body explains *what* changed and *why*. Never just "fix bug" or "update code." Name the bug, the root cause, and the reasoning behind the fix.
 - If a commit touches multiple concerns (unavoidably), enumerate them in the description.
 
+## Splitting Changes
+
+- Before committing, assess whether the staged changes cover more than one concern. If they do, split them into separate commits — each one self-contained, buildable, and testable.
+- One concern per commit. Do not mix bug fixes with refactors, feature work with style cleanups, or behavioral changes with optimizations.
+- Aim for ~200 lines of diff per commit. If the total diff is larger, split into a reviewable sequence of logical commits.
+- Each commit should have a single, clear reason to exist. If you struggle to write a concise summary line, the commit likely does too much.
+- When splitting, stage files (or hunks) selectively with `git add <file>` — never batch everything into one commit for convenience.
+
 ## Rules
 
 - NEVER use `git add .` or `git add -A` — always add specific files
 - NEVER amend previous commits unless explicitly asked
 - NEVER push after committing
 - Follow conventional commits: feat, fix, chore, docs, refactor, test
-- End the commit message with: `Co-Authored-By: Claude <noreply@anthropic.com>`
+- NEVER add a `Co-Authored-By` trailer — the user is the sole author
