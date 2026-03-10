@@ -40,3 +40,6 @@ utils.nmap("˚", "<Cmd>move .-2<CR>==")
 
 -- Git hotkeys
 utils.map("<C-g>f", "<Cmd>GFiles<CR>")
+utils.nmap("<leader>gs", "<Cmd>Git<CR>", { desc = "Git status" })
+utils.nmap("<leader>gb", "<Cmd>Git blame<CR>", { desc = "Git blame" })
+utils.nmap("<leader>gl", "<Cmd>Git log --oneline<CR>", { desc = "Git log" })

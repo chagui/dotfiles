@@ -1,0 +1,185 @@
+*merge-conflicts.txt*  Merge conflict resolution workflows
+
+==============================================================================
+CONTENTS                                            *merge-conflicts-contents*
+
+  1. Overview ....................................... |merge-conflicts-overview|
+  2. Plugins ........................................ |merge-conflicts-plugins|
+  3. Workflows ...................................... |merge-conflicts-workflows|
+  4. Keymaps ........................................ |merge-conflicts-keymaps|
+  5. Git configuration .............................. |merge-conflicts-git|
+
+==============================================================================
+1. OVERVIEW                                         *merge-conflicts-overview*
+
+Two independent plugins handle merge conflict resolution:
+
+- |diffview.nvim| — diff browser, file history, 3-way merge view
+- |git-conflict.nvim| — inline conflict marker resolution
+
+These plugins do NOT share keymaps. diffview.nvim uses `<leader>`-prefixed
+mappings inside its own panels. git-conflict.nvim uses unprefixed mappings
+in regular buffers. See |merge-conflicts-keymaps| for the full comparison.
+
+Both require the `editor` profile (NVIM_PROFILE=editor or default).
+
+Git is configured with `zdiff3` conflict style (shows base version in
+markers), `rerere` (remembers resolutions), and `histogram` diff algorithm.
+
+==============================================================================
+2. PLUGINS                                          *merge-conflicts-plugins*
+
+diffview.nvim ~
+                                                              *diffview.nvim*
+  Repository: https://github.com/sindrets/diffview.nvim
+
+  Provides a tabpage-based diff browser for viewing all changed files,
+  file history with inline diffs, and a 3-way merge view using the
+  `diff3_mixed` layout (LOCAL / BASE / REMOTE above the merged result).
+
+  Lazy-loaded on commands: |DiffviewOpen|, |DiffviewFileHistory|,
+  |DiffviewClose|.
+
+git-conflict.nvim ~
+                                                          *git-conflict.nvim*
+  Repository: https://github.com/akinsho/git-conflict.nvim
+
+  Automatically detects conflict markers in buffers and highlights them.
+  Provides single-keypress resolution without leaving the buffer.
+
+  Loaded on |BufReadPre| — activates whenever a file is opened.
+
+==============================================================================
+3. WORKFLOWS                                       *merge-conflicts-workflows*
+
+Quick inline fix ~
+
+  Open the conflicted file directly. git-conflict.nvim highlights the
+  markers automatically. Use `co`/`ct`/`cb`/`c0` to resolve each hunk
+  and `]x`/`[x` to jump between conflicts.
+>
+    nvim path/to/conflicted-file.go
+<
+
+Browse all conflicts ~
+
+  Open diffview to see every changed file in a tabpage with diffs:
+>
+    :DiffviewOpen
+<
+  Or press `<leader>gd` in normal mode.
+
+3-way merge from CLI ~
+
+  Git mergetool is configured with two backends:
+>
+    git mergetool              " built-in nvimdiff (fast, no plugins)
+    git mergetool -t diffview  " diffview's richer merge UI
+<
+
+Investigate file history ~
+
+  Browse the git log with inline diffs for a file or the whole branch:
+>
+    <leader>gh                 " current file history
+    <leader>gH                 " branch history
+<
+
+Git status (fugitive) ~
+>
+    <leader>gs                 " :Git (fugitive status)
+<
+
+Typical flow ~
+
+  1. Run `git merge <branch>` or `git rebase`
+  2. Open `<leader>gd` (DiffviewOpen) to see the full picture
+  3. For simple hunks: open the file directly, use `co`/`ct` (git-conflict)
+  4. For complex files: use diffview's 3-way layout with `<leader>co`/`ct`
+  5. Stage resolved files with `<leader>gs` (fugitive)
+  6. Continue with `git merge --continue` or `git rebase --continue`
+
+==============================================================================
+4. KEYMAPS                                          *merge-conflicts-keymaps*
+
+The two plugins have separate, independent keymaps. Which keymaps are
+active depends on where you are:
+
+- Regular buffer with conflict markers → git-conflict.nvim (unprefixed)
+- Inside a diffview panel/merge view → diffview.nvim (`<leader>`-prefixed)
+
+git-conflict.nvim (regular buffers with conflict markers) ~
+
+  Only active when the buffer contains `<<<<<<<` conflict markers.
+  Does NOT work inside diffview panels.
+
+  `co`    Choose ours (keep LOCAL version)
+  `ct`    Choose theirs (keep REMOTE version)
+  `cb`    Choose both (keep both versions)
+  `c0`    Choose none (delete both versions)
+  `]x`    Jump to next conflict
+  `[x`    Jump to previous conflict
+
+  `:GitConflictListQf`  Populate quickfix with all conflicts
+
+diffview.nvim — opening/closing ~
+
+  These work from any buffer:
+
+  `<leader>gd`    Open diffview                     |DiffviewOpen|
+  `<leader>gh`    File history (current file)        |DiffviewFileHistory|
+  `<leader>gH`    Branch history (all files)         |DiffviewFileHistory|
+  `<leader>gq`    Close diffview                     |DiffviewClose|
+
+diffview.nvim — conflict resolution (inside merge view panels) ~
+
+  These only work inside diffview's merge tool panels (e.g. when opened
+  via `git mergetool -t diffview` or `:DiffviewOpen` during a merge):
+
+  `<leader>co`    Choose OURS
+  `<leader>ct`    Choose THEIRS
+  `<leader>cb`    Choose BASE
+  `<leader>ca`    Choose ALL (ours + theirs)
+  `dx`            Delete conflict region
+  `]x`            Jump to next conflict
+  `[x`            Jump to previous conflict
+
+  See `:h diffview-maps` for the full keymap reference.
+
+fugitive ~
+
+  `<leader>gs`    Git status
+  `<leader>gb`    Git blame
+  `<leader>gl`    Git log (oneline)
+
+==============================================================================
+5. GIT CONFIGURATION                                   *merge-conflicts-git*
+
+Relevant settings in `~/.config/git/config`:
+>
+    [merge]
+        conflictStyle = zdiff3     " shows base version in conflict markers
+        tool = nvimdiff            " default mergetool backend
+
+    [mergetool]
+        prompt = false             " don't ask before opening each file
+        keepBackup = false         " don't create .orig backup files
+
+    [mergetool "diffview"]
+        cmd = nvim -n -c "DiffviewOpen" "$MERGE"
+
+    [rerere]
+        enabled = true             " remember conflict resolutions
+
+    [diff]
+        algorithm = histogram      " better diff output
+<
+
+Git aliases ~
+>
+    git conflicted    " opens nvim with DiffviewOpen
+    git dt            " difftool
+<
+
+==============================================================================
+vim:tw=78:ft=help:norl:

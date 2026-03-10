@@ -23,4 +23,40 @@ return {
             { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
         },
     },
+    {
+        "sindrets/diffview.nvim",
+        cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewClose" },
+        keys = {
+            { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Diffview open" },
+            { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "File history" },
+            { "<leader>gH", "<cmd>DiffviewFileHistory<cr>", desc = "Branch history" },
+            { "<leader>gq", "<cmd>DiffviewClose<cr>", desc = "Diffview close" },
+        },
+        cond = profile.active("editor"),
+        opts = {
+            enhanced_diff_hl = true,
+            view = {
+                merge_tool = {
+                    layout = "diff3_mixed",
+                },
+            },
+        },
+    },
+    {
+        "akinsho/git-conflict.nvim",
+        version = "*",
+        event = "BufReadPre",
+        cond = profile.active("editor"),
+        opts = {
+            default_mappings = {
+                ours = "co",
+                theirs = "ct",
+                none = "c0",
+                both = "cb",
+                next = "]x",
+                prev = "[x",
+            },
+            disable_diagnostics = true,
+        },
+    },
 }
