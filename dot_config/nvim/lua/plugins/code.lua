@@ -33,6 +33,7 @@ return {
                 "gitlab_ci_ls",
                 "jsonls",
                 "gopls",
+                "helm_ls",
                 "lua_ls",
                 "ruff",
                 "rust_analyzer",

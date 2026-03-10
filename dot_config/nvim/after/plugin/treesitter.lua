@@ -11,6 +11,7 @@ configs.setup({
         "dockerfile",
         "dot",
         "go",
+        "gotmpl",
         "hcl",
         "json",
         "lua",

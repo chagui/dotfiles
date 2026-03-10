@@ -16,6 +16,11 @@ vim.filetype.add({
     pattern = {
         [".+%.tfvars"] = "terraform",
         [".+%.gitconfig"] = "gitconfig",
+        -- Helm chart templates: any .yaml/.yml/.tpl in a templates/ dir under a Chart.yaml
+        [".*/templates/.*%.yaml"] = "helm",
+        [".*/templates/.*%.yml"] = "helm",
+        [".*/templates/.*%.tpl"] = "helm",
+        ["helmfile.*%.yaml"] = "helm",
         -- Handle chezmoi templates
         ["${XDG_DATA_HOME}/chezmoi/.*%.(%a+)%.tmpl"] = function(_, _, captured_extension)
             if captured_extension == "yml" then
