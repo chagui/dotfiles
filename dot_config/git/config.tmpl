@@ -27,7 +27,7 @@
     cb = branch --show-current
     cm = commit -m
     co = checkout
-    conflicted = !nvim +Conflicted
+    conflicted = "!nvim -c 'DiffviewOpen'"
     cp = cherry-pick
     d = diff
     default-branch = !git rev-parse --abbrev-ref origin/HEAD | sed 's@^origin/@@'
@@ -65,6 +65,12 @@
     tree-all = !git tree --all
 [merge]
     conflictStyle = zdiff3
+    tool = nvimdiff
+[mergetool]
+    prompt = false
+    keepBackup = false
+[mergetool "diffview"]
+    cmd = nvim -n -c "DiffviewOpen" "$MERGE"
 [diff]
     algorithm = histogram
     colorMoved = default
