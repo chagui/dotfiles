@@ -118,6 +118,7 @@
       "WebFetch(domain:research.google)",
       "WebFetch(domain:security.googleblog.com)",
       "WebFetch(domain:sre.google)",
+      "WebFetch(domain:google.aip.dev)",
       "WebFetch(domain:testing.googleblog.com)",
 
       "WebFetch(domain:blog.golang.org)",
