@@ -111,4 +111,11 @@ nvim_tree.setup({
 })
 
 local utils = require("user.utils")
-utils.nnoremap("<leader>e", "<cmd>NvimTreeToggle<cr>")
+utils.nnoremap("<leader>e", function()
+    local lib_ok, lib = pcall(require, "diffview.lib")
+    if lib_ok and lib.get_current_view() then
+        require("diffview.actions").toggle_files()
+    else
+        vim.cmd("NvimTreeToggle")
+    end
+end)
