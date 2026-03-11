@@ -28,6 +28,10 @@ else
         pattern = vim.fn.expand("~") .. "/.local/share/chezmoi/*",
         callback = function(event)
             local source_path = vim.api.nvim_buf_get_name(event.buf)
+            -- Skip git internals (COMMIT_EDITMSG, MERGE_MSG, etc.) and Claude session files.
+            if source_path:find("/.git/") or source_path:find("/.claude/") then
+                return
+            end
             vim.fn.jobstart({ "chezmoi", "apply", "--no-tty", "--force", "--source-path", source_path }, {
                 on_exit = function(_, code)
                     if code ~= 0 then
