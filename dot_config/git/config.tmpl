@@ -27,7 +27,7 @@
     cb = branch --show-current
     cm = commit -m
     co = checkout
-    conflicted = "!nvim -c 'DiffviewOpen'"
+    conflicted = "!NVIM_PROFILE=editor nvim -c 'DiffviewOpen'"
     cp = cherry-pick
     d = diff
     default-branch = !git rev-parse --abbrev-ref origin/HEAD | sed 's@^origin/@@'
