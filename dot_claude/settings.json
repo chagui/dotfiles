@@ -2,7 +2,8 @@
   "model": "opus",
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true
+    "lua-lsp@claude-plugins-official": true,
+    "slack@claude-plugins-official": true
   },
   "permissions": {
     "allow": [
