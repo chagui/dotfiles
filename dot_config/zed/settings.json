@@ -17,18 +17,10 @@
     "atlassian": {
       "source": "custom",
       "enabled": true,
-      "command": "npx",
+      "command": "mcp-remote",
       "args": [
-        "-y",
-        "mcp-remote",
         "https://mcp.atlassian.com/v1/sse"
       ]
-    },
-    "github": {
-      "source": "custom",
-      "enabled": true,
-      "command": "$HOME/.local/bin/github_mcp.sh",
-      "args": []
     }
   }
 }
