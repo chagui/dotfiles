@@ -27,3 +27,29 @@
     #include = ["*/themes/Catppuccin Frappe.tmThem", "**/Catppuccin Macchiato.tmThem"]
     include = ["*/themes/**"]
     #path = "themes"
+
+# Datadog agent skills (https://github.com/datadog-labs/agent-skills)
+[".claude/skills/dd-pup/SKILL.md"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/datadog-labs/agent-skills/main/dd-pup/SKILL.md"
+    refreshPeriod = "168h"
+
+[".claude/skills/dd-monitors/SKILL.md"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/datadog-labs/agent-skills/main/dd-monitors/SKILL.md"
+    refreshPeriod = "168h"
+
+[".claude/skills/dd-logs/SKILL.md"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/datadog-labs/agent-skills/main/dd-logs/SKILL.md"
+    refreshPeriod = "168h"
+
+[".claude/skills/dd-apm/SKILL.md"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/datadog-labs/agent-skills/main/dd-apm/SKILL.md"
+    refreshPeriod = "168h"
+
+[".claude/skills/dd-docs/SKILL.md"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/datadog-labs/agent-skills/main/dd-docs/SKILL.md"
+    refreshPeriod = "168h"

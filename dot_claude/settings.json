@@ -102,6 +102,19 @@
       "Bash(kubectl version:*)",
       "Bash(kubectl wait:*)",
 
+      "Bash(pup auth:*)",
+      "Bash(pup logs:*)",
+      "Bash(pup monitors:*)",
+      "Bash(pup apm:*)",
+      "Bash(pup metrics:*)",
+      "Bash(pup docs:*)",
+      "Bash(pup hosts:*)",
+      "Bash(pup events:*)",
+      "Bash(pup synthetics:*)",
+      "Bash(pup dashboards:*)",
+      "Bash(pup slo:*)",
+      "Bash(pup incidents:*)",
+
       "WebSearch",
 
       "WebFetch(domain:*.githubusercontent.com)",
