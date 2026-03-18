@@ -37,7 +37,7 @@ return {
             enhanced_diff_hl = true,
             view = {
                 merge_tool = {
-                    layout = "diff3_mixed",
+                    layout = "diff3_horizontal",
                 },
             },
         },
@@ -58,5 +58,12 @@ return {
             },
             disable_diagnostics = true,
         },
+        config = function(_, opts)
+            require("git-conflict").setup(opts)
+            -- cl/cr aliases use LOCAL/REMOTE labels from conflict markers, which
+            -- stay correct during both merge and rebase (ours/theirs swap on rebase).
+            vim.keymap.set("n", "cl", "<Plug>(git-conflict-ours)", { desc = "Choose local (ours)" })
+            vim.keymap.set("n", "cr", "<Plug>(git-conflict-theirs)", { desc = "Choose remote (theirs)" })
+        end,
     },
 }

@@ -35,7 +35,7 @@ diffview.nvim ~
 
   Provides a tabpage-based diff browser for viewing all changed files,
   file history with inline diffs, and a 3-way merge view using the
-  `diff3_mixed` layout (LOCAL / BASE / REMOTE above the merged result).
+  `diff3_horizontal` layout (LOCAL | RESULT | REMOTE side-by-side).
 
   Lazy-loaded on commands: |DiffviewOpen|, |DiffviewFileHistory|,
   |DiffviewClose|.
@@ -115,10 +115,17 @@ git-conflict.nvim (regular buffers with conflict markers) ~
 
   `co`    Choose ours (keep LOCAL version)
   `ct`    Choose theirs (keep REMOTE version)
+  `cl`    Choose local — alias for `co`, uses conflict marker labels
+  `cr`    Choose remote — alias for `ct`, uses conflict marker labels
   `cb`    Choose both (keep both versions)
   `c0`    Choose none (delete both versions)
   `]x`    Jump to next conflict
   `[x`    Jump to previous conflict
+
+  NOTE: During `git rebase`, Git swaps "ours" and "theirs" — your commit
+  becomes "theirs" and upstream becomes "ours". The `cl`/`cr` aliases map
+  to the LOCAL/REMOTE labels in conflict markers, which stay consistent
+  regardless of the operation.
 
   `:GitConflictListQf`  Populate quickfix with all conflicts
 
