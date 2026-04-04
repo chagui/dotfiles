@@ -56,14 +56,37 @@ return {
                 next = "]x",
                 prev = "[x",
             },
-            disable_diagnostics = true,
+            -- Managed by our own autocmds below (plugin uses pre-0.12 API).
+            disable_diagnostics = false,
         },
         config = function(_, opts)
+            local disable_diagnostics = true
             require("git-conflict").setup(opts)
             -- cl/cr aliases use LOCAL/REMOTE labels from conflict markers, which
             -- stay correct during both merge and rebase (ours/theirs swap on rebase).
             vim.keymap.set("n", "cl", "<Plug>(git-conflict-ours)", { desc = "Choose local (ours)" })
             vim.keymap.set("n", "cr", "<Plug>(git-conflict-theirs)", { desc = "Choose remote (theirs)" })
+
+            -- HACK: git-conflict.nvim uses the pre-0.12 diagnostic API
+            -- (vim.diagnostic.disable/enable(bufnr)). Override with the new
+            -- signature until upstream PR #122 is merged.
+            if disable_diagnostics then
+                local group = vim.api.nvim_create_augroup("GitConflictDiagnostics", { clear = true })
+                vim.api.nvim_create_autocmd("User", {
+                    group = group,
+                    pattern = "GitConflictDetected",
+                    callback = function()
+                        vim.diagnostic.enable(false, { bufnr = vim.api.nvim_get_current_buf() })
+                    end,
+                })
+                vim.api.nvim_create_autocmd("User", {
+                    group = group,
+                    pattern = "GitConflictResolved",
+                    callback = function()
+                        vim.diagnostic.enable(true, { bufnr = vim.api.nvim_get_current_buf() })
+                    end,
+                })
+            end
         end,
     },
 }
