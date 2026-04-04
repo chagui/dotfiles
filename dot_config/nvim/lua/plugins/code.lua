@@ -16,7 +16,43 @@ return {
     },
 
     -- Treesitter
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        branch = "main",
+        build = ":TSUpdate",
+        config = function()
+            require("nvim-treesitter").install({
+                "bash",
+                "c",
+                "cmake",
+                "dockerfile",
+                "dot",
+                "go",
+                "gotmpl",
+                "hcl",
+                "json",
+                "lua",
+                "make",
+                "python",
+                "rust",
+                "terraform",
+                "toml",
+                "yaml",
+            })
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function(args)
+                    local buf = args.buf
+                    local lang = vim.treesitter.language.get_lang(args.match)
+                    if not lang or not pcall(vim.treesitter.start, buf, lang) then
+                        return
+                    end
+                    vim.wo[0].foldmethod = "expr"
+                    vim.wo[0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+                    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                end,
+            })
+        end,
+    },
     { "nvim-treesitter/nvim-treesitter-context", dependencies = "nvim-treesitter/nvim-treesitter" },
 
     -- LSP
