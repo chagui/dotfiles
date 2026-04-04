@@ -34,6 +34,18 @@ local options = {
     -- History
     undodir = vim.fn.stdpath("cache") .. "/undo",
     undofile = true,
+
+    -- Diff mode
+    diffopt = {
+        "internal",
+        "filler",
+        "closeoff",
+        "context:12",
+        "algorithm:histogram",
+        "linematch:200",
+        "indent-heuristic",
+        "inline:char",
+    },
 }
 
 for k, v in pairs(options) do

@@ -11,6 +11,8 @@
     singlekey = true
 [difftool]
     prompt = false
+[difftool "nvim_difftool"]
+    cmd = nvim -c "packadd nvim.difftool" -c "DiffTool $LOCAL $REMOTE"
 [include]
     path = ~/.config/git/local
     path = ~/.config/git/delta.gitconfig
