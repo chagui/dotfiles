@@ -31,6 +31,9 @@ local options = {
     hlsearch = true,
     incsearch = true,
 
+    -- Folding
+    foldlevelstart = 99,
+
     -- History
     undodir = vim.fn.stdpath("cache") .. "/undo",
     undofile = true,
