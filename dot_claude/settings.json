@@ -39,7 +39,7 @@
       "Bash(git merge:*)",
       "Bash(git pull:*)",
       "Bash(git remote show:*)",
-      "Bash(git restore:*)",
+      "Bash(git restore --staged:*)",
       "Bash(git show:*)",
       "Bash(git status:*)",
 
@@ -72,7 +72,9 @@
       "Bash(cargo nextest:*)",
       "Bash(cargo test:*)",
 
-      "Bash(swift:*)",
+      "Bash(swift build:*)",
+      "Bash(swift package:*)",
+      "Bash(swift test:*)",
 
       "Bash(npm info:*)",
       "Bash(npm run build:*)",
@@ -307,7 +309,6 @@
       "Bash(pup synthetics suites list:*)",
       "Bash(pup synthetics tests get:*)",
       "Bash(pup synthetics tests list:*)",
-      "Bash(pup synthetics tests run:*)",
       "Bash(pup synthetics tests search:*)",
       "Bash(pup tags get:*)",
       "Bash(pup tags list:*)",
@@ -322,7 +323,7 @@
       "Bash(pup workflows get:*)",
       "Bash(pup workflows instances get:*)",
       "Bash(pup workflows instances list:*)",
-      "Bash(pup workflows run:*)",
+      "Bash(pup workflows list:*)",
 
       "WebSearch",
 
@@ -462,10 +463,13 @@
       "mcp__datadog__search_pr_insights"
     ],
     "deny": [
-      "Bash(rm *)",
-      "Bash(sudo *)",
+      "Bash(chezmoi apply*)",
+      "Bash(git branch -D*)",
+      "Bash(git clean*)",
       "Bash(git push *)",
-      "Bash(git reset --hard*)"
+      "Bash(git reset --hard*)",
+      "Bash(rm *)",
+      "Bash(sudo *)"
     ]
   }
 }
