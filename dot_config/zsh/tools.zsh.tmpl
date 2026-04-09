@@ -2,7 +2,7 @@
 export ASDF_CONFIG_FILE="$XDG_CONFIG_HOME/asdf/config"
 export ASDF_DATA_DIR="$XDG_DATA_HOME/asdf"
 {{- if eq .chezmoi.os "darwin" }}
-asdf_source="$(brew --prefix asdf)/libexec/asdf.sh"
+asdf_source="{{ output "brew" "--prefix" "asdf" | trim }}/libexec/asdf.sh"
 {{  else if eq .chezmoi.os "linux" }}
 {{- if eq .chezmoi.osRelease.id "ubuntu" }}
 asdf_source="$HOME/.asdf/asdf.sh"
@@ -14,14 +14,17 @@ fi
 fpath=(${ASDF_DIR}/completions $fpath)
 
 # delta
-if which delta &>/dev/null; then
+if command -v delta &>/dev/null; then
     compdef _gnu_generic delta
 fi
 
 # graphite
-if which gt &>/dev/null; then
-    eval "$(gt completion)"
+_gt_cache="$XDG_CACHE_HOME/zsh/gt-completion.zsh"
+if [[ ! -s "$_gt_cache" ]] && command -v gt &>/dev/null; then
+    mkdir -p "${_gt_cache:h}"
+    gt completion > "$_gt_cache"
 fi
+[ -s "$_gt_cache" ] && source "$_gt_cache"
 
 {{- if eq .chezmoi.os "darwin" }}
 # homebrew
@@ -31,7 +34,7 @@ export HOMEBREW_CASK_OPTS=--require-sha
 {{- end }}
 
 # kubectl
-if which kubectl &>/dev/null; then
+if command -v kubectl &>/dev/null; then
     alias k='kubectl'
     alias kd='kubectl describe'
     alias ke='kubectl edit'
@@ -43,7 +46,7 @@ if which kubectl &>/dev/null; then
 fi
 
 # k9s
-if which k9s &>/dev/null; then
+if command -v k9s &>/dev/null; then
     alias k9s='EDITOR=nvim k9s'
 fi
 
@@ -54,9 +57,15 @@ export LESSKEY="$XDG_STATE_HOME/less/keys"
 # mypy
 export MYPY_CACHE_DIR="$XDG_CACHE_HOME/mypy"
 
-# op
-if which op &>/dev/null; then
-    eval "$(op completion zsh)"
+# op — cache completions to avoid running `op` on every shell init
+# (op accesses 1Password app data, which triggers macOS privacy prompts)
+if command -v op &>/dev/null; then
+    _op_comp_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/op_completion.zsh"
+    if [[ ! -f "$_op_comp_cache" || "$(op --version 2>/dev/null)" != "$(head -1 "$_op_comp_cache" 2>/dev/null | sed 's/^# //')" ]]; then
+        mkdir -p "${_op_comp_cache:h}"
+        { echo "# $(op --version 2>/dev/null)"; op completion zsh; } > "$_op_comp_cache"
+    fi
+    source "$_op_comp_cache"
     compdef _op op
 fi
 
@@ -84,9 +93,12 @@ alias v='nvim'
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 
 # zoxide
-if which zoxide &>/dev/null; then
-    eval "$(zoxide init --cmd cd zsh)"
+_zoxide_cache="$XDG_CACHE_HOME/zsh/zoxide-init.zsh"
+if [[ ! -s "$_zoxide_cache" ]] && command -v zoxide &>/dev/null; then
+    mkdir -p "${_zoxide_cache:h}"
+    zoxide init --cmd cd zsh > "$_zoxide_cache"
 fi
+[ -s "$_zoxide_cache" ] && source "$_zoxide_cache"
 
 # Re-assert Yarn Switch + Volta PATH ordering. dot_zshenv already puts them
 # ahead of system PATH for non-interactive shells, but in interactive shells

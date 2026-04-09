@@ -1,3 +1,9 @@
+{{- $brewPrefix := "" -}}
+{{- $brewPrefixLlvm := "" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $brewPrefix = output "brew" "--prefix" | trim -}}
+{{-   $brewPrefixLlvm = output "brew" "--prefix" "llvm" | trim -}}
+{{- end -}}
 typeset -U path PATH
 path+=("$HOME/.local/bin" "$HOME/.cargo/bin")
 
@@ -57,7 +63,7 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
 if [[ "$TERM_PROGRAM" == "ghostty" ]] && command -v starship >/dev/null 2>&1; then
     eval "$(starship init zsh)"
 else
-    source "$(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme"
+    source "{{ $brewPrefix }}/share/powerlevel10k/powerlevel10k.zsh-theme"
     [ -s "$ZCONFDIR/.p10k.zsh" ] && . "$ZCONFDIR/.p10k.zsh"
 fi
 {{- else if eq .chezmoi.os "linux" }}
@@ -68,13 +74,11 @@ command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
 {{ if eq .chezmoi.os "darwin" }}
 # some brew packages are installed in sbin (e.g. mtr)
 path=("/usr/local/sbin" "$path[@]")
-if [[ -n $(brew --prefix llvm) ]]; then
-    # clang-tidy is not installed in brew --prefix
-    path=("$(brew --prefix llvm)/bin" "$path[@]")
+if [[ -d "{{ $brewPrefixLlvm }}" ]]; then
+    path=("{{ $brewPrefixLlvm }}/bin" "$path[@]")
 fi
 
-[ -s "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-[ -s "$(brew --prefix asdf)/libexec/asdf.sh" ] && . "$(brew --prefix asdf)/libexec/asdf.sh"
+[ -s "{{ $brewPrefix }}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "{{ $brewPrefix }}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 {{ else if eq .chezmoi.os "linux" }}
 {{   if eq .chezmoi.osRelease.id "ubuntu" }}
 [ -s /home/guilhem/.autojump/etc/profile.d/autojump.sh ] && source /home/guilhem/.autojump/etc/profile.d/autojump.sh
@@ -97,7 +101,7 @@ autoload -Uz tldr-fzf
 autoload -Uz volta-yarn-cleanup
 
 {{- if eq .chezmoi.os "darwin" }}
-fpath+="$(brew --prefix)/share/zsh/site-functions"
+fpath+="{{ $brewPrefix }}/share/zsh/site-functions"
 {{ end }}
 fpath+=($HOME/.rustup/toolchains/stable-x86_64-apple-darwin/share/zsh/site-functions(N/))
 fpath+=($HOME/.docker/completions(N/))
@@ -108,8 +112,8 @@ autoload -Uz compinit && compinit
 autoload -Uz select-word-style && select-word-style bash
 
 {{- if eq .chezmoi.os "darwin" }}
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source {{ $brewPrefix }}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source {{ $brewPrefix }}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 {{ end -}}
