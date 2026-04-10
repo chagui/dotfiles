@@ -416,6 +416,7 @@
       "WebFetch(domain:docs.gitlab.com)",
       "WebFetch(domain:graphite.dev)",
       "WebFetch(domain:handbook.gitlab.com)",
+      "WebFetch(domain:ghostty.org)",
       "WebFetch(domain:lazy.folke.io)",
       "WebFetch(domain:neovim.io)",
       "WebFetch(domain:www.jetbrains.com)",
