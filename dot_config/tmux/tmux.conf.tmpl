@@ -24,9 +24,9 @@ bind r source-file ~/.config/tmux/tmux.conf
 unbind c
 bind t new-window
 unbind '"'
-bind h split-window -h -c '#{pane_current_path}'
+bind v split-window -h -c '#{pane_current_path}'
 unbind %
-bind v split-window -v -c '#{pane_current_path}'
+bind h split-window -v -c '#{pane_current_path}'
 
 #bind-key h select-pane -L
 bind-key j select-pane -D
