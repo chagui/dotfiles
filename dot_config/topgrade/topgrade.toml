@@ -11,9 +11,5 @@ disable = [
     "vim",
 ]
 
-[cargo]
-# cargo-nextest requires --locked which cargo-install-update doesn't support
-excluded_crates = ["cargo-nextest"]
-
 [commands]
 "Update cargo-nextest" = "cargo binstall --no-confirm cargo-nextest"
