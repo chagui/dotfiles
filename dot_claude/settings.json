@@ -1,6 +1,8 @@
 {
   "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "EDITOR": "nvim",
+    "NVIM_PROFILE": "editor"
   },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true,
@@ -30,6 +32,10 @@
       "Bash(wc:*)",
       "Bash(which:*)",
 
+      "Bash(brew info:*)",
+      "Bash(brew list:*)",
+      "Bash(brew tap-pin:*)",
+
       "Bash(git add:*)",
       "Bash(git bisect:*)",
       "Bash(git blame:*)",
@@ -46,7 +52,6 @@
       "Bash(git show:*)",
       "Bash(git status:*)",
 
-      "Bash(gh api user:*)",
       "Bash(gh issue list:*)",
       "Bash(gh issue view:*)",
       "Bash(gh pr checks:*)",
@@ -55,7 +60,7 @@
       "Bash(gh pr view:*)",
       "Bash(gh repo list:*)",
       "Bash(gh repo view:*)",
-      "Bash(gh search prs:*)",
+      "Bash(gh search:*)",
       "Bash(gh status:*)",
 
       "Bash(bzl run //:gazelle)",
@@ -404,6 +409,7 @@
       "WebFetch(domain:docs.gitlab.com)",
       "WebFetch(domain:graphite.dev)",
       "WebFetch(domain:handbook.gitlab.com)",
+      "WebFetch(domain:lazy.folke.io)",
       "WebFetch(domain:neovim.io)",
       "WebFetch(domain:www.jetbrains.com)",
       "WebFetch(domain:zed.dev)",
@@ -441,6 +447,7 @@
       "mcp__atlassian__search",
       "mcp__atlassian__searchConfluenceUsingCql",
       "mcp__atlassian__searchJiraIssuesUsingJql",
+      "mcp__atlassian-server__getConfluencePage",
       "mcp__datadog__aggregate_datadog_ci_pipeline_events",
       "mcp__datadog__aggregate_datadog_test_events",
       "mcp__datadog__analyze_datadog_logs",
