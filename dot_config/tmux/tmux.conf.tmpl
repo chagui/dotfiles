@@ -39,6 +39,9 @@ bind-key | select-layout even-vertical
 
 # GUI
 set -g mouse on
+# Let tmux handle OSC 52 itself so inner apps don't race with tmux-yank's
+# pbcopy for the macOS pasteboard (see Alacritty NSPasteboard#writeObjects warning).
+set -g set-clipboard on
 # True Color (24-bit) configuration for alacritty + tmux
 # kudos to https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6
 set -g default-terminal "tmux-256color"
