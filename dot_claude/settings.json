@@ -83,6 +83,7 @@
       "Bash(swift build:*)",
       "Bash(swift package:*)",
       "Bash(swift test:*)",
+      "Bash(swiftlint:*)",
       "Bash(swiftformat:*)",
 
       "Bash(npm info:*)",
