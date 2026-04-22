@@ -1,0 +1,17 @@
+{{/*
+Source-root init template. `chezmoi init` renders this to
+~/.config/chezmoi/chezmoi.toml before any `apply` runs, seeding `.xdg.*` so
+templates that reference it (e.g. dot_config/wget/wgetrc.tmpl) resolve on the
+very first apply. On subsequent applies, the managed
+dot_config/chezmoi/private_chezmoi.toml.tmpl overwrites this file with the full
+config (adds [diff] and [merge]) — intentionally narrow here so the init
+template does only what init can't defer.
+
+Cross-platform: XDG_* wins when set (Linux, or macOS users who export it); else
+falls back to XDG-spec defaults under $HOME (typical macOS).
+*/ -}}
+[data.xdg]
+    cache  = {{ env "XDG_CACHE_HOME"  | default (joinPath .chezmoi.homeDir ".cache")         | quote }}
+    config = {{ env "XDG_CONFIG_HOME" | default (joinPath .chezmoi.homeDir ".config")        | quote }}
+    data   = {{ env "XDG_DATA_HOME"   | default (joinPath .chezmoi.homeDir ".local" "share") | quote }}
+    state  = {{ env "XDG_STATE_HOME"  | default (joinPath .chezmoi.homeDir ".local" "state") | quote }}
