@@ -49,6 +49,7 @@ brew "coreutils"
 brew "crane"
 brew "curl"
 brew "dive"
+brew "dog"
 brew "dust"
 brew "eza"
 brew "fd"
@@ -169,6 +170,45 @@ EOF
 
 echo "Package installation completed."
 
+
+# shellcheck disable=1054,1083
+{{ end -}}
+
+# shellcheck disable=1054,1083
+{{- if eq .chezmoi.os "linux" }}
+# Linux has no brew; bootstrap Rust and `cargo install` the CLIs that mirror
+# the macOS Brewfile. `cargo install` is idempotent — re-runs skip crates
+# already at the installed version.
+if ! command -v cargo &>/dev/null; then
+    echo "🦀  Installing Rust toolchain"
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+        | sh -s -- --default-toolchain stable --no-modify-path -y
+fi
+# shellcheck disable=SC1091
+source "$HOME/.cargo/env"
+
+echo "📦  Installing Rust CLIs via cargo install"
+cargo install --locked \
+    bat \
+    broot \
+    dog \
+    du-dust \
+    eza \
+    fd-find \
+    git-delta \
+    ripgrep \
+    tealdeer \
+    zoxide
+
+# fzf is Go (not on crates.io); fetch the upstream release into ~/.local/bin.
+if ! command -v fzf &>/dev/null; then
+    echo "📦  Installing fzf"
+    mkdir -p "$HOME/.local/bin"
+    FZF_VERSION=$(curl -fsSL https://api.github.com/repos/junegunn/fzf/releases/latest \
+        | grep -m1 '"tag_name":' | sed 's/.*"v\(.*\)".*/\1/')
+    curl -fsSL "https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tar.gz" \
+        | tar -xz -C "$HOME/.local/bin"
+fi
 
 # shellcheck disable=1054,1083
 {{ end -}}
