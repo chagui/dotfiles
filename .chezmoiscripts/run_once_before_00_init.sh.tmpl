@@ -35,10 +35,8 @@ brew "git"
 brew "aws-vault"
 brew "awscli"
 brew "bash"
-brew "bat"
 brew "cargo-binstall"
 brew "bazelisk"
-brew "broot"
 brew "buf"
 brew "buildifier"
 brew "buildozer"
@@ -50,16 +48,12 @@ brew "crane"
 brew "curl"
 brew "dive"
 brew "dog"
-brew "dust"
-brew "eza"
-brew "fd"
 brew "ffmpeg"
 brew "fzf"
 brew "gcc"
 brew "gh"
 brew "gimme"
 brew "git-absorb"
-brew "git-delta"
 brew "git-lfs"
 brew "git-machete"
 brew "gitlab-runner"
@@ -112,14 +106,12 @@ brew "protobuf"
 brew "python-tabulate"
 brew "rbenv"
 brew "redis"
-brew "ripgrep"
 brew "ruff"
 brew "scc"
 brew "shellcheck"
 brew "shfmt"
 brew "speedtest-cli"
 brew "svg2png"
-brew "tealdeer"
 brew "telnet"
 brew "terraform-ls"
 brew "terraform_landscape"
@@ -129,7 +121,6 @@ brew "tgenv"
 brew "tmux"
 brew "tree-sitter"
 brew "toilet"
-brew "topgrade"
 brew "watch"
 brew "wget"
 brew "xcodes"
@@ -139,7 +130,6 @@ brew "ykman"
 brew "yq"
 brew "zellij"
 brew "zlib"
-brew "zoxide"
 brew "zsh"
 brew "zsh-autosuggestions"
 brew "zsh-history-substring-search"
@@ -174,11 +164,8 @@ echo "Package installation completed."
 # shellcheck disable=1054,1083
 {{ end -}}
 
-# shellcheck disable=1054,1083
-{{- if eq .chezmoi.os "linux" }}
-# Linux has no brew; bootstrap Rust and `cargo install` the CLIs that mirror
-# the macOS Brewfile. `cargo install` is idempotent — re-runs skip crates
-# already at the installed version.
+# All platforms: bootstrap Rust toolchain so `cargo binstall` has a compile
+# fallback when no prebuilt binary exists for the host target.
 if ! command -v cargo &>/dev/null; then
     echo "🦀  Installing Rust toolchain"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
@@ -187,8 +174,20 @@ fi
 # shellcheck disable=SC1091
 source "$HOME/.cargo/env"
 
-echo "📦  Installing Rust CLIs via cargo install"
-cargo install --locked \
+# cargo-binstall comes from the Brewfile on macOS; on Linux bootstrap it from
+# the upstream installer.
+if ! command -v cargo-binstall &>/dev/null; then
+    echo "📦  Installing cargo-binstall"
+    curl -L --proto '=https' --tlsv1.2 -sSf \
+        https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh \
+        | bash
+fi
+
+# Rust CLIs mirrored across macOS and Linux. cargo-binstall pulls the upstream
+# prebuilt binary when available and falls back to `cargo install` from source
+# via the default `compile` strategy.
+echo "📦  Installing Rust CLIs via cargo binstall"
+cargo binstall --locked --no-confirm \
     bat \
     broot \
     du-dust \
@@ -197,8 +196,11 @@ cargo install --locked \
     git-delta \
     ripgrep \
     tealdeer \
+    topgrade \
     zoxide
 
+# shellcheck disable=1054,1083
+{{- if eq .chezmoi.os "linux" }}
 # fzf is Go (not on crates.io); fetch the upstream release into ~/.local/bin.
 if ! command -v fzf &>/dev/null; then
     echo "📦  Installing fzf"
