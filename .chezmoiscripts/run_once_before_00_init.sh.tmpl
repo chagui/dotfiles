@@ -191,7 +191,6 @@ echo "📦  Installing Rust CLIs via cargo install"
 cargo install --locked \
     bat \
     broot \
-    dog \
     du-dust \
     eza \
     fd-find \
@@ -208,6 +207,20 @@ if ! command -v fzf &>/dev/null; then
         | grep -m1 '"tag_name":' | sed 's/.*"v\(.*\)".*/\1/')
     curl -fsSL "https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tar.gz" \
         | tar -xz -C "$HOME/.local/bin"
+fi
+
+# dog (DNS client) isn't on crates.io; fetch the upstream release. Only v0.1.0
+# exists — the project has been dormant since 2020.
+if ! command -v dog &>/dev/null; then
+    echo "📦  Installing dog"
+    command -v unzip &>/dev/null || sudo apt-get install -y -qq unzip
+    mkdir -p "$HOME/.local/bin"
+    tmp=$(mktemp -d)
+    curl -fsSL "https://github.com/ogham/dog/releases/download/v0.1.0/dog-v0.1.0-x86_64-unknown-linux-gnu.zip" \
+        -o "$tmp/dog.zip"
+    unzip -q "$tmp/dog.zip" -d "$tmp"
+    install -m 0755 "$tmp/bin/dog" "$HOME/.local/bin/dog"
+    rm -rf "$tmp"
 fi
 
 # shellcheck disable=1054,1083
