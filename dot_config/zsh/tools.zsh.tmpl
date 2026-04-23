@@ -23,6 +23,13 @@ if which gt &>/dev/null; then
     eval "$(gt completion)"
 fi
 
+{{- if eq .chezmoi.os "darwin" }}
+# homebrew
+# Force certain more-secure behaviours from homebrew
+export HOMEBREW_NO_INSECURE_REDIRECT=1
+export HOMEBREW_CASK_OPTS=--require-sha
+{{- end }}
+
 # kubectl
 if which kubectl &>/dev/null; then
     alias k='kubectl'
