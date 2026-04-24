@@ -202,6 +202,21 @@ cargo binstall --locked --no-confirm \
 
 # shellcheck disable=1054,1083
 {{- if eq .chezmoi.os "linux" }}
+# rsync ships on macOS but not on minimal Linux images.
+if ! command -v rsync &>/dev/null; then
+    echo "📦  Installing rsync"
+    sudo apt-get install -y -qq rsync
+fi
+
+# neovim: apt versions on Debian/Ubuntu lag far behind what the lazy.nvim
+# config requires, so pull the upstream stable tarball into ~/.local.
+if ! command -v nvim &>/dev/null; then
+    echo "📦  Installing neovim"
+    mkdir -p "$HOME/.local"
+    curl -fsSL "https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.tar.gz" \
+        | tar -xz -C "$HOME/.local" --strip-components=1
+fi
+
 # fzf is Go (not on crates.io); fetch the upstream release into ~/.local/bin.
 if ! command -v fzf &>/dev/null; then
     echo "📦  Installing fzf"
