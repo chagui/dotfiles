@@ -1,3 +1,21 @@
 export LANG=en_US.UTF-8
 export MANPAGER='nvim +Man!'
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+
+# Dedup PATH so later prepends don't re-order earlier entries. Kept in sync
+# with dot_config/zsh/dot_zshrc.tmpl:1.
+typeset -U path PATH
+
+# Volta — Node toolchain manager. Exported here (not just in .zshrc) so
+# non-interactive shells (IDE tasks, git hooks) also resolve node/npm.
+if [[ -d $HOME/.volta ]]; then
+    export VOLTA_HOME="$HOME/.volta"
+    export PATH="$VOLTA_HOME/bin:$PATH"
+fi
+
+# Yarn Switch — sourced AFTER Volta so ~/.yarn/switch/bin sits AHEAD of
+# ~/.volta/bin on PATH. That ordering is what makes `yarn` resolve to Switch
+# instead of Volta's shim. The env file is a single PATH prepend.
+if [[ -s $HOME/.yarn/switch/env ]]; then
+    source "$HOME/.yarn/switch/env"
+fi

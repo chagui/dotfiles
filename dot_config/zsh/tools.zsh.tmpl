@@ -88,7 +88,14 @@ if which zoxide &>/dev/null; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
 
-if [[ -d $HOME/.volta ]]; then
-    export VOLTA_HOME="$HOME/.volta"
+# Re-assert Yarn Switch + Volta PATH ordering. dot_zshenv already puts them
+# ahead of system PATH for non-interactive shells, but in interactive shells
+# `eval $(brew shellenv)` in dot_zshrc.tmpl prepends /opt/homebrew/bin, which
+# slots /opt/homebrew/bin/node ahead of Volta's shim. tools.zsh is sourced as
+# the last line of .zshrc, so re-prepending here survives startup.
+if [[ -n ${VOLTA_HOME-} ]]; then
     export PATH="$VOLTA_HOME/bin:$PATH"
+fi
+if [[ -s $HOME/.yarn/switch/env ]]; then
+    source "$HOME/.yarn/switch/env"
 fi

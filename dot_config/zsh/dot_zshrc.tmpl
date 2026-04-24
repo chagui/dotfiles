@@ -87,6 +87,7 @@ bindkey "^J" backward-kill-line
 # load custom functions
 fpath+="$ZCONFDIR/functions"
 autoload -Uz tldr-fzf
+autoload -Uz volta-yarn-cleanup
 
 {{- if eq .chezmoi.os "darwin" }}
 fpath+="$(brew --prefix)/share/zsh/site-functions"

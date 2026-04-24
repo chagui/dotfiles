@@ -1,0 +1,13 @@
+# Remove Volta-owned yarn/yarnpkg shims that race with Yarn Switch on PATH.
+# Volta recreates these on every `volta install node@X`, so re-run as needed.
+local removed=0 p d
+for p in "$HOME/.volta/bin/yarn" "$HOME/.volta/bin/yarnpkg"; do
+    [[ -e "$p" || -L "$p" ]] && rm -f "$p" && removed=$((removed + 1))
+done
+for d in "$HOME"/.volta/tools/image/node/*/bin; do
+    [[ -d "$d" ]] || continue
+    for p in "$d/yarn" "$d/yarnpkg"; do
+        [[ -e "$p" || -L "$p" ]] && rm -f "$p" && removed=$((removed + 1))
+    done
+done
+echo "volta-yarn-cleanup: removed $removed stray yarn/yarnpkg entries"
