@@ -4,7 +4,8 @@ if not ok then
 end
 
 catppuccin.setup({
-    flavor = "macchiato",
+    flavour = "macchiato",
+    transparent_background = true,
     integrations = {
         cmp = true,
         flash = true,
