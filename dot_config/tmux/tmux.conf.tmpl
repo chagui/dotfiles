@@ -50,6 +50,13 @@ set -sa terminal-overrides ",xterm*:Tc"
 #set -ag terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # colored underscores
 #set -ag terminal-overrides ",alacritty:RGB"
 
+# Claude Code: pass through OSC sequences (notifications, progress bar) and
+# distinguish Shift+Enter from plain Enter so newline insertion works.
+# https://code.claude.com/docs/en/terminal-config#configure-tmux
+set -g allow-passthrough on
+set -s extended-keys on
+set -as terminal-features 'xterm*:extkeys'
+
 # index from 1 instead of 0
 set -g base-index 1
 setw -g pane-base-index 1
