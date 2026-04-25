@@ -1,0 +1,3 @@
+[default.extend-words]
+# noice is a Neovim plugin name, not a typo
+noice = "noice"

@@ -38,6 +38,11 @@ utils.inoremap("kj", "<Esc>")
 utils.nmap("∆", "<Cmd>move .+1<CR>==")
 utils.nmap("˚", "<Cmd>move .-2<CR>==")
 
+-- Restart
+vim.keymap.set("n", "<leader>re", "<cmd>restart<cr>", {
+    desc = "Restart Neovim (:restart)",
+})
+
 -- Git hotkeys
 utils.map("<C-g>f", "<Cmd>GFiles<CR>")
 utils.nmap("<leader>gs", "<Cmd>Git<CR>", { desc = "Git status" })
