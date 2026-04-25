@@ -1,3 +1,15 @@
+-- vim ui2
+require("vim._core.ui2").enable({
+    enable = true,
+    msg = {
+        target = "cmd", -- options: cmd(classic), msg(folke/noice.nvim-style popup)
+        pager = { height = 1 },
+        msg = { height = 0.5, timeout = 4500 },
+        dialog = { height = 0.5 },
+        cmd = { height = 0.5 },
+    },
+})
+
 require("user.options")
 
 -- When running in VSCode, avoid plugins that duplicate VSCode features
