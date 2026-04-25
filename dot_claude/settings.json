@@ -12,6 +12,11 @@
   },
   "model": "opus[1m]",
   "effortLevel": "high",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 1
+  },
   "permissions": {
     "allow": [
       "Bash(awk:*)",
