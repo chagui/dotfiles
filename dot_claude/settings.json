@@ -17,6 +17,15 @@
     "command": "~/.claude/statusline.sh",
     "padding": 1
   },
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          { "type": "command", "command": "afplay /System/Library/Sounds/Glass.aiff" }
+        ]
+      }
+    ]
+  },
   "permissions": {
     "allow": [
       "Bash(awk:*)",
