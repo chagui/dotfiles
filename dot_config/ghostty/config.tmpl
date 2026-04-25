@@ -1,0 +1,44 @@
+# Window
+background-opacity = 0.7
+background-blur-radius = 20
+macos-titlebar-style = tabs
+window-padding-x = 6
+window-padding-y = 6
+# Manually resize once (green button, or Rectangle/Spectacle); the layout
+# is preserved across launches by window-save-state.
+window-save-state = always
+
+# Behavior
+copy-on-select = clipboard
+mouse-hide-while-typing = true
+
+# Send Esc-prefix on left option so emacs-style bindings reach the shell
+# (e.g. fzf-cd-widget on Alt+C). Right option still composes accents.
+macos-option-as-alt = left
+
+# Keybindings
+# Most defaults already match tmux muscle memory:
+#   Cmd+T = new tab, Cmd+W = close, Cmd+D = split right,
+#   Cmd+Shift+D = split down, Cmd+1-9 = goto tab
+
+# Navigate splits with Cmd+Arrow (default is Cmd+Alt+Arrow)
+keybind = super+left=goto_split:left
+keybind = super+down=goto_split:bottom
+keybind = super+up=goto_split:top
+keybind = super+right=goto_split:right
+
+# Resize splits with Cmd+Shift+Arrow (default is Cmd+Ctrl+Arrow)
+keybind = super+shift+left=resize_split:left,10
+keybind = super+shift+down=resize_split:down,10
+keybind = super+shift+up=resize_split:up,10
+keybind = super+shift+right=resize_split:right,10
+
+# Zoom split with Cmd+Z (default is Cmd+Shift+Enter)
+keybind = super+z=toggle_split_zoom
+
+# Rename tab with Cmd+, (like tmux rename-window)
+keybind = super+comma=set_tab_title:
+
+# Cycle tabs with Ctrl+Tab / Ctrl+Shift+Tab
+keybind = ctrl+tab=next_tab
+keybind = ctrl+shift+tab=previous_tab
