@@ -46,6 +46,18 @@ repos:
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
 
+  # Skips silently if `ghostty` is not on PATH (e.g. on Linux dev boxes).
+  # Note: validates the .tmpl as-is. The file currently has no Go-template
+  # syntax, so chezmoi passes it through unchanged. If templating is added
+  # later, render via `chezmoi execute-template` before validating.
+  - repo: local
+    hooks:
+      - id: ghostty-validate-config
+        name: validate ghostty config
+        entry: bash -c 'command -v ghostty >/dev/null || exit 0; for f in "$@"; do ghostty +validate-config --config-file="$f" || exit 1; done' --
+        language: system
+        files: '^dot_config/ghostty/.*\.tmpl$'
+
   - repo: meta
     hooks:
       - id: check-hooks-apply
