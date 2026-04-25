@@ -6,6 +6,13 @@ end
 catppuccin.setup({
     flavour = "macchiato",
     transparent_background = true,
+    -- Default LineNr (overlay0) washes out against the transparent background.
+    custom_highlights = function(colors)
+        return {
+            LineNr = { fg = colors.overlay2 },
+            CursorLineNr = { fg = colors.peach, bold = true },
+        }
+    end,
     integrations = {
         cmp = true,
         flash = true,
