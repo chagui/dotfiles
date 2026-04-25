@@ -3,6 +3,11 @@
     url = "https://raw.githubusercontent.com/junegunn/fzf/refs/heads/master/shell/completion.zsh"
     refreshPeriod = "168h"  # 1 week
 
+[".config/zsh/key-bindings.zsh"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/junegunn/fzf/refs/heads/master/shell/key-bindings.zsh"
+    refreshPeriod = "168h"  # 1 week
+
 [".config/zsh/fzf-git.sh"]
     type = "file"
     url = "https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh"
