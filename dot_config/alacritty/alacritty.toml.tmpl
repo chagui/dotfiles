@@ -84,6 +84,10 @@ startup_mode = "Maximized"
 # window title visible) but lets opacity/blur bleed through it for a
 # uniform frosted-glass look across the whole window.
 decorations = "Transparent"
+# Left option sends Esc-prefix so emacs-style Alt-bindings reach the
+# shell (e.g. fzf-cd-widget on Alt+C). Right option still composes
+# accents.
+option_as_alt = "OnlyLeft"
 {{- else }}
 decorations = "Full"
 {{- end }}
