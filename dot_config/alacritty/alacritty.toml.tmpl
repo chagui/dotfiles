@@ -2,6 +2,12 @@
 import = ["~/.config/alacritty/catppuccin-macchiato.toml", "~/.config/alacritty/key_bindings.toml"]
 live_config_reload = true
 
+[colors]
+# Apply window.opacity to every cell, not just those using the default
+# background. Without this, tmux's themed pane backgrounds (status bar,
+# dim-inactive-panes) paint opaque and defeat the see-through effect.
+transparent_background_colors = true
+
 [env]
 TERM = "xterm-256color"
 
@@ -69,9 +75,22 @@ args = [
 ]
 
 [window]
-decorations = "none"
-startup_mode = "Fullscreen"
+{{- if eq .chezmoi.os "darwin" }}
+# Buttonless keeps the native macOS title-bar area (so opacity/blur
+# bleed through it for a uniform frosted-glass look) but hides the
+# traffic-light buttons, freeing the top-left for tmux's status bar.
+decorations = "Buttonless"
+# Left option sends Esc-prefix so emacs-style Alt-bindings reach the
+# shell (e.g. fzf-cd-widget on Alt+C). Right option still composes
+# accents.
+option_as_alt = "OnlyLeft"
+{{- else }}
+decorations = "Full"
+{{- end }}
+opacity = 0.7
+# blur only takes effect on macOS / KDE Wayland; harmless no-op elsewhere
+blur = true
 
 [window.padding]
-x = 6
-y = 6
+x = 3
+y = 3
