@@ -75,10 +75,6 @@ args = [
 ]
 
 [window]
-# Maximized fills the screen minus menubar/dock, leaving a small edge
-# gap — preferable to Fullscreen variants which take their own macOS
-# Space and disrupt cmd+tab flow.
-startup_mode = "Maximized"
 {{- if eq .chezmoi.os "darwin" }}
 # Transparent keeps the native macOS title bar (traffic lights and
 # window title visible) but lets opacity/blur bleed through it for a
