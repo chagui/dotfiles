@@ -66,13 +66,6 @@ set -g renumber-windows on
 # tmux messages are displayed for 4 seconds
 set -g display-time 4000
 
-# pre-configured sessions
-if-shell '[ "$(tmux has-session -t dev 2>/dev/null && echo "exists")" != "exists" ]' {
-    new-session -s dev -n dotfiles
-    send-keys "cd ~/.local/share/chezmoi" C-m
-    split-window -v -l 30% -t dev:dotfiles -c "#{pane_current_path}"
-}
-
 # Plugin Configuration
 set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.local/share/tmux/plugins"
 set -g @plugin 'tmux-plugins/tpm'
