@@ -69,8 +69,15 @@ args = [
 ]
 
 [window]
+{{- if eq .chezmoi.os "darwin" }}
+# SimpleFullscreen covers the screen but stays in the current macOS
+# Space — unlike native Fullscreen which takes its own Space and
+# breaks cmd+tab flow.
+startup_mode = "SimpleFullscreen"
+{{- else }}
+startup_mode = "Maximized"
+{{- end }}
 decorations = "none"
-startup_mode = "Fullscreen"
 opacity = 0.7
 # blur only takes effect on macOS / KDE Wayland; harmless no-op elsewhere
 blur = true
