@@ -2,6 +2,12 @@
 import = ["~/.config/alacritty/catppuccin-macchiato.toml", "~/.config/alacritty/key_bindings.toml"]
 live_config_reload = true
 
+[colors]
+# Apply window.opacity to every cell, not just those using the default
+# background. Without this, tmux's themed pane backgrounds (status bar,
+# dim-inactive-panes) paint opaque and defeat the see-through effect.
+transparent_background_colors = true
+
 [env]
 TERM = "xterm-256color"
 
