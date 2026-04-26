@@ -35,15 +35,10 @@ export HISTSIZE=10050000  # due to HIST_EXPIRE_DUPS_FIRST
 export SAVEHIST=10000000
 export HISTFILE="${XDG_STATE_HOME:-$HOME/.state}/zsh/history"
 
-{{- if eq .chezmoi.os "darwin" }}
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-# Skipped under Ghostty so it doesn't race with starship.
-if [[ "$TERM_PROGRAM" != "ghostty" ]] && [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-{{- end }}
+source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 [ -s "$ZCONFDIR/.aliases" ] && source "$ZCONFDIR/.aliases"
 [ -s "$ZCONFDIR/.functions" ] && source "$ZCONFDIR/.functions"
@@ -57,19 +52,8 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
 [ -s "$ZDOTDIR/key-bindings.zsh" ] && . "$ZDOTDIR/key-bindings.zsh"
 [ -s "$ZDOTDIR/fzf-completions.zsh" ] && . "$ZDOTDIR/fzf-completions.zsh"
 
-{{- if eq .chezmoi.os "darwin" }}
-# Prompt theme: starship in Ghostty (incl. tmux launched from Ghostty),
-# powerlevel10k everywhere else (Alacritty, Apple Terminal, iTerm, ...).
-if [[ "$TERM_PROGRAM" == "ghostty" ]] && command -v starship >/dev/null 2>&1; then
-    eval "$(starship init zsh)"
-else
-    source "{{ $brewPrefix }}/share/powerlevel10k/powerlevel10k.zsh-theme"
-    [ -s "$ZCONFDIR/.p10k.zsh" ] && . "$ZCONFDIR/.p10k.zsh"
-fi
-{{- else if eq .chezmoi.os "linux" }}
-# Prompt theme
-command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
-{{- end }}
+source "{{ $brewPrefix }}/share/powerlevel10k/powerlevel10k.zsh-theme"
+[ -s "$ZCONFDIR/.p10k.zsh" ] && . "$ZCONFDIR/.p10k.zsh"
 
 {{ if eq .chezmoi.os "darwin" }}
 # some brew packages are installed in sbin (e.g. mtr)
