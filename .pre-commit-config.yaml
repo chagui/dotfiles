@@ -23,7 +23,7 @@ repos:
         exclude: '\.tmpl$|p10k\.zsh$'
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1
+    rev: v1.45.1
     hooks:
       - id: typos
         # Same file: p10k's generated tokens trip typos' English-typo
