@@ -1,4 +1,15 @@
 {
+  "agent_servers": {
+    "gemini": {
+      "type": "registry"
+    },
+    "codex-acp": {
+      "type": "registry"
+    },
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
   "vim_mode": true,
   "base_keymap": "JetBrains",
   "icon_theme": {
@@ -11,16 +22,13 @@
   "theme": {
     "mode": "system",
     "light": "Ayu Light",
-    "dark": "Ayu Dark"
+    "dark": "Catppuccin Macchiato - No Italics"
   },
   "context_servers": {
     "atlassian": {
-      "source": "custom",
       "enabled": true,
       "command": "mcp-remote",
-      "args": [
-        "https://mcp.atlassian.com/v1/sse"
-      ]
+      "args": ["https://mcp.atlassian.com/v1/sse"]
     }
   }
 }
