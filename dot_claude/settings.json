@@ -441,9 +441,13 @@
       "WebFetch(domain:prometheus.io)",
 
       "WebFetch(domain:bazel.build)",
+      "WebFetch(domain:blog.bazel.build)",
+      "WebFetch(domain:blog.engflow.com)",
       "WebFetch(domain:buf.build)",
       "WebFetch(domain:blog.aspect.build)",
+      "WebFetch(domain:jayconrod.com)",
       "WebFetch(domain:registry.bazel.build)",
+      "WebFetch(domain:reproducible-builds.org)",
       "WebFetch(domain:developer.hashicorp.com)",
       "WebFetch(domain:docs.ansible.com)",
       "WebFetch(domain:docs.aws.amazon.com)",
