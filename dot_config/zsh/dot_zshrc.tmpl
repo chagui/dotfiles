@@ -44,6 +44,7 @@ source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 [ -s "$ZCONFDIR/.functions" ] && source "$ZCONFDIR/.functions"
 [ -s "$ZCONFDIR/.local" ] && . "$ZCONFDIR/.local"
 [ -s "$ZCONFDIR/fzf-git.sh" ] && . "$ZCONFDIR/fzf-git.sh"
+[ -s "$ZCONFDIR/fzf-git-overrides.zsh" ] && . "$ZCONFDIR/fzf-git-overrides.zsh"
 
 export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude '.git'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type file"
