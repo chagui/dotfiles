@@ -1,0 +1,26 @@
+[
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space e": "pane::RevealInProjectPanel"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "space e": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "!AcpThread > Editor && mode == full",
+    "bindings": {
+      "cmd-!": "pane::RevealInProjectPanel"
+    }
+  },
+  {
+    "context": "!AcpThread > Editor && mode == full",
+    "unbind": {
+      "cmd-shift-e": "pane::RevealInProjectPanel"
+    }
+  }
+]
