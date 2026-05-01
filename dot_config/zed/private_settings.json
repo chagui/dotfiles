@@ -1,0 +1,75 @@
+{
+  "agent_servers": {
+    "gemini": {
+      "type": "registry"
+    },
+    "codex-acp": {
+      "type": "registry"
+    },
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
+  "vim_mode": true,
+  "base_keymap": "JetBrains",
+  "load_direnv": "disabled",
+  "soft_wrap": "bounded",
+  "double_click_in_multibuffer": "open",
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 400,
+    },
+  },
+  "search": {
+    "center_on_match": true,
+  },
+  "minimap": {
+    "show": "always",
+  },
+  "toolbar": {
+    "code_actions": true,
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+    },
+  },
+  "tabs": {
+    "show_diagnostics": "errors",
+    "file_icons": true,
+    "git_status": true,
+  },
+  "git": {
+    "inline_blame": {
+      "show_commit_summary": true,
+    },
+  },
+  "debugger": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "right",
+  },
+  "title_bar": {
+    "show_sign_in": false,
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "VSCode Icons for Zed (Dark)",
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "dark",
+    "light": "Ayu Light",
+    "dark": "Catppuccin Macchiato - No Italics",
+  },
+  "context_servers": {
+    "atlassian": {
+      "enabled": true,
+      "command": "mcp-remote",
+      "args": ["https://mcp.atlassian.com/v1/sse"],
+    },
+  },
+}

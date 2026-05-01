@@ -53,6 +53,10 @@ repos:
       - id: check-added-large-files
       - id: check-case-conflict
       - id: check-json
+        # Zed reads its config as JSONC (comments + trailing commas); the
+        # strict json parser pre-commit ships rejects both. Excluded
+        # narrowly so other JSON files in the repo stay validated.
+        exclude: '^dot_config/zed/.*\.json$'
       - id: check-merge-conflict
       - id: check-shebang-scripts-are-executable
         exclude: '^\.chezmoiscripts/'
