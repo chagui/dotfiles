@@ -1,6 +1,14 @@
 #!/bin/bash
 set -eufo pipefail
 
+# XDG Base Directory defaults — strict mode (set -u) would otherwise fail
+# on a fresh shell where these aren't yet exported. Matches the pattern in
+# run_once_after_10_install_python_toolchains.sh.
+: "${XDG_DATA_HOME:=$HOME/.local/share}"
+: "${XDG_CONFIG_HOME:=$HOME/.config}"
+: "${XDG_CACHE_HOME:=$HOME/.cache}"
+: "${XDG_STATE_HOME:=$HOME/.local/state}"
+
 mkdir -p "$XDG_DATA_HOME/zsh/completions"
 
 # shellcheck disable=1054,1083
@@ -202,6 +210,12 @@ cargo binstall --locked --no-confirm \
 
 # shellcheck disable=1054,1083
 {{- if eq .chezmoi.os "linux" }}
+# Refresh apt indices once. Bootstraps on fresh systems (CI runners,
+# cleaned containers) often have stale or missing /var/lib/apt/lists.
+if ! command -v rsync &>/dev/null || ! command -v unzip &>/dev/null; then
+    sudo apt-get update -qq
+fi
+
 # rsync ships on macOS but not on minimal Linux images.
 if ! command -v rsync &>/dev/null; then
     echo "📦  Installing rsync"
@@ -218,10 +232,13 @@ if ! command -v nvim &>/dev/null; then
 fi
 
 # fzf is Go (not on crates.io); fetch the upstream release into ~/.local/bin.
+# $GITHUB_TOKEN is required to avoid the unauthenticated 60/hr API rate
+# limit; with set -u, an unset token fails fast with a clear error.
 if ! command -v fzf &>/dev/null; then
     echo "📦  Installing fzf"
     mkdir -p "$HOME/.local/bin"
-    FZF_VERSION=$(curl -fsSL https://api.github.com/repos/junegunn/fzf/releases/latest \
+    FZF_VERSION=$(curl -fsSL -H "Authorization: Bearer $GITHUB_TOKEN" \
+        https://api.github.com/repos/junegunn/fzf/releases/latest \
         | grep -m1 '"tag_name":' | sed 's/.*"v\(.*\)".*/\1/')
     curl -fsSL "https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tar.gz" \
         | tar -xz -C "$HOME/.local/bin"
