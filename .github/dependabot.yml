@@ -1,0 +1,23 @@
+version: 2
+updates:
+  # Pin and bump GitHub Actions referenced by tag (actions/checkout@v4 etc.).
+  # Mirrors what pre-commit-autoupdate.yml does for pre-commit hooks.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: "chore(actions)"
+    labels:
+      - dependencies
+
+  # The bootstrap test image (tests/bootstrap/Dockerfile) pins ubuntu:26.04;
+  # bump it when a newer LTS lands.
+  - package-ecosystem: docker
+    directory: "/tests/bootstrap"
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: "chore(docker)"
+    labels:
+      - dependencies

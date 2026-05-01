@@ -2,15 +2,21 @@
 # Pinned to amd64 because the bootstrap downloads x86_64-linux tarballs for
 # nvim/fzf/dog. On Apple Silicon hosts this runs under Rosetta (slower, but
 # the URLs would 404 against arm64).
+# hadolint ignore=DL3029
 FROM --platform=linux/amd64 ubuntu:26.04
 
 ARG DEBIAN_FRONTEND=noninteractive
+
+# Pipefail so curl|sh failures (next RUN block) propagate instead of
+# silently exiting 0 from sh after curl errored.
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Minimal prerequisites:
 #   - curl, ca-certificates: chezmoi installer + curl-piped bootstraps
 #   - git: chezmoi externals + repo operations
 #   - sudo: the run_once init script calls `sudo apt-get install`
 #   - zsh: bootstrap targets zsh as login shell
+# hadolint ignore=DL3008
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
