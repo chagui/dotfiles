@@ -3,9 +3,12 @@
     editor = nvim
     autocrlf = input
     pager = delta
-    # todo:
-    # usebuiltinfsmonitor = true
-    # untrackedcache = true
+    # Speed up `git status` (and anything that calls it, e.g. fzf-git.sh's
+    # Ctrl-G Ctrl-F picker) on large working trees. fsmonitor subscribes to
+    # OS file-change events to skip rescanning unchanged paths;
+    # untrackedCache memoises the untracked-file scan between runs.
+    fsmonitor = true
+    untrackedCache = true
 [interactive]
     diffFilter = delta --color-only --features='interactive decorations nord-aurora-line-numbers'
     singlekey = true
