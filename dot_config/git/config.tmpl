@@ -40,6 +40,11 @@
     ds = diff --staged
     dt = difftool
     dump = cat-file -p
+
+    # hunk — terminal diff viewer (opt-in; delta remains the default pager)
+    hd = !hunk diff
+    hs = !hunk show
+    hp = !hunk pager
     pusho = !git push --set-upstream origin `git cb`
     root = rev-parse --show-toplevel
     st = status
