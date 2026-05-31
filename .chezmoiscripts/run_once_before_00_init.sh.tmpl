@@ -43,7 +43,6 @@ brew "git"
 brew "aws-vault"
 brew "awscli"
 brew "bash"
-brew "cargo-binstall"
 brew "bazelisk"
 brew "buf"
 brew "buildifier"
@@ -55,7 +54,6 @@ brew "coreutils"
 brew "crane"
 brew "curl"
 brew "dive"
-brew "dog"
 brew "ffmpeg"
 brew "fzf"
 brew "gcc"
@@ -182,8 +180,6 @@ fi
 # shellcheck disable=SC1091
 source "$HOME/.cargo/env"
 
-# cargo-binstall comes from the Brewfile on macOS; on Linux bootstrap it from
-# the upstream installer.
 if ! command -v cargo-binstall &>/dev/null; then
     echo "📦  Installing cargo-binstall"
     curl -L --proto '=https' --tlsv1.2 -sSf \
@@ -198,6 +194,7 @@ echo "📦  Installing Rust CLIs via cargo binstall"
 cargo binstall --locked --no-confirm \
     bat \
     broot \
+    dns-doge \
     du-dust \
     eza \
     fd-find \
@@ -244,19 +241,7 @@ if ! command -v fzf &>/dev/null; then
         | tar -xz -C "$HOME/.local/bin"
 fi
 
-# dog (DNS client) isn't on crates.io; fetch the upstream release. Only v0.1.0
-# exists — the project has been dormant since 2020.
-if ! command -v dog &>/dev/null; then
-    echo "📦  Installing dog"
-    command -v unzip &>/dev/null || sudo apt-get install -y -qq unzip
-    mkdir -p "$HOME/.local/bin"
-    tmp=$(mktemp -d)
-    curl -fsSL "https://github.com/ogham/dog/releases/download/v0.1.0/dog-v0.1.0-x86_64-unknown-linux-gnu.zip" \
-        -o "$tmp/dog.zip"
-    unzip -q "$tmp/dog.zip" -d "$tmp"
-    install -m 0755 "$tmp/bin/dog" "$HOME/.local/bin/dog"
-    rm -rf "$tmp"
-fi
+
 
 # shellcheck disable=1054,1083
 {{ end -}}
