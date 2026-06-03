@@ -49,7 +49,7 @@
     root = rev-parse --show-toplevel
     st = status
     stat = diff --stat
-    tidy = !git fetch --all --prune --multiple --progress && git gc --prune=now && git pull
+    tidy = !git fetch --all --prune --multiple --progress && git maintenance run && git pull
     type = cat-file -t
 
     # https://git-scm.com/docs/git-worktree
