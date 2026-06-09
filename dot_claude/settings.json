@@ -540,6 +540,11 @@
       "Bash(git clean*)",
       "Bash(git push *)",
       "Bash(git reset --hard*)",
+      "Bash(gt land*)",
+      "Bash(gt merge*)",
+      "Bash(gt push*)",
+      "Bash(gt submit*)",
+      "Bash(gt sync*)",
       "Bash(rm *)",
       "Bash(sudo *)"
     ]
