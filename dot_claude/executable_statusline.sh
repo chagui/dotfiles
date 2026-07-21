@@ -27,9 +27,11 @@ case "$MODEL_ID" in *1m*) MODEL="${MODEL} 1M" ;; esac
 
 # Git state cached for 5s, keyed on session_id so concurrent sessions don't collide.
 # stat -f %m is macOS; fall back to -c %Y on Linux.
-CACHE="/tmp/claude-statusline-git-$SESSION_ID"
-mtime=$(stat -f %m "$CACHE" 2>/dev/null || stat -c %Y "$CACHE" 2>/dev/null || echo 0)
+CACHE_DIR="/tmp/claude-statusline"
+CACHE="$CACHE_DIR/git-$SESSION_ID"
+mtime=$(/usr/bin/stat -f %m "$CACHE" 2>/dev/null || stat -c %Y "$CACHE" 2>/dev/null || echo 0)
 if [ ! -f "$CACHE" ] || [ $(($(date +%s) - mtime)) -gt 5 ]; then
+    mkdir -p "$CACHE_DIR"
     if git rev-parse --git-dir >/dev/null 2>&1; then
         BRANCH=$(git branch --show-current 2>/dev/null)
         STAGED=$(git diff --cached --numstat 2>/dev/null | wc -l | tr -d ' ')
