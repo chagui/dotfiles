@@ -9,6 +9,7 @@ disable = [
     "ruby_gems",
     "system",
     "vim",
+    "xcodes",
 ]
 
 [commands]
