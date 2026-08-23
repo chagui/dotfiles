@@ -38,7 +38,9 @@ export HISTFILE="${XDG_STATE_HOME:-$HOME/.state}/zsh/history"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 [ -s "$ZCONFDIR/.aliases" ] && source "$ZCONFDIR/.aliases"
 [ -s "$ZCONFDIR/.functions" ] && source "$ZCONFDIR/.functions"
