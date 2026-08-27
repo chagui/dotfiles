@@ -22,7 +22,7 @@ jobs:
   smoke:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install chezmoi, shellcheck, shfmt
         run: |
           curl -fsLS https://get.chezmoi.io | sudo sh -s -- -b /usr/local/bin
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Run e2e-linux
         run: bash tests/bootstrap/e2e-linux.sh
 
@@ -48,7 +48,7 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install chezmoi
         run: brew install chezmoi
       - name: Run e2e-macos
