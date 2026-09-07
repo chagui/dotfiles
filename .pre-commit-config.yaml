@@ -1,7 +1,7 @@
 default_stages: [pre-commit]
 repos:
   - repo: https://github.com/JohnnyMorganz/StyLua
-    rev: v2.4.1
+    rev: v2.5.2
     hooks:
       - id: stylua
 
@@ -11,7 +11,7 @@ repos:
   # reformats. Excluded narrowly; other hand-written .zsh files in this repo
   # stay POSIX/bash-compatible and remain in scope.
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.11.0.1
+    rev: v0.11.0.1-1
     hooks:
       - id: shellcheck
         exclude: '\.tmpl$|p10k\.zsh$'
@@ -23,7 +23,7 @@ repos:
         exclude: '\.tmpl$|p10k\.zsh$'
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1
+    rev: v1.50.1
     hooks:
       - id: typos
         # Same file: p10k's generated tokens trip typos' English-typo
@@ -42,7 +42,7 @@ repos:
       - id: actionlint
 
   - repo: https://github.com/AleksaC/hadolint-py
-    rev: v2.14.0
+    rev: v2.15.1
     hooks:
       - id: hadolint
 
