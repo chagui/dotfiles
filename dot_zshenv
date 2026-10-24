@@ -6,6 +6,13 @@ export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 # with dot_config/zsh/dot_zshrc.tmpl:1.
 typeset -U path PATH
 
+# Nix — puts ~/.nix-profile/bin (Home Manager packages, see nix/) on PATH.
+# Sourced here because the installer only hooks the system zshrc, which
+# non-interactive shells skip. The script guards against double sourcing.
+if [[ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+    source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+fi
+
 # Volta — Node toolchain manager. Exported here (not just in .zshrc) so
 # non-interactive shells (IDE tasks, git hooks) also resolve node/npm.
 if [[ -d $HOME/.volta ]]; then

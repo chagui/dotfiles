@@ -84,7 +84,7 @@ docker run --rm \
         echo "==> Second apply (idempotency)"
         second=$(chezmoi apply --source "$SOURCE" 2>&1)
         echo "$second"
-        if echo "$second" | grep -qE "(Installing Python|Installing Claude|Installing packages from|Installing Homebrew|🐍 Installing|🍺)"; then
+        if echo "$second" | grep -qE "(Installing Python|Installing Claude|Installing Nix|Applying Home Manager|Installing packages from|Installing Homebrew|🐍 Installing|🍺)"; then
             echo "FAIL: run_once_* scripts re-executed on second apply"
             exit 1
         fi

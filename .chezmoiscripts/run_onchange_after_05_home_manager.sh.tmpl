@@ -1,0 +1,27 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+set -eufo pipefail
+
+# Installs the packages declared in nix/ through Home Manager. chezmoi re-runs
+# this script whenever one of these hashes changes:
+# flake.nix  {{ include "nix/flake.nix" | sha256sum }}
+# flake.lock {{ include "nix/flake.lock" | sha256sum }}
+# home.nix   {{ include "nix/home.nix" | sha256sum }}
+
+# chezmoi spawns scripts with the parent's environment, which on a fresh
+# machine predates the Nix install in run_once_before_00_init.sh.
+# shellcheck disable=SC1091
+source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+
+# nix/home.nix reads $USER (via --impure), and so does home-manager itself;
+# containers often leave it unset.
+export USER="${USER:-$(id -un)}"
+
+# `path:` instead of a git flake reference: nix would otherwise only see files
+# tracked by git, silently dropping a new, not-yet-added nix/*.nix.
+FLAKE="path:{{ .chezmoi.sourceDir }}/nix"
+SYSTEM="{{ if eq .chezmoi.arch "arm64" }}aarch64{{ else }}x86_64{{ end }}-linux"
+
+echo "❄️   Applying Home Manager packages ($SYSTEM)"
+nix run "$FLAKE#home-manager" -- switch --impure -b hm-backup --flake "$FLAKE#$SYSTEM"
+{{ end -}}

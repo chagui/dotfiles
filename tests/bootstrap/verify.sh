@@ -9,7 +9,7 @@
 
 set -uo pipefail
 
-export PATH="$HOME/.cargo/bin:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/.nix-profile/bin:$HOME/.cargo/bin:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
 
 OS=$(uname -s)
 fail=0
@@ -36,6 +36,19 @@ check_runs() {
     fi
 }
 
+# Asserts the command resolves into the Nix store, i.e. it came from the
+# Home Manager profile rather than a leftover tarball or cargo install.
+check_nix_cmd() {
+    local cmd=$1 resolved
+    resolved=$(readlink -f "$(command -v "$cmd" 2>/dev/null)" 2>/dev/null)
+    if [[ $resolved == /nix/store/* ]]; then
+        printf '  PASS  %-20s -> %s\n' "$cmd" "$resolved"
+    else
+        printf '  FAIL  %-20s not from /nix/store (%s)\n' "$cmd" "${resolved:-missing}"
+        fail=$((fail + 1))
+    fi
+}
+
 check_file() {
     local f=$1
     if [ -f "$f" ]; then
@@ -50,15 +63,25 @@ echo "== Rust toolchain =="
 for c in cargo rustc cargo-binstall; do check_cmd "$c"; done
 
 echo "== Rust CLIs (cargo-binstall'd) =="
-for c in bat eza rg fd delta starship zoxide dust broot doge tldr topgrade; do
+for c in bat eza rg fd delta starship zoxide dust broot doge tldr; do
     check_cmd "$c"
 done
 
 echo "== Bootstrap-installed binaries =="
-check_cmd nvim
-check_runs nvim
 check_cmd fzf
 check_runs fzf
+
+if [ "$OS" = "Linux" ]; then
+    echo "== Linux: Home Manager packages (nix/home.nix) =="
+    for c in nvim topgrade claude codex; do
+        check_nix_cmd "$c"
+        check_runs "$c"
+    done
+else
+    check_cmd nvim
+    check_runs nvim
+    check_cmd topgrade
+fi
 
 if [ "$OS" = "Linux" ]; then
     echo "== Linux: tarball + apt =="
