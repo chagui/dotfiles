@@ -67,6 +67,8 @@ if [ "$OS" = "Linux" ]; then
 elif [ "$OS" = "Darwin" ]; then
     echo "== macOS: brew tools =="
     for c in brew gh tmux jq; do check_cmd "$c"; done
+    check_cmd tart
+    check_runs tart
 fi
 
 echo "== Python =="

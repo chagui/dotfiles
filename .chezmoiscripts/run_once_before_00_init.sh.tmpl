@@ -24,7 +24,6 @@ fi
 echo "Installing packages from Brewfile..."
 brew bundle --file=/dev/stdin <<EOF
 tap "1password/tap"
-tap "cirruslabs/cli"
 tap "derailed/k9s"
 tap "hashicorp/tap"
 tap "romkatv/powerlevel10k"
@@ -141,7 +140,6 @@ brew "zsh-autosuggestions"
 brew "zsh-history-substring-search"
 brew "zsh-syntax-highlighting"
 brew "gitmux"
-brew "cirruslabs/cli/tart", trusted: true
 brew "derailed/k9s/k9s", trusted: true
 brew "hashicorp/tap/packer", trusted: true
 brew "terraform-docs/tap/terraform-docs", trusted: true
@@ -163,6 +161,21 @@ cask "sublime-text"
 cask "vanilla"
 cask "vlc"
 EOF
+
+# The upstream Homebrew formula uses syntax removed in Homebrew 7. Install
+# the official release archive instead (https://tart.run/quick-start/).
+# Keep the app bundle intact so macOS can find its provisioning profile.
+if ! command -v tart &>/dev/null; then
+    echo "📦  Installing Tart"
+    mkdir -p "$XDG_DATA_HOME/tart" "$HOME/.local/bin"
+    curl -fsSL https://github.com/cirruslabs/tart/releases/latest/download/tart.tar.gz \
+        | tar -xz -C "$XDG_DATA_HOME/tart"
+    cat > "$HOME/.local/bin/tart" <<'TART'
+#!/bin/sh
+exec "${XDG_DATA_HOME:-$HOME/.local/share}/tart/tart.app/Contents/MacOS/tart" "$@"
+TART
+    chmod +x "$HOME/.local/bin/tart"
+fi
 
 echo "Package installation completed."
 
