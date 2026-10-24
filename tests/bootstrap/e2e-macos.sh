@@ -20,6 +20,8 @@ source "$REPO_ROOT/tests/bootstrap/helpers/guard.sh"
 FAKE_HOME="${RUNNER_TEMP:-$(mktemp -d)}/fakehome"
 mkdir -p "$FAKE_HOME"
 export HOME="$FAKE_HOME"
+# As on Linux, keep the deployed HTTPS-to-SSH rewrite out of external clones.
+export GIT_CONFIG_GLOBAL=/dev/null
 
 echo "==> Using HOME=$HOME"
 
