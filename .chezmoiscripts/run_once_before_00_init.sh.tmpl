@@ -170,6 +170,19 @@ echo "Package installation completed."
 # shellcheck disable=1054,1083
 {{ end -}}
 
+# shellcheck disable=1054,1083
+{{- if eq .chezmoi.os "linux" }}
+# The cargo binstall compile fallback needs a C linker. It is hit on arm64,
+# where some crates (e.g. dns-doge) publish no aarch64 prebuilt.
+if ! command -v cc &>/dev/null; then
+    echo "📦  Installing build-essential"
+    sudo apt-get update -qq
+    sudo apt-get install -y -qq build-essential
+fi
+
+# shellcheck disable=1054,1083
+{{ end -}}
+
 # All platforms: bootstrap Rust toolchain so `cargo binstall` has a compile
 # fallback when no prebuilt binary exists for the host target.
 if ! command -v cargo &>/dev/null; then
