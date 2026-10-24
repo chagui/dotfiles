@@ -24,7 +24,6 @@ fi
 echo "Installing packages from Brewfile..."
 brew bundle --file=/dev/stdin <<EOF
 tap "1password/tap"
-tap "cirruslabs/cli"
 tap "derailed/k9s"
 tap "hashicorp/tap"
 tap "romkatv/powerlevel10k"
@@ -99,7 +98,7 @@ brew "lsd"
 brew "luarocks"
 brew "make"
 brew "most"
-brew "neofetch"
+brew "fastfetch"
 brew "neovim"
 brew "ollama"
 brew "parallel"
@@ -141,14 +140,13 @@ brew "zsh-autosuggestions"
 brew "zsh-history-substring-search"
 brew "zsh-syntax-highlighting"
 brew "gitmux"
-brew "cirruslabs/cli/tart"
-brew "derailed/k9s/k9s"
-brew "hashicorp/tap/packer"
-brew "terraform-docs/tap/terraform-docs"
-brew "withered-magic/brew/starpls"
-brew "withgraphite/tap/graphite"
+brew "derailed/k9s/k9s", trusted: true
+brew "hashicorp/tap/packer", trusted: true
+brew "terraform-docs/tap/terraform-docs", trusted: true
+brew "withered-magic/brew/starpls", trusted: true
+brew "withgraphite/tap/graphite", trusted: true
 cask "1password-cli"
-cask "alacritty"
+# The Alacritty cask is disabled by Homebrew's Gatekeeper policy.
 cask "aws-vault-binary"
 cask "betterdisplay"
 cask "brave-browser"
@@ -164,15 +162,44 @@ cask "vanilla"
 cask "vlc"
 EOF
 
+# The upstream Homebrew formula uses syntax removed in Homebrew 7. Install
+# the official release archive instead (https://tart.run/quick-start/).
+# Keep the app bundle intact so macOS can find its provisioning profile.
+if ! command -v tart &>/dev/null; then
+    echo "📦  Installing Tart"
+    mkdir -p "$XDG_DATA_HOME/tart" "$HOME/.local/bin"
+    curl -fsSL https://github.com/cirruslabs/tart/releases/latest/download/tart.tar.gz \
+        | tar -xz -C "$XDG_DATA_HOME/tart"
+    cat > "$HOME/.local/bin/tart" <<'TART'
+#!/bin/sh
+exec "${XDG_DATA_HOME:-$HOME/.local/share}/tart/tart.app/Contents/MacOS/tart" "$@"
+TART
+    chmod +x "$HOME/.local/bin/tart"
+fi
+
 echo "Package installation completed."
 
 
 # shellcheck disable=1054,1083
 {{ end -}}
 
+# shellcheck disable=1054,1083
+{{- if eq .chezmoi.os "linux" }}
+# The cargo binstall compile fallback needs a C linker. It is hit on arm64,
+# where some crates (e.g. dns-doge) publish no aarch64 prebuilt.
+if ! command -v cc &>/dev/null; then
+    echo "📦  Installing build-essential"
+    sudo apt-get update -qq
+    sudo apt-get install -y -qq build-essential
+fi
+
+# shellcheck disable=1054,1083
+{{ end -}}
+
 # All platforms: bootstrap Rust toolchain so `cargo binstall` has a compile
 # fallback when no prebuilt binary exists for the host target.
-if ! command -v cargo &>/dev/null; then
+# CI's fake home must get its own rustup environment even if cargo is on PATH.
+if ! command -v cargo &>/dev/null || [ ! -r "$HOME/.cargo/env" ]; then
     echo "🦀  Installing Rust toolchain"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
         | sh -s -- --default-toolchain stable --no-modify-path -y
@@ -219,25 +246,39 @@ if ! command -v rsync &>/dev/null; then
     sudo apt-get install -y -qq rsync
 fi
 
+if ! command -v unzip &>/dev/null; then
+    echo "📦  Installing unzip"
+    sudo apt-get install -y -qq unzip
+fi
+
+# Upstream release tarballs name architectures differently: neovim uses
+# x86_64/arm64, fzf uses Go's amd64/arm64 (same as .chezmoi.arch).
+NVIM_ARCH={{ if eq .chezmoi.arch "arm64" }}arm64{{ else }}x86_64{{ end }}
+FZF_ARCH={{ .chezmoi.arch }}
+
 # neovim: apt versions on Debian/Ubuntu lag far behind what the lazy.nvim
 # config requires, so pull the upstream stable tarball into ~/.local.
-if ! command -v nvim &>/dev/null; then
+# Probe with --version rather than `command -v` so a binary for the wrong
+# architecture (left by an earlier x86_64-only bootstrap) gets replaced.
+if ! nvim --version &>/dev/null; then
     echo "📦  Installing neovim"
     mkdir -p "$HOME/.local"
-    curl -fsSL "https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.tar.gz" \
+    curl -fsSL "https://github.com/neovim/neovim/releases/download/stable/nvim-linux-${NVIM_ARCH}.tar.gz" \
         | tar -xz -C "$HOME/.local" --strip-components=1
 fi
 
 # fzf is Go (not on crates.io); fetch the upstream release into ~/.local/bin.
 # $GITHUB_TOKEN is required to avoid the unauthenticated 60/hr API rate
 # limit; with set -u, an unset token fails fast with a clear error.
-if ! command -v fzf &>/dev/null; then
+# The version is parsed with `sed -n` rather than `grep -m1`: grep exiting at
+# the first match makes curl fail with EPIPE (exit 23) under pipefail.
+if ! fzf --version &>/dev/null; then
     echo "📦  Installing fzf"
     mkdir -p "$HOME/.local/bin"
     FZF_VERSION=$(curl -fsSL -H "Authorization: Bearer $GITHUB_TOKEN" \
         https://api.github.com/repos/junegunn/fzf/releases/latest \
-        | grep -m1 '"tag_name":' | sed 's/.*"v\(.*\)".*/\1/')
-    curl -fsSL "https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tar.gz" \
+        | sed -n 's/.*"tag_name": *"v\([^"]*\)".*/\1/p')
+    curl -fsSL "https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_${FZF_ARCH}.tar.gz" \
         | tar -xz -C "$HOME/.local/bin"
 fi
 

@@ -20,6 +20,8 @@ source "$REPO_ROOT/tests/bootstrap/helpers/guard.sh"
 FAKE_HOME="${RUNNER_TEMP:-$(mktemp -d)}/fakehome"
 mkdir -p "$FAKE_HOME"
 export HOME="$FAKE_HOME"
+# As on Linux, keep the deployed HTTPS-to-SSH rewrite out of external clones.
+export GIT_CONFIG_GLOBAL=/dev/null
 
 echo "==> Using HOME=$HOME"
 
@@ -29,7 +31,8 @@ if ! command -v chezmoi &>/dev/null; then
 fi
 
 echo "==> First apply (real install — this can take 30+ minutes on macos-latest)"
-chezmoi apply --source "$REPO_ROOT"
+# Initialize .xdg.* from .chezmoi.toml.tmpl before the first apply, as on Linux.
+chezmoi init --apply --source "$REPO_ROOT"
 
 echo "==> Verify expected artifacts"
 bash "$REPO_ROOT/tests/bootstrap/verify.sh"

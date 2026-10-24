@@ -1,9 +1,7 @@
 # Bootstrap test image — exercises the Linux branch of run_once_* scripts.
-# Pinned to amd64 because the bootstrap downloads x86_64-linux tarballs for
-# nvim/fzf/dog. On Apple Silicon hosts this runs under Rosetta (slower, but
-# the URLs would 404 against arm64).
-# hadolint ignore=DL3029
-FROM --platform=linux/amd64 ubuntu:26.04
+# The platform is chosen by `docker build --platform` (see e2e-linux.sh) so
+# the same image covers both amd64 and arm64 tarball selection.
+FROM ubuntu:26.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 

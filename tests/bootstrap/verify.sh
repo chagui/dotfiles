@@ -24,6 +24,18 @@ check_cmd() {
     fi
 }
 
+# check_runs catches binaries that are on PATH but cannot execute, e.g. an
+# x86_64 tarball extracted on an arm64 host.
+check_runs() {
+    local cmd=$1
+    if "$cmd" --version &>/dev/null; then
+        printf '  PASS  %-20s runs\n' "$cmd"
+    else
+        printf '  FAIL  %-20s does not run\n' "$cmd"
+        fail=$((fail + 1))
+    fi
+}
+
 check_file() {
     local f=$1
     if [ -f "$f" ]; then
@@ -38,22 +50,25 @@ echo "== Rust toolchain =="
 for c in cargo rustc cargo-binstall; do check_cmd "$c"; done
 
 echo "== Rust CLIs (cargo-binstall'd) =="
-for c in bat eza rg fd delta starship zoxide dust broot tldr topgrade; do
+for c in bat eza rg fd delta starship zoxide dust broot doge tldr topgrade; do
     check_cmd "$c"
 done
 
 echo "== Bootstrap-installed binaries =="
 check_cmd nvim
+check_runs nvim
 check_cmd fzf
+check_runs fzf
 
 if [ "$OS" = "Linux" ]; then
     echo "== Linux: tarball + apt =="
-    check_cmd dog
     check_cmd rsync
     check_cmd unzip
 elif [ "$OS" = "Darwin" ]; then
     echo "== macOS: brew tools =="
     for c in brew gh tmux jq; do check_cmd "$c"; done
+    check_cmd tart
+    check_runs tart
 fi
 
 echo "== Python =="

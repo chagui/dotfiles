@@ -10,7 +10,9 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 DOCKERFILE="$REPO_ROOT/tests/bootstrap/Dockerfile"
-IMAGE_TAG="${BOOTSTRAP_TEST_IMAGE:-chezmoi-bootstrap-test:latest}"
+# Override to linux/arm64 to exercise the arm64 tarball selection.
+PLATFORM="${BOOTSTRAP_TEST_PLATFORM:-linux/amd64}"
+IMAGE_TAG="${BOOTSTRAP_TEST_IMAGE:-chezmoi-bootstrap-test:${PLATFORM//\//-}}"
 
 if ! docker info &>/dev/null; then
     cat >&2 <<'EOF'
@@ -23,9 +25,9 @@ EOF
     exit 1
 fi
 
-echo "==> Building $IMAGE_TAG (slow on Apple Silicon — runs amd64 under Rosetta)"
+echo "==> Building $IMAGE_TAG for $PLATFORM (non-native platforms run under emulation)"
 docker build \
-    --platform=linux/amd64 \
+    --platform="$PLATFORM" \
     -t "$IMAGE_TAG" \
     -f "$DOCKERFILE" \
     "$REPO_ROOT"
@@ -59,7 +61,7 @@ else
 fi
 
 docker run --rm \
-    --platform=linux/amd64 \
+    --platform="$PLATFORM" \
     "${DOCKER_ENV_FLAGS[@]}" \
     "$IMAGE_TAG" \
     bash -lc '
