@@ -1,4 +1,20 @@
 { pkgs, agents, ... }:
+let
+  # nixpkgs runs gt inside a buildFHSEnv (bubblewrap) sandbox on Linux, which
+  # Ubuntu 24.04+ AppArmor denies (unprivileged_userns profile), failing both
+  # the build and every gt call. Keep nixpkgs' version and hash but return the
+  # unwrapped upstream binary: it must stay unpatched (vercel/pkg payload) and
+  # loads through the host's dynamic loader, which non-NixOS hosts provide.
+  # Trade-off: no shell completions, which nixpkgs only generates in the FHS
+  # wrapper.
+  graphite-cli =
+    if pkgs.stdenv.hostPlatform.isLinux then
+      pkgs.graphite-cli.override {
+        buildFHSEnv = args: builtins.head (args.targetPkgs pkgs);
+      }
+    else
+      pkgs.graphite-cli;
+in
 {
   home = {
     # Requires --impure; see flake.nix.
@@ -7,6 +23,7 @@
     stateVersion = "26.05";
 
     packages = [
+      graphite-cli
       pkgs.neovim
       pkgs.topgrade
       agents.claude-code

@@ -43,7 +43,17 @@
       homeConfigurations = forAllSystems (
         system:
         home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = import nixpkgs {
+            inherit system;
+            # Allowlist rather than allowUnfree, so a new unfree dependency
+            # is a deliberate change.
+            config.allowUnfreePredicate =
+              pkg:
+              builtins.elem (nixpkgs.lib.getName pkg) [
+                "graphite-cli"
+                "graphite-cli-unwrapped"
+              ];
+          };
           extraSpecialArgs.agents = llm-agents.packages.${system};
           modules = [ ./home.nix ];
         }

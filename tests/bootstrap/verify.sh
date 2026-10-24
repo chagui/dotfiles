@@ -73,7 +73,7 @@ check_runs fzf
 
 if [ "$OS" = "Linux" ]; then
     echo "== Linux: Home Manager packages (nix/home.nix) =="
-    for c in nvim topgrade claude codex; do
+    for c in gt nvim topgrade claude codex; do
         check_nix_cmd "$c"
         check_runs "$c"
     done
