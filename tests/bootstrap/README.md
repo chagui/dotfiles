@@ -46,12 +46,13 @@ exercised by `e2e-linux.sh`.
 bash tests/bootstrap/e2e-linux.sh
 ```
 
-Builds `Dockerfile` from `ubuntu:26.04` (pinned to `linux/amd64` because the
-bootstrap downloads `x86_64` tarballs for `nvim`/`fzf`/`dog`). Runs
+Builds `Dockerfile` from `ubuntu:26.04` for `$BOOTSTRAP_TEST_PLATFORM`
+(default `linux/amd64`; set `linux/arm64` to cover the arm64 tarballs). Runs
 `chezmoi apply` inside a non-root `tester` user, then `verify.sh`, then a
 second `chezmoi apply` to assert no `run_once_*` re-execution.
 
-On Apple Silicon hosts, the container runs under Rosetta (~5x slower).
+Non-native platforms run under emulation (~5x slower); on Apple Silicon,
+`BOOTSTRAP_TEST_PLATFORM=linux/arm64` runs natively.
 
 ### E2E macOS (~30-40 min, GitHub Actions only)
 
@@ -89,7 +90,7 @@ tests/bootstrap/
   smoke.sh           # tier 1 entrypoint (host-safe)
   e2e-linux.sh       # tier 2 driver: Docker
   e2e-macos.sh       # tier 2 driver: CI-only (or BOOTSTRAP_TEST_FORCE)
-  Dockerfile         # ubuntu:26.04, linux/amd64, non-root tester user
+  Dockerfile         # ubuntu:26.04, non-root tester user
   .dockerignore
   verify.sh          # PATH probes + artifact checks (runs inside sandbox)
   helpers/guard.sh   # sandbox enforcement helper

@@ -36,11 +36,21 @@ jobs:
 
   linux-bootstrap:
     needs: smoke
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-latest
+            platform: linux/amd64
+          - runner: ubuntu-24.04-arm
+            platform: linux/arm64
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - name: Run e2e-linux
+        env:
+          BOOTSTRAP_TEST_PLATFORM: ${{ matrix.platform }}
         run: bash tests/bootstrap/e2e-linux.sh
 
   macos-bootstrap:

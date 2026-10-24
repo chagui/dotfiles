@@ -24,6 +24,18 @@ check_cmd() {
     fi
 }
 
+# check_runs catches binaries that are on PATH but cannot execute, e.g. an
+# x86_64 tarball extracted on an arm64 host.
+check_runs() {
+    local cmd=$1
+    if "$cmd" --version &>/dev/null; then
+        printf '  PASS  %-20s runs\n' "$cmd"
+    else
+        printf '  FAIL  %-20s does not run\n' "$cmd"
+        fail=$((fail + 1))
+    fi
+}
+
 check_file() {
     local f=$1
     if [ -f "$f" ]; then
@@ -44,7 +56,9 @@ done
 
 echo "== Bootstrap-installed binaries =="
 check_cmd nvim
+check_runs nvim
 check_cmd fzf
+check_runs fzf
 
 if [ "$OS" = "Linux" ]; then
     echo "== Linux: tarball + apt =="
