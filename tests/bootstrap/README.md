@@ -39,7 +39,7 @@ What it checks:
 
 Coverage caveat: `chezmoi.os` is built-in and not overridable via flags, so
 one invocation only validates one OS branch. Local dev (macOS) covers
-`darwin`; CI (`ubuntu-latest`) covers `linux`. The Linux branch is also
+`darwin`; CI (`ubuntu-24.04`) covers `linux`. The Linux branch is also
 exercised by `e2e-linux.sh`.
 
 ### E2E Linux (~5-10 min, Docker required)
