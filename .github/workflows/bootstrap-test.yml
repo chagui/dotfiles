@@ -66,4 +66,5 @@ jobs:
         env:
           BOOTSTRAP_TEST_SANDBOX: '1'
           CHEZMOI_SKIP_CLAUDE_INSTALL: '1'
+          GITHUB_TOKEN: ${{ github.token }}
         run: bash tests/bootstrap/e2e-macos.sh

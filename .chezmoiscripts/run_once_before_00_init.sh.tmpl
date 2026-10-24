@@ -99,7 +99,7 @@ brew "lsd"
 brew "luarocks"
 brew "make"
 brew "most"
-brew "neofetch"
+brew "fastfetch"
 brew "neovim"
 brew "ollama"
 brew "parallel"
@@ -141,14 +141,14 @@ brew "zsh-autosuggestions"
 brew "zsh-history-substring-search"
 brew "zsh-syntax-highlighting"
 brew "gitmux"
-brew "cirruslabs/cli/tart"
-brew "derailed/k9s/k9s"
-brew "hashicorp/tap/packer"
-brew "terraform-docs/tap/terraform-docs"
-brew "withered-magic/brew/starpls"
-brew "withgraphite/tap/graphite"
+brew "cirruslabs/cli/tart", trusted: true
+brew "derailed/k9s/k9s", trusted: true
+brew "hashicorp/tap/packer", trusted: true
+brew "terraform-docs/tap/terraform-docs", trusted: true
+brew "withered-magic/brew/starpls", trusted: true
+brew "withgraphite/tap/graphite", trusted: true
 cask "1password-cli"
-cask "alacritty"
+# The Alacritty cask is disabled by Homebrew's Gatekeeper policy.
 cask "aws-vault-binary"
 cask "betterdisplay"
 cask "brave-browser"
@@ -185,7 +185,8 @@ fi
 
 # All platforms: bootstrap Rust toolchain so `cargo binstall` has a compile
 # fallback when no prebuilt binary exists for the host target.
-if ! command -v cargo &>/dev/null; then
+# CI's fake home must get its own rustup environment even if cargo is on PATH.
+if ! command -v cargo &>/dev/null || [ ! -r "$HOME/.cargo/env" ]; then
     echo "🦀  Installing Rust toolchain"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
         | sh -s -- --default-toolchain stable --no-modify-path -y
