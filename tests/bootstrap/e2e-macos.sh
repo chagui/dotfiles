@@ -29,7 +29,8 @@ if ! command -v chezmoi &>/dev/null; then
 fi
 
 echo "==> First apply (real install — this can take 30+ minutes on macos-latest)"
-chezmoi apply --source "$REPO_ROOT"
+# Initialize .xdg.* from .chezmoi.toml.tmpl before the first apply, as on Linux.
+chezmoi init --apply --source "$REPO_ROOT"
 
 echo "==> Verify expected artifacts"
 bash "$REPO_ROOT/tests/bootstrap/verify.sh"

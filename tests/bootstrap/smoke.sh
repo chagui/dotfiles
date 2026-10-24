@@ -8,7 +8,7 @@
 #      live pre-commit hooks, which exclude *.tmpl because raw Go-template
 #      syntax breaks shellcheck. (shfmt is intentionally not run — see step
 #      3's comment in the script body for why.)
-#   3. `chezmoi apply --dry-run --destination $tmp` against a throwaway dir.
+#   3. `chezmoi apply --dry-run` with the rendered config against a throwaway dir.
 #      Per chezmoi semantics, --dry-run does NOT execute run_once_* scripts;
 #      it only validates the source state can be planned end-to-end.
 #
@@ -75,8 +75,13 @@ echo "==> [3/4] shellcheck rendered init script"
 shellcheck -s bash --exclude=SC1054,SC1072,SC1083 "$work/init.sh"
 
 echo "==> [4/4] chezmoi apply --dry-run (no scripts will execute)"
-dest=$(mktemp -d)
-chezmoi apply --dry-run --source "$SOURCE_DIR" --destination "$dest" >/dev/null
-rm -rf "$dest"
+mkdir -p "$work/dest"
+# Load the init config rendered above: fresh CI runners have no user config
+# supplying .xdg.*. Keep the destination, cache, and persistent state temporary too.
+chezmoi apply --dry-run --source "$SOURCE_DIR" \
+    --config "$work/chezmoi.toml" \
+    --cache "$work/cache" \
+    --persistent-state "$work/chezmoistate.boltdb" \
+    --destination "$work/dest" >/dev/null
 
 echo "OK: smoke tier passed"

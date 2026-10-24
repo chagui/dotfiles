@@ -31,8 +31,10 @@ What it checks:
    the source template uses style choices that shfmt would reformat,
    producing noisy diffs on every render. The live shfmt pre-commit hook
    covers regular shell scripts.)
-3. `chezmoi apply --dry-run --destination <tmp>`. `--dry-run` does **not**
-   execute `run_once_*` scripts, so this only validates that the source
+3. `chezmoi apply --dry-run --config <rendered-config> --destination <tmp>`.
+   Loads the init config from step 1 so `.xdg.*` resolves even on fresh hosts.
+   The destination, cache, and persistent state are temporary. `--dry-run` does
+   **not** execute `run_once_*` scripts, so this only validates that the source
    state can be planned end-to-end.
 
 Coverage caveat: `chezmoi.os` is built-in and not overridable via flags, so
@@ -48,7 +50,7 @@ bash tests/bootstrap/e2e-linux.sh
 
 Builds `Dockerfile` from `ubuntu:26.04` for `$BOOTSTRAP_TEST_PLATFORM`
 (default `linux/amd64`; set `linux/arm64` to cover the arm64 tarballs). Runs
-`chezmoi apply` inside a non-root `tester` user, then `verify.sh`, then a
+`chezmoi init --apply` inside a non-root `tester` user, then `verify.sh`, then a
 second `chezmoi apply` to assert no `run_once_*` re-execution.
 
 Non-native platforms run under emulation (~5x slower); on Apple Silicon,
@@ -61,9 +63,9 @@ bash tests/bootstrap/e2e-macos.sh
 ```
 
 Refuses to run unless `$CI=true`. On the runner, exports
-`HOME=$RUNNER_TEMP/fakehome` to bound the blast radius and applies against
-that. Pre-installed Homebrew on `macos-latest` short-circuits the
-install step (realistic — most macOS users already have brew).
+`HOME=$RUNNER_TEMP/fakehome` to bound the blast radius and runs
+`chezmoi init --apply` against that. Pre-installed Homebrew on `macos-latest`
+short-circuits the install step (realistic — most macOS users already have brew).
 
 The `BOOTSTRAP_TEST_FORCE=1` escape hatch exists for manual verification by
 the author, with a 5-second pre-flight delay; do not use it lightly.

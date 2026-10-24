@@ -51,6 +51,7 @@ jobs:
       - name: Run e2e-linux
         env:
           BOOTSTRAP_TEST_PLATFORM: ${{ matrix.platform }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: bash tests/bootstrap/e2e-linux.sh
 
   macos-bootstrap:
