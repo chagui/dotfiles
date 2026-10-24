@@ -1,0 +1,39 @@
+[misc]
+# Disable specific steps - same options as the command line flag
+disable = [
+    "asdf",
+    "chezmoi",
+    "containers",
+    "gem",
+{{- if eq .chezmoi.os "darwin" }}
+    # Linux runs the nixpkgs topgrade, which lags the cargo build and rejects
+    # the whole file over a step name it does not know yet.
+    "github_cli_skills",
+{{- end }}
+{{- if eq .chezmoi.os "linux" }}
+    # Runs `home-manager switch` without updating the flake lock, which only
+    # reinstalls the pinned versions; replaced by the Nix command below.
+    "home_manager",
+    # Runs nix-channel / nix-env upgrades, but the profile belongs to the
+    # flake in nix/. Upgrade Nix itself through its installer instead.
+    "nix",
+    # Self-updaters for tools that live in the read-only Nix store; the Nix
+    # command below bumps them instead.
+    "claude_code",
+    "codex",
+{{- end }}
+    "pnpm",
+    "ruby_gems",
+    "system",
+    "vim",
+    "xcodes",
+]
+
+[commands]
+"Update cargo-nextest" = "cargo binstall --no-confirm cargo-nextest"
+{{- if eq .chezmoi.os "linux" }}
+# Bumps nix/flake.lock in the chezmoi source repo (commit it from there), then
+# installs the new versions. Same flake reference as
+# run_onchange_after_05_home_manager.sh.
+"Nix packages (home-manager)" = "nix flake update --flake path:{{ .chezmoi.sourceDir }}/nix && home-manager switch --impure -b hm-backup --flake path:{{ .chezmoi.sourceDir }}/nix#{{ if eq .chezmoi.arch "arm64" }}aarch64{{ else }}x86_64{{ end }}-linux"
+{{- end }}
