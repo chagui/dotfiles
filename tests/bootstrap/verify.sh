@@ -50,7 +50,7 @@ echo "== Rust toolchain =="
 for c in cargo rustc cargo-binstall; do check_cmd "$c"; done
 
 echo "== Rust CLIs (cargo-binstall'd) =="
-for c in bat eza rg fd delta starship zoxide dust broot tldr topgrade; do
+for c in bat eza rg fd delta starship zoxide dust broot doge tldr topgrade; do
     check_cmd "$c"
 done
 
@@ -62,7 +62,6 @@ check_runs fzf
 
 if [ "$OS" = "Linux" ]; then
     echo "== Linux: tarball + apt =="
-    check_cmd dog
     check_cmd rsync
     check_cmd unzip
 elif [ "$OS" = "Darwin" ]; then

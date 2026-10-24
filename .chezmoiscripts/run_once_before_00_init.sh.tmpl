@@ -232,6 +232,11 @@ if ! command -v rsync &>/dev/null; then
     sudo apt-get install -y -qq rsync
 fi
 
+if ! command -v unzip &>/dev/null; then
+    echo "📦  Installing unzip"
+    sudo apt-get install -y -qq unzip
+fi
+
 # Upstream release tarballs name architectures differently: neovim uses
 # x86_64/arm64, fzf uses Go's amd64/arm64 (same as .chezmoi.arch).
 NVIM_ARCH={{ if eq .chezmoi.arch "arm64" }}arm64{{ else }}x86_64{{ end }}
