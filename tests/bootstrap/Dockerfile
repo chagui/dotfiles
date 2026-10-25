@@ -31,10 +31,10 @@ RUN curl -fsLS https://get.chezmoi.io | sh -s -- -b /usr/local/bin
 
 # Non-root tester user with passwordless sudo. zsh login shell because
 # dot_zshenv is what the bootstrap targets.
-RUN useradd --create-home --shell /usr/bin/zsh tester \
+RUN useradd --uid 10001 --create-home --shell /usr/bin/zsh tester \
     && echo "tester ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/tester
 
-USER tester
+USER 10001
 WORKDIR /home/tester
 
 # Copy chezmoi source tree into the tester's source path. The .chezmoiignore
