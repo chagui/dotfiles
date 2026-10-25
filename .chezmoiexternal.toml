@@ -18,6 +18,13 @@
     url = "https://github.com/tmux-plugins/tpm"
     refreshPeriod = "168h"  # 1 week
 
+# Linux only (see .chezmoiignore); macOS gets powerlevel10k from Homebrew.
+[".local/share/powerlevel10k"]
+    type = "git-repo"
+    url = "https://github.com/romkatv/powerlevel10k"
+    refreshPeriod = "168h"  # 1 week
+    clone.args = ["--depth", "1"]
+
 [".config/alacritty/catppuccin-macchiato.toml"]
     type = "file"
     url = "https://raw.githubusercontent.com/catppuccin/alacritty/main/catppuccin-macchiato.toml"

@@ -1,8 +1,11 @@
 {{- $brewPrefix := "" -}}
 {{- $brewPrefixLlvm := "" -}}
+{{- /* Linux clones powerlevel10k via .chezmoiexternal.toml. */ -}}
+{{- $p10kDir := "$XDG_DATA_HOME/powerlevel10k" -}}
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   $brewPrefix = output "brew" "--prefix" | trim -}}
 {{-   $brewPrefixLlvm = output "brew" "--prefix" "llvm" | trim -}}
+{{-   $p10kDir = printf "%s/share/powerlevel10k" $brewPrefix -}}
 {{- end -}}
 typeset -U path PATH
 path+=("$HOME/.local/bin" "$HOME/.cargo/bin")
@@ -55,7 +58,7 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
 [ -s "$ZDOTDIR/key-bindings.zsh" ] && . "$ZDOTDIR/key-bindings.zsh"
 [ -s "$ZDOTDIR/fzf-completions.zsh" ] && . "$ZDOTDIR/fzf-completions.zsh"
 
-source "{{ $brewPrefix }}/share/powerlevel10k/powerlevel10k.zsh-theme"
+source "{{ $p10kDir }}/powerlevel10k.zsh-theme"
 [ -s "$ZCONFDIR/.p10k.zsh" ] && . "$ZCONFDIR/.p10k.zsh"
 
 {{ if eq .chezmoi.os "darwin" }}
