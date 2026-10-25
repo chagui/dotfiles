@@ -83,10 +83,11 @@ fi
 {{ end -}}
 
 # fix some bindings
-bindkey "3C" forward-word
-bindkey "5C" forward-word
-bindkey "3D" backward-word
-bindkey "5D" backward-word
+# Alt/Ctrl+Arrow move by word; xterm encodes the modifier as 3 (Alt) or 5 (Ctrl).
+bindkey '^[[1;3C' forward-word
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;3D' backward-word
+bindkey '^[[1;5D' backward-word
 bindkey "^J" backward-kill-line
 
 # load custom functions
