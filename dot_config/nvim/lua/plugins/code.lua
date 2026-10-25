@@ -21,24 +21,7 @@ return {
         branch = "main",
         build = ":TSUpdate",
         config = function()
-            require("nvim-treesitter").install({
-                "bash",
-                "c",
-                "cmake",
-                "dockerfile",
-                "dot",
-                "go",
-                "gotmpl",
-                "hcl",
-                "json",
-                "lua",
-                "make",
-                "python",
-                "rust",
-                "terraform",
-                "toml",
-                "yaml",
-            })
+            require("nvim-treesitter").install(require("user.treesitter").parsers)
             vim.api.nvim_create_autocmd("FileType", {
                 callback = function(args)
                     local buf = args.buf

@@ -8,10 +8,14 @@ set -eufo pipefail
 # run_onchange: re-runs whenever the lockfile changes, so plugin bumps made on
 # one machine reach the others on their next apply.
 # lazy-lock.json hash: {{ include "dot_config/nvim/lazy-lock.json" | sha256sum }}
+# treesitter parsers hash: {{ include "dot_config/nvim/lua/user/treesitter.lua" | sha256sum }}
 #
-# Treesitter parsers and Mason LSP servers are not covered: they install
-# asynchronously on startup and +qa exits before they finish, so they still
-# install on the first interactive launch.
+# Treesitter parsers install asynchronously, so +qa would exit mid-compile.
+# Block on the install (joining the one the plugin config already started)
+# for at most 5 minutes.
+#
+# Mason LSP servers are not covered: they still install on the first
+# interactive launch.
 
 # On Linux, nvim lives in ~/.local/bin (see run_once_before_00_init). chezmoi
 # spawns each script as a fresh process, so the parent shell's PATH may not
@@ -29,4 +33,6 @@ log="${XDG_STATE_HOME:-$HOME/.local/state}/nvim/lazy-restore.log"
 mkdir -p "$(dirname "$log")"
 
 echo "📦  Installing neovim plugins (log: $log)"
-nvim --headless "+Lazy! restore" +qa 2>&1 | tee "$log"
+nvim --headless "+Lazy! restore" \
+    "+lua require('nvim-treesitter').install(require('user.treesitter').parsers):wait(300000)" \
+    +qa 2>&1 | tee "$log"
