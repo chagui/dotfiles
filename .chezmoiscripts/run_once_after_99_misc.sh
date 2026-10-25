@@ -6,7 +6,10 @@
 # shell's PATH may not include those dirs on a fresh machine.
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 
-mkdir -p "${XDG_STATE_HOME:-$HOME/.state}/zsh/"
+# zsh won't create HISTFILE's parent directory, and history is silently lost
+# without it. Use the XDG default: chezmoi scripts run without XDG_STATE_HOME,
+# while .zshrc sets it to ~/.local/state.
+mkdir -p "${XDG_STATE_HOME:-$HOME/.local/state}/zsh/"
 bat cache --build
 tldr --update
 
