@@ -13,6 +13,14 @@ Library
 .local/share/powerlevel10k
 .local/share/zsh/plugins/*
 {{- end }}
+{{- /* Devboxes are reached over ssh: no GUI apps. */}}
+{{- if eq (includeTemplate "profile" .) "devbox" }}
+.config/alacritty
+{{- /* Externals are matched by their own path, not their parent directory. */}}
+.config/alacritty/*
+.config/ghostty
+.config/zed
+{{- end }}
 {{- if ( env "SHELL" | ne "/bin/bash" ) }}
 .aliases
 .bashrc

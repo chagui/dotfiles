@@ -1,0 +1,5 @@
+{{- /*
+Machine profile: "devbox" on remote workspaces (IN_WORKSPACE=1), "laptop"
+otherwise. Use as: eq (includeTemplate "profile" .) "devbox"
+*/ -}}
+{{- if env "IN_WORKSPACE" -}}devbox{{- else -}}laptop{{- end -}}
