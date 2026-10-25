@@ -1,0 +1,32 @@
+#!/bin/bash
+set -eufo pipefail
+
+# Install neovim plugins headlessly at the commits pinned in lazy-lock.json.
+# `restore` rather than `sync`: sync would update plugins and rewrite the
+# chezmoi-managed lockfile in ~/.config/nvim.
+#
+# run_onchange: re-runs whenever the lockfile changes, so plugin bumps made on
+# one machine reach the others on their next apply.
+# lazy-lock.json hash: {{ include "dot_config/nvim/lazy-lock.json" | sha256sum }}
+#
+# Treesitter parsers and Mason LSP servers are not covered: they install
+# asynchronously on startup and +qa exits before they finish, so they still
+# install on the first interactive launch.
+
+# On Linux, nvim lives in ~/.local/bin (see run_once_before_00_init). chezmoi
+# spawns each script as a fresh process, so the parent shell's PATH may not
+# include it on a fresh machine.
+export PATH="$HOME/.local/bin:$PATH"
+
+if ! command -v nvim &>/dev/null; then
+    echo "nvim not found, skipping plugin install" >&2
+    exit 0
+fi
+
+# Keep the output of the last run for inspection; chezmoi scripts run without
+# XDG_STATE_HOME, so fall back to the XDG default.
+log="${XDG_STATE_HOME:-$HOME/.local/state}/nvim/lazy-restore.log"
+mkdir -p "$(dirname "$log")"
+
+echo "📦  Installing neovim plugins (log: $log)"
+nvim --headless "+Lazy! restore" +qa 2>&1 | tee "$log"
