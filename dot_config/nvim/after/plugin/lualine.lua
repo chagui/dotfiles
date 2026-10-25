@@ -8,7 +8,8 @@ end
 lualine.setup({
     options = {
         icons_enabled = true,
-        theme = "catppuccin", -- will pick the variant set in catppuccin config
+        -- catppuccin renamed its lualine theme from "catppuccin" in 384f304.
+        theme = "catppuccin-nvim", -- will pick the variant set in catppuccin config
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = {
