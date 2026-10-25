@@ -1,11 +1,13 @@
 {{- $brewPrefix := "" -}}
 {{- $brewPrefixLlvm := "" -}}
-{{- /* Linux clones powerlevel10k via .chezmoiexternal.toml. */ -}}
+{{- /* Linux clones powerlevel10k and zsh plugins via .chezmoiexternal.toml. */ -}}
 {{- $p10kDir := "$XDG_DATA_HOME/powerlevel10k" -}}
+{{- $zshPluginDir := "$XDG_DATA_HOME/zsh/plugins" -}}
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   $brewPrefix = output "brew" "--prefix" | trim -}}
 {{-   $brewPrefixLlvm = output "brew" "--prefix" "llvm" | trim -}}
 {{-   $p10kDir = printf "%s/share/powerlevel10k" $brewPrefix -}}
+{{-   $zshPluginDir = printf "%s/share" $brewPrefix -}}
 {{- end -}}
 typeset -U path PATH
 path+=("$HOME/.local/bin" "$HOME/.cargo/bin")
@@ -67,20 +69,13 @@ path=("/usr/local/sbin" "$path[@]")
 if [[ -d "{{ $brewPrefixLlvm }}" ]]; then
     path=("{{ $brewPrefixLlvm }}/bin" "$path[@]")
 fi
-
-[ -s "{{ $brewPrefix }}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "{{ $brewPrefix }}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 {{ else if eq .chezmoi.os "linux" }}
 # Ghostty sets TERM=xterm-ghostty, but Linux systems often lack that terminfo; fall back so tmux can start.
 if [[ "$TERM" == "xterm-ghostty" ]] && ! infocmp xterm-ghostty &>/dev/null; then
   export TERM=xterm-256color
 fi
-{{   if eq .chezmoi.osRelease.id "ubuntu" }}
-[ -s /home/guilhem/.autojump/etc/profile.d/autojump.sh ] && source /home/guilhem/.autojump/etc/profile.d/autojump.sh
-[ -s /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -s /opt/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /opt/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-{{   end -}}
-{{ end -}}
+{{ end }}
+[ -s "{{ $zshPluginDir }}/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source "{{ $zshPluginDir }}/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # fix some bindings
 # Alt/Ctrl+Arrow move by word; xterm encodes the modifier as 3 (Alt) or 5 (Ctrl).
@@ -106,12 +101,10 @@ fpath+=($XDG_DATA_HOME/uv/tools/argcomplete/lib/python*/site-packages/argcomplet
 autoload -Uz compinit && compinit
 autoload -Uz select-word-style && select-word-style bash
 
-{{- if eq .chezmoi.os "darwin" }}
-source {{ $brewPrefix }}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source {{ $brewPrefix }}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source "{{ $zshPluginDir }}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "{{ $zshPluginDir }}/zsh-history-substring-search/zsh-history-substring-search.zsh"
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-{{- end }}
 
 [ -s "$ZCONFDIR/tools.zsh" ] && source "$ZCONFDIR/tools.zsh"
 [ -s "$ZCONFDIR/local.zsh" ] && source "$ZCONFDIR/local.zsh"

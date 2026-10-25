@@ -10,6 +10,7 @@ Library/Application Support/pip/pip.conf
 .config/nvim/lua/plugins/linux
 .config/pip
 .local/share/powerlevel10k
+.local/share/zsh/plugins/*
 {{- end }}
 {{- if ( env "SHELL" | ne "/bin/bash" ) }}
 .aliases

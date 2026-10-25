@@ -25,6 +25,25 @@
     refreshPeriod = "168h"  # 1 week
     clone.args = ["--depth", "1"]
 
+# Linux only (see .chezmoiignore); macOS gets these zsh plugins from Homebrew.
+[".local/share/zsh/plugins/zsh-autosuggestions"]
+    type = "git-repo"
+    url = "https://github.com/zsh-users/zsh-autosuggestions"
+    refreshPeriod = "168h"  # 1 week
+    clone.args = ["--depth", "1"]
+
+[".local/share/zsh/plugins/zsh-syntax-highlighting"]
+    type = "git-repo"
+    url = "https://github.com/zsh-users/zsh-syntax-highlighting"
+    refreshPeriod = "168h"  # 1 week
+    clone.args = ["--depth", "1"]
+
+[".local/share/zsh/plugins/zsh-history-substring-search"]
+    type = "git-repo"
+    url = "https://github.com/zsh-users/zsh-history-substring-search"
+    refreshPeriod = "168h"  # 1 week
+    clone.args = ["--depth", "1"]
+
 [".config/alacritty/catppuccin-macchiato.toml"]
     type = "file"
     url = "https://raw.githubusercontent.com/catppuccin/alacritty/main/catppuccin-macchiato.toml"
