@@ -1,3 +1,5 @@
+local lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json"
+
 -- Install lazy.nvim if not found
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
@@ -18,6 +20,17 @@ if not vim.uv.fs_stat(lazypath) then
         vim.fn.getchar()
         os.exit(1)
     end
+
+    -- `Lazy restore` doesn't roll lazy.nvim itself back, so check out its locked
+    -- commit here; otherwise fresh installs run the latest stable release and
+    -- rewrite its lockfile entry.
+    local ok, lock = pcall(function()
+        return vim.json.decode(table.concat(vim.fn.readfile(lockfile), "\n"))
+    end)
+    local locked = ok and lock["lazy.nvim"]
+    if locked then
+        vim.fn.system({ "git", "-C", lazypath, "checkout", "--quiet", locked.commit })
+    end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -28,7 +41,7 @@ if status_ok then
         defaults = {
             cond = require("user.profile").active("editor"),
         },
-        lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json",
+        lockfile = lockfile,
     })
 end
 
