@@ -125,6 +125,9 @@ brew "tfenv"
 brew "tgenv"
 brew "tmux"
 brew "tree-sitter"
+# The CLI is a separate formula; nvim-treesitter's main branch needs it to
+# compile parsers (`tree-sitter build`).
+brew "tree-sitter-cli"
 brew "toilet"
 brew "watch"
 brew "wget"
