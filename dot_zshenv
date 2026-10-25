@@ -1,4 +1,7 @@
 export LANG=en_US.UTF-8
+# macOS sets LC_CTYPE=UTF-8 and its ssh client forwards LC_* (SendEnv), but a
+# bare codeset isn't a valid locale on Linux; drop it so LANG applies.
+[[ $OSTYPE == linux* && $LC_CTYPE == UTF-8 ]] && unset LC_CTYPE
 export MANPAGER='nvim +Man!'
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 
