@@ -30,6 +30,7 @@
 
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+    os_icon                 # workspace marker (hidden outside workspaces, see below)
     dir                     # current directory
     prompt_char             # prompt symbol
   )
@@ -120,9 +121,11 @@
 
   #################################[ os_icon: os identifier ]##################################
   # OS identifier color.
-  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=
-  # Custom icon.
-  # typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=208
+  # Only shown on remote workspaces (IN_WORKSPACE=1), as the distro logo plus the
+  # hostname; empty content hides the segment, e.g. on macOS. P9K_CONTENT
+  # already ends with a space.
+  typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='${IN_WORKSPACE:+$P9K_CONTENT$HOST}'
 
   ################################[ prompt_char: prompt symbol ]################################
   # Green prompt symbol if the last command succeeded.
