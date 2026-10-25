@@ -257,6 +257,7 @@ fi
 # x86_64/arm64, fzf uses Go's amd64/arm64 (same as .chezmoi.arch).
 NVIM_ARCH={{ if eq .chezmoi.arch "arm64" }}arm64{{ else }}x86_64{{ end }}
 FZF_ARCH={{ .chezmoi.arch }}
+TREE_SITTER_ARCH={{ if eq .chezmoi.arch "arm64" }}arm64{{ else }}x64{{ end }}
 
 # neovim: apt versions on Debian/Ubuntu lag far behind what the lazy.nvim
 # config requires, so pull the upstream stable tarball into ~/.local.
@@ -278,6 +279,18 @@ if ! fzf --version &>/dev/null; then
     mkdir -p "$HOME/.local/bin"
     curl -fsSL "https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_${FZF_ARCH}.tar.gz" \
         | tar -xz -C "$HOME/.local/bin"
+fi
+
+# tree-sitter CLI: nvim-treesitter's main branch shells out to `tree-sitter
+# build` to compile parsers (macOS gets it from the Brewfile). Pinned for the
+# same reason as fzf.
+TREE_SITTER_VERSION=0.27.1
+if ! tree-sitter --version &>/dev/null; then
+    echo "📦  Installing tree-sitter"
+    mkdir -p "$HOME/.local/bin"
+    curl -fsSL "https://github.com/tree-sitter/tree-sitter/releases/download/v${TREE_SITTER_VERSION}/tree-sitter-linux-${TREE_SITTER_ARCH}.gz" \
+        | gunzip > "$HOME/.local/bin/tree-sitter"
+    chmod +x "$HOME/.local/bin/tree-sitter"
 fi
 
 
