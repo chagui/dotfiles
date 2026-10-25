@@ -107,7 +107,7 @@ source {{ $brewPrefix }}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 source {{ $brewPrefix }}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-{{ end -}}
+{{- end }}
 
 [ -s "$ZCONFDIR/tools.zsh" ] && source "$ZCONFDIR/tools.zsh"
 [ -s "$ZCONFDIR/local.zsh" ] && source "$ZCONFDIR/local.zsh"
