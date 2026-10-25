@@ -4,8 +4,10 @@ stylua.toml
 snapshot-nvim.sh
 _typos.toml
 tests
+# GUI app files (e.g. Firefox userChrome) are copied by hand, not deployed.
+gui
 {{- if ne .chezmoi.os "darwin" }}
-Library/Application Support/pip/pip.conf
+Library
 {{- else if ne .chezmoi.os "linux" }}
 .config/nvim/lua/plugins/linux
 .config/pip
