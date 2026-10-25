@@ -30,6 +30,18 @@ return {
         },
     },
     {
+        "nvim-telescope/telescope-media-files.nvim",
+        -- Linux only (after/plugin/telescope.lua loads the extension there).
+        -- Gated with cond rather than an OS-specific spec file so lazy keeps
+        -- its lockfile entry on macOS instead of dropping it.
+        cond = profile.active("default") and vim.fn.has("linux") == 1,
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+            "nvim-lua/popup.nvim",
+            "nvim-lua/plenary.nvim",
+        },
+    },
+    {
         "nvim-telescope/telescope-frecency.nvim",
         cond = profile.active("default"),
         config = function()
