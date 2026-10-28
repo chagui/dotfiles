@@ -26,6 +26,7 @@ Staff software engineer. Broad expertise: cloud infrastructure, backend systems,
 - Use `gh` CLI for GitHub related actions (viewing PRs, issuers...) instead of WebFetch
 - Use "bzl" instead of "bazel" for all commands that need bazel
 - Dry-run bulk text replacements (sed, find/replace) on a small sample first. Verify match scope before applying across many files.
+- Never run `git config --global` (or `--system`) on my machine; CI snippets that do so are meant for CI only. To test git config, isolate with `GIT_CONFIG_GLOBAL=<tmpfile> GIT_CONFIG_NOSYSTEM=1`. Overriding `HOME` alone is not isolation: git falls back to `$XDG_CONFIG_HOME/git/config`, which is my real config.
 
 ## Implementation Approach
 
