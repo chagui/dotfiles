@@ -5,6 +5,18 @@ if [ "${CHEZMOI_SKIP_HUNK_INSTALL:-0}" = "1" ]; then
     exit 0
 fi
 
+# Linux workspaces can install the standalone binary without Node.js or Volta.
+if [ "$(uname -s)" = "Linux" ]; then
+    export PATH="$HOME/.local/bin:$PATH"
+    if command -v hunk &>/dev/null; then
+        exit 0
+    fi
+
+    echo "📦  Installing hunk standalone binary"
+    curl -fsSL https://hunk.dev/install.sh | HUNK_INSTALL_DIR="$HOME/.local/bin" HUNK_NO_MODIFY_PATH=1 sh
+    exit 0
+fi
+
 # Volta is user-installed (see dot_zshenv); skip cleanly when absent so a
 # fresh host that hasn't bootstrapped Volta yet doesn't fail apply.
 if [ ! -x "$HOME/.volta/bin/volta" ]; then
