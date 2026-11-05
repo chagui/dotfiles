@@ -60,27 +60,48 @@
     #path = "themes"
 
 # Datadog agent skills (https://github.com/datadog-labs/agent-skills)
-[".claude/skills/dd-pup/SKILL.md"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/datadog-labs/agent-skills/main/dd-pup/SKILL.md"
-    refreshPeriod = "168h"
+#
+# Pinned to a commit so upstream changes land as a reviewable diff here.
+# To upgrade, replace the SHA in every URL below (all five must match).
+#
+# Whole directories, not single SKILL.md files: dd-apm routes to sub-skills
+# under dd-apm/{k8s-ssi,linux-ssi,enable-dsm,service-remapping}/ by path.
+#
+# One entry per skill so `exact` only prunes inside each dd-* directory and
+# never touches the other skills in ~/.claude/skills. chezmoi downloads the
+# shared URL once. The upstream plugin was rejected: it bundles ~60 skills
+# (~6k tokens of skill listing per session).
+[".claude/skills/dd-apm"]
+    type = "archive"
+    url = "https://github.com/datadog-labs/agent-skills/archive/6bd95cce9e0792c0f27c342214609706e51313c3.tar.gz"
+    exact = true
+    stripComponents = 2
+    include = ["*/dd-apm/**"]
 
-[".claude/skills/dd-monitors/SKILL.md"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/datadog-labs/agent-skills/main/dd-monitors/SKILL.md"
-    refreshPeriod = "168h"
+[".claude/skills/dd-docs"]
+    type = "archive"
+    url = "https://github.com/datadog-labs/agent-skills/archive/6bd95cce9e0792c0f27c342214609706e51313c3.tar.gz"
+    exact = true
+    stripComponents = 2
+    include = ["*/dd-docs/**"]
 
-[".claude/skills/dd-logs/SKILL.md"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/datadog-labs/agent-skills/main/dd-logs/SKILL.md"
-    refreshPeriod = "168h"
+[".claude/skills/dd-logs"]
+    type = "archive"
+    url = "https://github.com/datadog-labs/agent-skills/archive/6bd95cce9e0792c0f27c342214609706e51313c3.tar.gz"
+    exact = true
+    stripComponents = 2
+    include = ["*/dd-logs/**"]
 
-[".claude/skills/dd-apm/SKILL.md"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/datadog-labs/agent-skills/main/dd-apm/SKILL.md"
-    refreshPeriod = "168h"
+[".claude/skills/dd-monitors"]
+    type = "archive"
+    url = "https://github.com/datadog-labs/agent-skills/archive/6bd95cce9e0792c0f27c342214609706e51313c3.tar.gz"
+    exact = true
+    stripComponents = 2
+    include = ["*/dd-monitors/**"]
 
-[".claude/skills/dd-docs/SKILL.md"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/datadog-labs/agent-skills/main/dd-docs/SKILL.md"
-    refreshPeriod = "168h"
+[".claude/skills/dd-pup"]
+    type = "archive"
+    url = "https://github.com/datadog-labs/agent-skills/archive/6bd95cce9e0792c0f27c342214609706e51313c3.tar.gz"
+    exact = true
+    stripComponents = 2
+    include = ["*/dd-pup/**"]
