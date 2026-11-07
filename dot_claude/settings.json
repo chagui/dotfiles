@@ -10,8 +10,6 @@
     "swift-lsp@claude-plugins-official": true,
     "slack@claude-plugins-official": true
   },
-  "model": "opus[1m]",
-  "effortLevel": "high",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh",
