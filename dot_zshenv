@@ -4,6 +4,7 @@ export LANG=en_US.UTF-8
 [[ $OSTYPE == linux* && $LC_CTYPE == UTF-8 ]] && unset LC_CTYPE
 export MANPAGER='nvim +Man!'
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export COLIMA_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/colima"
 
 # Dedup PATH so later prepends don't re-order earlier entries. Kept in sync
 # with dot_config/zsh/dot_zshrc.tmpl:1.
