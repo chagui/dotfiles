@@ -4,6 +4,8 @@ disable = [
     "asdf",
     "chezmoi",
     "containers",
+    # done via brew
+    "colima",
     "gem",
     "github_cli_skills",
     "pnpm",
