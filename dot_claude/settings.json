@@ -10,6 +10,10 @@
     "swift-lsp@claude-plugins-official": true,
     "slack@claude-plugins-official": true
   },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh",
