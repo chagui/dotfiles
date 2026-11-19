@@ -55,6 +55,7 @@ set -sa terminal-overrides ",xterm*:Tc"
 # https://code.claude.com/docs/en/terminal-config#configure-tmux
 set -g allow-passthrough on
 set -s extended-keys on
+set -s extended-keys-format csi-u
 set -as terminal-features 'xterm*:extkeys'
 
 # index from 1 instead of 0
