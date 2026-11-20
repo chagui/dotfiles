@@ -13,6 +13,12 @@ if [ -s "$asdf_source" ]; then
 fi
 fpath=(${ASDF_DIR}/completions $fpath)
 
+# Codex has no editor setting; ctrl+g reads $VISUAL/$EDITOR only. The
+# editor profile matches what Claude (settings.json) and pi (externalEditor) use.
+if command -v codex &>/dev/null; then
+    alias codex='EDITOR=nvim NVIM_PROFILE=editor codex'
+fi
+
 # delta
 if command -v delta &>/dev/null; then
     compdef _gnu_generic delta
