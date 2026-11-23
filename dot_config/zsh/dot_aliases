@@ -81,10 +81,13 @@ if hash bat &>/dev/null; then
     alias cat='bat -p'
 fi
 
-# never needed globing when using pip so disable it in order to do
-# pip install package[plugin] instead of pip install package\[plugin\]
+# In zsh, square brackets [...] trigger glob pattern matching. If no files match,
+# zsh aborts with "zsh: no matches found". Using 'noglob' disables filename expansion
+# so extras syntax works without escaping or quotes (e.g. `uv add pkg[extra]`).
 alias bazel='noglob bazel'
 alias pip='noglob pip'
+alias uv='noglob uv'
+alias uvx='noglob uvx'
 
 # ascii art
 alias no-idea='echo "¯\_(ツ)_/¯"'

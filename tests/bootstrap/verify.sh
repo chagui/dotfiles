@@ -80,6 +80,7 @@ ZDOTDIR_RESOLVED="${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}"
 XDG_DATA_HOME_RESOLVED="${XDG_DATA_HOME:-$HOME/.local/share}"
 check_file "$ZDOTDIR_RESOLVED/fzf-completion.zsh"
 check_file "$XDG_DATA_HOME_RESOLVED/zsh/completions/_uv"
+check_file "$XDG_DATA_HOME_RESOLVED/zsh/completions/_uvx"
 
 if [ $fail -gt 0 ]; then
     echo

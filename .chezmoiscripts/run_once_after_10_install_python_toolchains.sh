@@ -18,3 +18,4 @@ uv generate-shell-completion zsh >"${XDG_DATA_HOME}/zsh/completions/_uv"
 uvx --generate-shell-completion zsh >"$XDG_DATA_HOME/zsh/completions/_uvx"
 
 uv tool install argcomplete
+uv tool install pynvim
