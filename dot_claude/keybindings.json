@@ -1,0 +1,10 @@
+{
+  "bindings": [
+    {
+      "context": "Chat",
+      "bindings": {
+        "ctrl+q": "chat:queueSubmit"
+      }
+    }
+  ]
+}
