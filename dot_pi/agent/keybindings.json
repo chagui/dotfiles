@@ -1,0 +1,5 @@
+{
+  "$schema": "https://pi.dev/schemas/keybindings.schema.json",
+  "tui.input.newLine": ["shift+enter", "ctrl+j", "alt+enter"],
+  "app.message.followUp": "ctrl+q"
+}
