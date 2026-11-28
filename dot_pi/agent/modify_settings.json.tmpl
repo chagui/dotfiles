@@ -1,0 +1,77 @@
+#!/usr/bin/env python3
+"""Chezmoi modify_ script for ~/.pi/agent/settings.json."""
+
+import copy
+import json
+from pathlib import Path
+import sys
+
+GENERIC_SCALARS = {
+    "externalEditor": "env NVIM_PROFILE=editor nvim",
+}
+
+GENERIC_ARRAYS = {
+    "defaultTools": ["+codemode"],
+    "extensions": ["-builtin:mcp"],
+    "packages": [
+        "npm:@getpipher/vision",
+        "npm:@juicesharp/rpiv-ask-user-question",
+        "npm:pi-mcp-adapter",
+        "npm:pi-subagents",
+    ],
+}
+
+
+def union_list(base: list, extra: list) -> list:
+    result = []
+    for item in base:
+        if item not in result:
+            result.append(item)
+    for item in extra:
+        if item not in result:
+            result.append(item)
+    return result
+
+
+def deep_merge(base, overlay):
+    if isinstance(base, dict) and isinstance(overlay, dict):
+        merged = dict(base)
+        for key, value in overlay.items():
+            if key in merged:
+                merged[key] = deep_merge(merged[key], value)
+            else:
+                merged[key] = copy.deepcopy(value)
+        return merged
+    if isinstance(base, list) and isinstance(overlay, list):
+        return union_list(base, overlay)
+    return copy.deepcopy(overlay)
+
+
+def main() -> None:
+    raw = sys.stdin.read().strip()
+    cfg = json.loads(raw) if raw else {}
+    if not isinstance(cfg, dict):
+        raise ValueError("Expected JSON object on stdin")
+
+    for key, value in GENERIC_SCALARS.items():
+        cfg[key] = value
+
+    for key, items in GENERIC_ARRAYS.items():
+        existing = cfg.get(key)
+        base_list = existing if isinstance(existing, list) else []
+        cfg[key] = union_list(base_list, items)
+
+    local_path = Path.home() / ".pi" / "agent" / "settings.local.json"
+    if local_path.is_file():
+        local_raw = local_path.read_text(encoding="utf-8").strip()
+        if local_raw:
+            local_cfg = json.loads(local_raw)
+            if not isinstance(local_cfg, dict):
+                raise ValueError("Expected JSON object in settings.local.json")
+            cfg = deep_merge(cfg, local_cfg)
+
+    sys.stdout.write(json.dumps(cfg, indent=2) + "\n")
+
+
+if __name__ == "__main__":
+    main()
