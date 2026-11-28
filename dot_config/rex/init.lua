@@ -19,3 +19,13 @@ rex.bind("ctrl+alt+left", "pane.resize", { direction = "left", amount = 10 })
 rex.bind("ctrl+alt+down", "pane.resize", { direction = "down", amount = 10 })
 rex.bind("ctrl+alt+up", "pane.resize", { direction = "up", amount = 10 })
 rex.bind("ctrl+alt+right", "pane.resize", { direction = "right", amount = 10 })
+
+--------------------------------------------------------------------------------
+-- Local Overlay
+-- Optional machine/work-specific overrides in ~/.config/rex/local.lua
+-- (not tracked by chezmoi)
+--------------------------------------------------------------------------------
+local ok, err = pcall(require, "local")
+if not ok and not tostring(err):match("module '?local'? not found") then
+    error(err)
+end
